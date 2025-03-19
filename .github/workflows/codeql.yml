@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [javascript, typescript]  # ✅ Fix: Separate JavaScript & TypeScript
+        language: [javascript-typescript]
 
     steps:
     - name: Checkout repository
@@ -33,22 +33,22 @@ jobs:
         node-version: 18
 
     - name: Install dependencies
-      run: npm ci --legacy-peer-deps  # ✅ More reliable than "npm install"
+      run: npm install --legacy-peer-deps
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
-        languages: javascript, typescript  # ✅ Fix: Correct language format
-        queries: +security-extended, +security-and-quality  # ✅ Run extended security checks
-        build-mode: none  # ✅ Fix: JavaScript does not support "manual" build mode
+        languages: javascript-typescript
+        queries: security-extended,security-and-quality
+        build-mode: none  # ✅ Correct build mode
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:javascript-typescript"
 
-    - name: Upload CodeQL Database (For Debugging)
-      uses: actions/upload-artifact@v3
+    - name: Upload CodeQL database
+      uses: actions/upload-artifact@v3  # ✅ Fix missing artifact upload
       with:
         name: codeql-database
-        path: /home/runner/work/_temp/codeql_databases/
+        path: /home/runner/work/_temp/codeql_databases
