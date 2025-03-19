@@ -32,7 +32,6 @@ jobs:
       with:
         node-version: 18
 
-    # Replacing `npm ci` with `npm install` to avoid lock file issues
     - name: Install dependencies
       run: npm install --legacy-peer-deps
 
@@ -41,7 +40,7 @@ jobs:
       with:
         languages: javascript-typescript
         queries: security-extended,security-and-quality
-        build-mode: manual
+        build-mode: none  # ✅ Fix: JavaScript does not support manual build mode
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
