@@ -48,7 +48,7 @@ jobs:
         category: "/language:javascript-typescript"
 
     - name: Upload CodeQL database
-      uses: actions/upload-artifact@v3  # ✅ Fix missing artifact upload
+      uses: actions/upload-artifact@v3
       with:
         name: codeql-database
         path: /home/runner/work/_temp/codeql_databases
