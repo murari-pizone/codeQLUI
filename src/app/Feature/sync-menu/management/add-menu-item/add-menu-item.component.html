@@ -1,0 +1,135 @@
+<div class="customHeaderSyncTrack">
+
+    <!---------------- header --------------->
+    <div class="mat-dialog-header-parent">
+        <div class="div-search-hading" style="justify-content: space-between;margin:10px">
+            <h1 class="heading">{{title}}</h1>
+            <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+          </div>
+    </div>
+    <!----------------- header --------------->
+
+    <mat-dialog-content mat-dialog-content>
+        <div class="inline-error-msg">
+            @if(errorMessages){
+            <app-inline-error-msg (crossClick)="closeInlineError()" [errorMsg]="errorMessages"></app-inline-error-msg>
+            }
+        </div>
+        <!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
+        <div [ngClass]="{'back-drop': isLoading}">
+            <div>
+                <div class="header rds">
+                    <h1 style="margin:0px">Create Menu Item</h1>
+                    <p>Fill in the details to create Outlet. </p>
+                </div>
+                <form [formGroup]="itemForm" (ngSubmit)="onSubmit()" class="form-container">
+
+                    <div class="form-grid">
+                        <!-- set -->
+                        <div class="form-group">
+                            <label>Platform: --- Set</label>
+                            <input formControlName="ExtPlatform" placeholder="(e.g., PlatformA)"
+                                [ngClass]="{'border-error': submitted && itemForm.get('ExtPlatform')?.invalid}"
+                                (focus)="resetErrors()" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Item Code: ---Set</label>
+                            <input formControlName="Icode" type="number" placeholder="Ex: 12344543 (Only digits)"
+                                [ngClass]="{'border-error': submitted && itemForm.get('Icode')?.invalid}"
+                                (focus)="resetErrors()" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Item Name:--- Set</label>
+                            <input formControlName="Iname" placeholder="(e.g., Item)"
+                                [ngClass]="{'border-error': submitted && itemForm.get('Iname')?.invalid}"
+                                (focus)="resetErrors()" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Live Status: ---- Set</label>
+                            <select formControlName="LiveStatus"
+                                [ngClass]="{'border-error': submitted && itemForm.get('LiveStatus')?.invalid}"
+                                (focus)="resetErrors()">
+                                <option value="Active">Active</option>
+                                <option value="InActive">InActive</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Category:</label>
+                            <input formControlName="Cat" placeholder="Ex: N/A (if not applicable)"
+                                [ngClass]="{'border-error': submitted && itemForm.get('Cat')?.invalid}"
+                                (focus)="resetErrors()" />
+                        </div>
+                        <div class="form-group">
+                            <label>External Category:</label>
+                            <input formControlName="ExtCat" placeholder="Ex: N/A (if not applicable)"
+                                [ngClass]="{'border-error': submitted && itemForm.get('ExtCat')?.invalid}"
+                                (focus)="resetErrors()" />
+                        </div>
+
+
+                        <!-- <div class="form-group">
+                            <label>Enable/Disable User:</label>
+                            <input formControlName="enaDisUsr" placeholder="User will be displayed here"
+                                [ngClass]="{'border-error': submitted && itemForm.get('enaDisUsr')?.invalid}"
+                                (focus)="resetErrors()" />
+                        </div> -->
+
+                        <div class="form-group">
+                            <label>Popular Item:</label>
+
+                            <div class="toggle-container">
+                                <label class="toggle-switch">
+                                  <input type="checkbox" formControlName="popitemYN" />
+                                  <span class="slider"></span>
+                                </label>
+                                <p>Toggle State: {{ popitemYN ? 'On' : 'Off' }}</p>
+                              </div>
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label>Network Update Reason:</label>
+                            <input formControlName="NetUpdReson" placeholder="Ex: Maintenance (provide a reason)"
+                                [ngClass]="{'border-error': submitted && itemForm.get('NetUpdReson')?.invalid}"
+                                (focus)="resetErrors()" />
+                        </div> -->
+
+                        <!-- <div class="form-group">
+                            <label>Inventory Maintain:</label>
+                            <select formControlName="InventoryMaintainYN"
+                                [ngClass]="{'border-error': submitted && itemForm.get('InventoryMaintainYN')?.invalid}"
+                                (focus)="resetErrors()">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div> -->
+                    </div>
+
+                    <div *ngIf="submitted && itemForm.invalid" class="error-message">
+                        Please fill in all required fields before submitting.
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        @if(!isLoading){
+                        <span> {{data.create ? 'Submit' : 'Update'}}</span>
+                        }@else {
+                        <app-loader [loadingCircleColor]="'3px solid #0a53be'" [isLoading]="isLoading"
+                            [loadingText]="'Saving...'"></app-loader>
+                        }
+                    </button>
+                </form>
+            </div>
+        </div>
+    </mat-dialog-content>
+
+    <!---------------- Footer --------------->
+    <mat-dialog-actions>
+        <!-- <div class="d-flex gap-2 justify-content-end w-100">
+            <button type="button" class="btn btn-primary success" (click)="close()">Ok</button>
+        </div> -->
+    </mat-dialog-actions>
+    <!---------------- Footer --------------->
+</div>

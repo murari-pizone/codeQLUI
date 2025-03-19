@@ -1,0 +1,54 @@
+<div style="display: grid;gap:25px">
+    <div class="offcanvas-header border rounded">
+        <div class="associatedHeader">
+            <div>
+                <h2>Recommended Items </h2>
+                <p style="color: grey; font-size: 13px; padding-top: 4px;">Recommendations based on the current item</p>
+            </div>
+            <div class="actions">
+                <button class="btn btn-primary" (click)="addGroup()"> Add Field Group </button>
+            </div>
+        </div>
+    </div>
+
+    @for(cField of customFieldGroups; track cField ;let gInd = $index){
+    <div style="height: auto;" class="border rounded">
+        <div class="container-fluid"
+            style="display: flex; justify-content: space-between; width: 100%; align-items: center; height: 7vh;">
+            <p>Group Title </p>
+            <input [(ngModel)]="cField.groupTitle" style="line-height: 2;width: 80%;" disabled placeholder="Enter title"
+                class="form-control" type="text" title="Title">
+            <i tabindex="-1" (keyup)="empty()" id="customGroup" title="Remove Field Group" style="padding: 5px; border-radius: 4px;color:red"
+                class="bi bi-trash3" [ngClass]="{'disabled-icon':customFieldGroups.length === 1}" (click)="removeGroup(gInd)"></i>
+        </div>
+        @for(fields of cField.groupFields; track fields ;let fInd = $index){
+        <div class="container-fluid border"
+            style="display: flex; justify-content: space-between; gap: 10px;align-items: center;height: 9vh;">
+            <div style="width: 100%;">
+                <p style="color: grey; font-size: 13px; padding-top: 4px;"> Name </p>
+                <input style="line-height: 2;" disabled placeholder="Enter Name" class="form-control" type="text"
+                    title="Name">
+            </div>
+
+            <div style="width: 100%;">
+                <p style="color: grey; font-size: 13px; padding-top: 4px;"> Value </p>
+                <input style="line-height: 2;" disabled placeholder="Enter Value" class="form-control" type="text"
+                    title="Value">
+            </div>
+
+            <div style="width: 30%;">
+                <div style="padding: 4px;"></div>
+                <i tabindex="-1" (keyup)="empty()" title="Remove Field" id="groupFields" style="padding: 5px; border-radius: 4px;color:red"
+                    class="bi bi-trash3" [ngClass]="{'disabled-icon':cField.groupFields.length === 1}" (click)="removeGroupField(gInd,fInd)"></i>
+            </div>
+        </div>
+        }
+
+        <div class="container-fluid" style="display: flex; gap:15px; width: 100%; align-items: center; height: 6vh;">
+            <button class="btn btn-primary"> Save </button>
+            <button class="filter-btn" (click)="addGroupField(gInd)"> Add Another Field </button>
+        </div>
+
+    </div>
+    }
+</div>

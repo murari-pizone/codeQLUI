@@ -1,0 +1,116 @@
+<div class="offcanvas-header">
+    <div class="associatedHeader">
+        <div>
+            <h2>Recommended Items </h2>
+            <p style="color: grey; font-size: 13px; padding-top: 4px;">Recommendations based on the current item</p>
+        </div>
+        <div class="actions">
+            <!-- <button class="filter-btn"> Update </button> -->
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="display: flex; justify-content: space-between; gap: 10px;">
+    <div style="width: 100%;">
+        <p style="color: grey; font-size: 13px; padding-top: 4px;">
+            Title
+        </p>
+        <input style="line-height: 2;" disabled placeholder="Enter title" class="form-control" type="text"
+            title="Title">
+    </div>
+
+    <div style="width: 100%;">
+        <p style="color: grey; font-size: 13px; padding-top: 4px;">
+            Category
+        </p>
+        <select id="category" [disabled]="true" [(ngModel)]="categoryTag" class="select-input form-select disabled"
+            title="pCategory" name="pCategory" [ngClass]="{ placeHolderText: !categoryTag }">
+            <option value="" selected>Select Category</option>
+            <option [value]="'Category A'">Category A</option>
+            <option [value]="'Category B'">Category B</option>
+        </select>
+    </div>
+
+    <div style="width: 100%;">
+        <p style="color: grey; font-size: 13px; padding-top: 4px;">
+            Tags
+        </p>
+        <select id="tags" [disabled]="true" [(ngModel)]="searchTag" class="select-input form-select disabled"
+            title="pTags" name="pTags" [ngClass]="{ placeHolderText: !searchTag }">
+            <option value="" selected>Select Tag</option>
+            <option [value]="'Tags A'">Tags A</option>
+            <option [value]="'Tags B'">Tags B</option>
+        </select>
+    </div>
+</div>
+<div class="container-fluid" style="display: flex; justify-content: space-between; gap: 10px;">
+    <div style="width: 100%;">
+        <p style="color: grey; font-size: 13px; padding-top: 4px;">
+            CRM Title
+        </p>
+        <input style="line-height: 2;" disabled placeholder="Enter CRM Title" class="form-control" type="text"
+            title="CRM Title">
+    </div>
+    <div style="width: 100%;">
+    </div>
+    <div style="width: 100%;">
+    </div>
+</div>
+
+<div style="padding-top: 20px;">
+    <div class="container-fluid">
+        <div class="table">
+            <div class="table-scroll">
+                <table mat-table [dataSource]="rows | paginate: { itemsPerPage: itemPerPage, currentPage: page }"
+                    matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="TITLE">
+                        <th mat-header-cell *matHeaderCellDef class="city-column" mat-sort-header="TITLE">
+                            TITLE </th>
+                        <td mat-cell *matCellDef="let element" class="city-column" [title]="element['title']">
+                            {{element['title']}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="CATEGORY">
+                        <th mat-header-cell *matHeaderCellDef class="city-column" mat-sort-header="CATEGORY">
+                            CATEGORY </th>
+                        <td mat-cell *matCellDef="let element" class="city-column" [title]="element['category']">
+                            {{element['category']}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="PRICE">
+                        <th mat-header-cell *matHeaderCellDef class="city-column" mat-sort-header="PRICE">
+                            PRICE </th>
+                        <td mat-cell *matCellDef="let element" class="city-column" [title]="element['price']">
+                            {{element['price']}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+                </table>
+            </div>
+            <div class="table-footer">
+                <div class="totalCount">
+                    @if(rows.length > 0){
+                    <span class="footer-text"> Total Records :
+                        {{rows.length}}</span>
+                    }@else{
+                    <span class="footer-text"> Total Records : 0</span>
+                    }
+                </div>
+                <div class="has-text-centered pagination">
+                    <pagination-controls (pageChange)="page = $event" previousLabel=""
+                        nextLabel=""></pagination-controls>
+                </div>
+                <div class="footer-menu">
+                    <span class="footer-text"> Show Records Per Page : </span>
+                    <select [(ngModel)]="dropDownSelectedValue" (change)="RecordPerPage()">
+                        @for(option of paging;; track option){
+                        <option value="{{option}}">{{option}}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

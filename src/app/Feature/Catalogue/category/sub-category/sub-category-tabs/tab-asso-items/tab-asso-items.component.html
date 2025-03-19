@@ -1,0 +1,120 @@
+<div class="offcanvas-header">
+
+    <div class="associatedHeader">
+        <div>
+            <h2>{{catConst.editCategory[0].name}}</h2>
+            <p>{{catConst.editCategory[0].associatedItems.length}} Items are associated to this category</p>
+        </div>
+        <div class="actions">
+            <!-- <button class="filter-btn"> Update </button>
+            <button class="filter-btn" (click)="cancelChanges()"> Cancel </button> -->
+        </div>
+    </div>
+</div>
+<div style="width: 100%; display: flex;justify-content: space-between;">
+    <div class="mb-3" style="padding: 5px;display: flex;justify-content: space-around;gap:8px">
+        <span>
+            <select id="city" [disabled]="true" [(ngModel)]="searchBrand" class="select-input form-select"
+                title="pCategory" name="pCategory" placeholder="Option"
+                (change)="setParentCategory(catConst.editCategory[0].name)">
+                <option value="" disabled selected>Select Brand</option>
+                @for(option of catConst.categories ; track option){
+                <option [value]="option.name">{{ option.name }}</option>
+                }
+            </select>
+        </span>
+        <span>
+            <select id="city" [disabled]="true" [(ngModel)]="searchTag" class="select-input form-select"
+                title="pCategory" name="pCategory" placeholder="Option"
+                (change)="setParentCategory(catConst.editCategory[0].name)">
+                <option value="" disabled selected>Tags</option>
+                @for(option of catConst.categories ; track option){
+                <option [value]="option.name">{{ option.name }}</option>
+                }
+            </select>
+        </span>
+    </div>
+    <div style="padding-top: 4px;">
+        <input maxlength="50" [disabled]="true" type="text" class="form-control" [(ngModel)]="searchName" id="name"
+            placeholder="Name">
+    </div>
+</div>
+
+<div>
+    <div class="container-fluid">
+        <div class="table">
+            <div class="table-scroll">
+                <table mat-table
+                    [dataSource]="catConst.editCategory[0].associatedItems | paginate: { itemsPerPage: itemPerPage, currentPage: page }"
+                    matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="Name">
+                        <th mat-header-cell *matHeaderCellDef class="restaurant-name-column" mat-sort-header="Name">
+                            NAME </th>
+                        <td mat-cell *matCellDef="let element" class="restaurant-name-column"
+                            [title]="element['itemName']">
+                            <div style="display: flex;">
+                                <img style="height: 65px;width: 65px;padding: 5px;margin:5px;"
+                                    src="../../../../../assets/images/png/sweets.jfif" alt="sweets img" />
+                                <p style="    display: flex;align-items: center;justify-content: center">
+                                    {{element['itemName']}}
+                                    <span class="itemColumn-btn">Package...</span>
+                                </p>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="assoLocation">
+                        <th mat-header-cell *matHeaderCellDef class="location-column" mat-sort-header="assoLocation">
+                            ASSOC.LOCATIONS </th>
+                        <td mat-cell *matCellDef="let element" class="location-column"
+                            [title]="element['assoLocation']"> {{element['assoLocation']}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="assoBrand">
+                        <th mat-header-cell *matHeaderCellDef class="city-column" mat-sort-header="assoBrand">
+                            ASSOC.BRANDS </th>
+                        <td mat-cell *matCellDef="let element" class="city-column" [title]="element['assoBrand']">
+                            {{element['assoBrand']}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="price">
+                        <th mat-header-cell *matHeaderCellDef class="city-column" mat-sort-header="price">
+                            PRICE </th>
+                        <td mat-cell *matCellDef="let element" class="city-column" [title]="element['price']">
+                            {{element['price']}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+                </table>
+            </div>
+            <div class="table-footer">
+                <div class="totalCount">
+                    @if(catConst.editCategory[0].associatedItems &&
+                    catConst.editCategory[0].associatedItems.length >
+                    0){
+                    <span class="footer-text"> Total Records :
+                        {{catConst.editCategory[0].associatedItems.length}}</span>
+                    }@else{
+                    <span class="footer-text"> Total Records : 0</span>
+                    }
+                </div>
+                <div class="has-text-centered pagination">
+                    <pagination-controls (pageChange)="page = $event" previousLabel=""
+                        nextLabel=""></pagination-controls>
+                </div>
+                <div class="footer-menu">
+                    <span class="footer-text"> Show Records Per Page : </span>
+                    <select [(ngModel)]="dropDownSelectedValue" (change)="RecordPerPage()">
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="All">All</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

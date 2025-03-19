@@ -1,0 +1,9 @@
+mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.disabled{
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+}

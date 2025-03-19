@@ -1,0 +1,73 @@
+
+<!---------------- header --------------->
+<div class="mat-dialog-header">
+  <div>
+    <h2 >{{data['customizeNameForSave'] === 'Sync' ? 'A2B Sweets  - Swiggy' : popupData.title}}
+
+      @if(data['customizeNameForSave'] === 'Sync'){
+      <button style="padding: 0.1rem 0.5rem;" [cdkCopyToClipboard]="stringJson"
+        (cdkCopyToClipboardCopied)="onClipboardCopy($event)">
+        <i class="bi bi-copy"></i>
+      </button>
+      }
+    </h2>
+    @if(syncTiming && syncTiming > 0){
+      <span class="time-Text">Syncing completed in : {{syncTiming}} ms</span>
+    }
+  </div>
+    @if(!popupData.hideCrossIcon){
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeDialog()"></button>
+    }
+</div>
+<!----------------- header --------------->
+
+
+
+  <mat-dialog-content  mat-dialog-content>
+    @if(popupData.aggregatorData?.showAggregatorList){ 
+      <div class="Aggregator-List">
+        <p style="max-width: 800px;">{{popupData.description}}</p>
+        @for(aggregator of popupData.aggregatorData?.aggregatorList;track aggregator){
+          <div class="check-box-And-list-item">
+             <div class="checkbox">
+              <input style="border: 1px solid cornflowerblue;" (keyup)="empty()" class="form-check-input" tabindex="-1" type="checkbox" id="inlineCheckbox1" value="option1" [checked]="aggregator.isChecked" (change)="onCheck(aggregator)">
+             </div>
+             <div class="list-item">
+                <span class="item">{{aggregator.aggregator_name}}</span>
+             </div>
+          </div>
+        }
+      </div>
+    }
+    @else{
+      @if(data['customizeNameForSave'] === 'Sync'){
+        <p style="max-height: 740px;">
+          {{popupData['completeJson'] | json}}
+        </p>
+      }@else {
+        <p style="max-width: 800px;" >{{popupData.description}}</p>
+      }
+      @if(popupData.title === 'Contact Support'){
+        <p>{{contactData['ErrorCode']}}</p>
+        <p>{{contactData['Timestamp']}}</p>
+        }
+    }
+  </mat-dialog-content>
+  
+
+
+  <!---------------- Footer --------------->
+  <mat-dialog-actions>
+    <div></div>
+    <div class="d-flex gap-2">
+    @if(popupData.customizeNameForSave && data.aggregatorData !== null){
+      <button type="button" class="btn btn-primary success" (click)="close()" [disabled]="!enableSyncButton">{{popupData.customizeNameForSave}}</button>
+    }@else if(popupData.customizeNameForSave && popupData.customizeNameForSave !== '' && data['customizeNameForSave'] !== 'Sync'){
+      <button type="button" class="btn btn-primary success" (click)="close()">{{popupData.customizeNameForSave === 'Single Sync' ? 'Sync' : popupData.customizeNameForSave}}</button>
+    }
+    @else {
+      <button type="button" class="btn btn-primary success" (click)="close()">Ok</button>
+    }
+  </div>
+  </mat-dialog-actions>
+  <!---------------- Footer --------------->

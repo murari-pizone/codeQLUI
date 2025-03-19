@@ -1,0 +1,288 @@
+@if(commonService.isLogIn){
+    <div class="toolbar">
+    <!-- Button to toggle drawer -->
+    <header class="">
+        <aside class="navbar navbar-expand-lg" id="nav">
+            <div class="w-100 d-flex container-fluid">
+                <div class="d-flex align-items-center gap-2 ms-2">
+                    <!-- (click)="openSideBar()" (keyup)="empty()" tabindex="-12" -->
+                    <div (click)="toggleRightDrawer($event)" (keyup)="empty()" tabindex="-12"
+                        class="menu-icon d-flex align-items-center justify-content-center me-3">
+                        <a>
+                            <img src="../assets/images/svg/Menu-Icon.svg" alt="Menu-Icon" style="cursor: pointer;">
+                        </a>
+                    </div>
+                    <!-- <img src="../assets/images/svg/Vector.svg" alt="Logo"> -->
+                    <p class="fs-24 fw-600 cl-white m-0">{{title}}</p>
+                </div>
+
+                <div class="profile-notification d-flex align-items-center gap-4 me-4">
+                    <div class="notification-icon">
+                        <img src="../assets/images/svg/Notification-icon.svg" alt="Notification-icon">
+                    </div>
+                    <div class="profile-tab d-flex align-items-center gap-2">
+                        <!-- <div class="profile-img">
+                            <img src="../assets/images/svg/profile-img.svg" alt="profile-img">
+                        </div> -->
+                        <div class="Not-available">
+                            <i class="bi bi-person-circle Not-available-img"></i>
+                          </div>
+                        <div class="profile-info">
+                            <!-- <p class="user-name cl-white fs-14 fw-400">Adhyan Vishnoi</p> -->
+                            <a tabindex="-0" (keyup)="empty()" (click)="toggleDrawer($event)"
+                                class="user-role cl-white fs-12 fw-400 opacity-50">Test Admin</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </header>
+</div>
+}
+<div class="app-container">
+    <!-- Side Car view  -->
+     @if(commonService.isLogIn){
+    <div class="sidebar" [ngClass]="{'sidebar-open': showDrawer}" name="offCampus" >
+        <!-- mwlResizable [enableGhostResize]="true"
+            (resizeEnd)="onResizeEnd($event)" [enableGhostResize]="true"  (resizing)="onResizing($event)" -->
+        <div class="sidebar-menu show" tabindex="--1" >
+            <div class="">
+
+                <!-- dashboard -->
+                <!-- <div (keyup)="empty()" tabindex="-5" class="sideMenu-item" [ngClass]="route.url === '/view/dashboard' ? 'active' : ''" (click)="navigateTo('dashboard');hideSubMenu('syncMenu');">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M11 3.6665H18.3333V9.1665H11V3.6665ZM11 19.2498V10.0832H18.3333V19.2498H11ZM2.75 19.2498V13.7498H10.0833V19.2498H2.75ZM2.75 12.8332V3.6665H10.0833V12.8332H2.75ZM3.66667 4.58317V11.9165H9.16667V4.58317H3.66667ZM11.9167 4.58317V8.24984H17.4167V4.58317H11.9167ZM11.9167 10.9998V18.3332H17.4167V10.9998H11.9167ZM3.66667 14.6665V18.3332H9.16667V14.6665H3.66667Z"
+                            fill="#8A8A8A" />
+                    </svg>
+                    <a >Dashboard</a>
+                </div> -->
+
+                <!-- Restaurant Details -->
+                <!-- <div (click)="navigateTo('sync-menu');hideSubMenu('syncMenu');closeBar($event)" (keyup)="empty()" tabindex="-5" class="sideMenu-item" [ngClass]="route.url === '/view/sync-menu' ? 'active' : ''">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M11 3.6665H18.3333V9.1665H11V3.6665ZM11 19.2498V10.0832H18.3333V19.2498H11ZM2.75 19.2498V13.7498H10.0833V19.2498H2.75ZM2.75 12.8332V3.6665H10.0833V12.8332H2.75ZM3.66667 4.58317V11.9165H9.16667V4.58317H3.66667ZM11.9167 4.58317V8.24984H17.4167V4.58317H11.9167ZM11.9167 10.9998V18.3332H17.4167V10.9998H11.9167ZM3.66667 14.6665V18.3332H9.16667V14.6665H3.66667Z"
+                            fill="#8A8A8A" />
+                    </svg>
+                    <a>Menu Sync</a>
+                </div> -->
+
+                <!-- Menu and SubMenu -->
+                <div (click)="activeLinkName='Menu';hideSubMenu('Menu');" tabindex="-6" (keyup)="empty()" (click)="showSubMenu()" class="sideMenu-item" 
+                >
+                <!-- [ngClass]="activeLinkName === 'Menu' ? 'active' : ''" -->
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M11 3.6665H18.3333V9.1665H11V3.6665ZM11 19.2498V10.0832H18.3333V19.2498H11ZM2.75 19.2498V13.7498H10.0833V19.2498H2.75ZM2.75 12.8332V3.6665H10.0833V12.8332H2.75ZM3.66667 4.58317V11.9165H9.16667V4.58317H3.66667ZM11.9167 4.58317V8.24984H17.4167V4.58317H11.9167ZM11.9167 10.9998V18.3332H17.4167V10.9998H11.9167ZM3.66667 14.6665V18.3332H9.16667V14.6665H3.66667Z"
+                            fill="#8A8A8A" />
+                    </svg>
+                    <a class="menuLink" style="gap:3px">
+                        <span>Restaurant </span>
+                        <div class="arrowIcon">
+                            <i [ngClass]="isSubMenuClick ? 'bi bi-chevron-up' : 'bi bi-chevron-down'"></i>
+                        </div>
+                    </a>
+                </div>
+                @if(isSubMenuClick){
+                <div class="subMenu">
+                    <!--Order Error Screen-->
+
+                    @for(menu of subMenuArray ; track menu){
+                    <div (click)="navigateTo(menu.routeLink);" (keyup)="empty()" tabindex="-7" class="orderErrorLink sideMenu-item"
+                        [ngClass]="route.url === '/view/'+menu.routeLink ? 'active' : ''">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M11 3.6665H18.3333V9.1665H11V3.6665ZM11 19.2498V10.0832H18.3333V19.2498H11ZM2.75 19.2498V13.7498H10.0833V19.2498H2.75ZM2.75 12.8332V3.6665H10.0833V12.8332H2.75ZM3.66667 4.58317V11.9165H9.16667V4.58317H3.66667ZM11.9167 4.58317V8.24984H17.4167V4.58317H11.9167ZM11.9167 10.9998V18.3332H17.4167V10.9998H11.9167ZM3.66667 14.6665V18.3332H9.16667V14.6665H3.66667Z"
+                                fill="#8A8A8A" />
+                        </svg>
+                        <div class="link">
+                            <a>{{menu['linkName']}}</a>
+                        </div>
+                    </div>
+                    }
+                </div>
+                }
+
+                <div (click)="activeLinkName='Order';hideSubMenu('orders');" tabindex="-6" (keyup)="empty()"
+                    (click)="showOrderDetails()" class="sideMenu-item">
+                    <!-- [ngClass]="activeLinkName === 'Order' ? 'active' : ''" -->
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M11 3.6665H18.3333V9.1665H11V3.6665ZM11 19.2498V10.0832H18.3333V19.2498H11ZM2.75 19.2498V13.7498H10.0833V19.2498H2.75ZM2.75 12.8332V3.6665H10.0833V12.8332H2.75ZM3.66667 4.58317V11.9165H9.16667V4.58317H3.66667ZM11.9167 4.58317V8.24984H17.4167V4.58317H11.9167ZM11.9167 10.9998V18.3332H17.4167V10.9998H11.9167ZM3.66667 14.6665V18.3332H9.16667V14.6665H3.66667Z"
+                            fill="#8A8A8A" />
+                    </svg>
+                    <a class="menuLink" style="gap:3px">
+                        <span>Order Details</span>
+                        <div class="arrowIcon">
+                            <i [ngClass]="isOrderDetails ? 'bi bi-chevron-up' : 'bi bi-chevron-down'"></i>
+                        </div>
+                    </a>
+                </div>
+                
+                @if(isOrderDetails){
+                <div class="subMenu">
+                    <!--Order Error Screen-->
+                
+                    @for(order of subOrderArray ; track order){
+                    <div (click)="navigateTo(order.routeLink);hideSubMenu('subMenu')" (keyup)="empty()" tabindex="-7"
+                        class="orderErrorLink sideMenu-item" [ngClass]="route.url === '/view/'+order.routeLink ? 'active' : ''">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M11 3.6665H18.3333V9.1665H11V3.6665ZM11 19.2498V10.0832H18.3333V19.2498H11ZM2.75 19.2498V13.7498H10.0833V19.2498H2.75ZM2.75 12.8332V3.6665H10.0833V12.8332H2.75ZM3.66667 4.58317V11.9165H9.16667V4.58317H3.66667ZM11.9167 4.58317V8.24984H17.4167V4.58317H11.9167ZM11.9167 10.9998V18.3332H17.4167V10.9998H11.9167ZM3.66667 14.6665V18.3332H9.16667V14.6665H3.66667Z"
+                                fill="#8A8A8A" />
+                        </svg>
+                        <div class="link">
+                            <a>{{order['linkName']}}</a>
+                        </div>
+                    </div>
+                    }
+                </div>
+                }
+
+                <!-- Catalogue -->
+                <div (click)="activeLinkName='Catalogue';hideSubMenu('Catalogue');" tabindex="-6" (keyup)="empty()"
+                        (click)="showCatalogue()" class="sideMenu-item" 
+                        >
+                        <!-- [ngClass]="activeLinkName === 'Catalogue' ? 'active' : ''" -->
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M11 3.6665H18.3333V9.1665H11V3.6665ZM11 19.2498V10.0832H18.3333V19.2498H11ZM2.75 19.2498V13.7498H10.0833V19.2498H2.75ZM2.75 12.8332V3.6665H10.0833V12.8332H2.75ZM3.66667 4.58317V11.9165H9.16667V4.58317H3.66667ZM11.9167 4.58317V8.24984H17.4167V4.58317H11.9167ZM11.9167 10.9998V18.3332H17.4167V10.9998H11.9167ZM3.66667 14.6665V18.3332H9.16667V14.6665H3.66667Z"
+                            fill="#8A8A8A" />
+                    </svg>
+                    <a class="menuLink" style="gap:3px" >
+                        <span>Catalogue</span>
+                        <div class="arrowIcon">
+                            <i [ngClass]="isCatalogueClick ? 'bi bi-chevron-up' : 'bi bi-chevron-down'"></i>
+                        </div>
+                    </a>
+                </div>
+                @if(isCatalogueClick){
+                    <div class="subMenu">
+    
+                        @for(cat of subCatalogueArray ; track cat){
+                        <div (click)="navigateTo(cat.routeLink)" (keyup)="empty()" tabindex="-7" class="orderErrorLink sideMenu-item"
+                            [ngClass]="route.url === '/view/'+cat.routeLink ? 'active' : ''">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M11 3.6665H18.3333V9.1665H11V3.6665ZM11 19.2498V10.0832H18.3333V19.2498H11ZM2.75 19.2498V13.7498H10.0833V19.2498H2.75ZM2.75 12.8332V3.6665H10.0833V12.8332H2.75ZM3.66667 4.58317V11.9165H9.16667V4.58317H3.66667ZM11.9167 4.58317V8.24984H17.4167V4.58317H11.9167ZM11.9167 10.9998V18.3332H17.4167V10.9998H11.9167ZM3.66667 14.6665V18.3332H9.16667V14.6665H3.66667Z"
+                                    fill="#8A8A8A" />
+                            </svg>
+                            <div class="link">
+                                <a>{{cat['linkName']}}</a>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    }
+
+                    <div (click)="activeLinkName='Analytics';hideSubMenu('Analytics');" tabindex="-6" (keyup)="empty()"
+                        (click)="showAnalytics()" class="sideMenu-item" 
+                        >
+                        <!-- [ngClass]="activeLinkName === 'Analytics' ? 'active' : ''" -->
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M11 3.6665H18.3333V9.1665H11V3.6665ZM11 19.2498V10.0832H18.3333V19.2498H11ZM2.75 19.2498V13.7498H10.0833V19.2498H2.75ZM2.75 12.8332V3.6665H10.0833V12.8332H2.75ZM3.66667 4.58317V11.9165H9.16667V4.58317H3.66667ZM11.9167 4.58317V8.24984H17.4167V4.58317H11.9167ZM11.9167 10.9998V18.3332H17.4167V10.9998H11.9167ZM3.66667 14.6665V18.3332H9.16667V14.6665H3.66667Z"
+                            fill="#8A8A8A" />
+                    </svg>
+                    <a class="menuLink" >
+                        <span>Analytics</span>
+                        <div class="arrowIcon">
+                            <i [ngClass]="isSubAnalyticsClick ? 'bi bi-chevron-up' : 'bi bi-chevron-down'"></i>
+                        </div>
+                    </a>
+                </div>
+                @if(isSubAnalyticsClick){
+                    <div class="subMenu">
+    
+                        @for(cat of subAnalyticsArray ; track cat){
+                        <div (click)="navigateTo(cat.routeLink);" (keyup)="empty()" tabindex="-7" class="orderErrorLink sideMenu-item"
+                            [ngClass]="route.url === '/view/'+cat.routeLink ? 'active' : ''">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M11 3.6665H18.3333V9.1665H11V3.6665ZM11 19.2498V10.0832H18.3333V19.2498H11ZM2.75 19.2498V13.7498H10.0833V19.2498H2.75ZM2.75 12.8332V3.6665H10.0833V12.8332H2.75ZM3.66667 4.58317V11.9165H9.16667V4.58317H3.66667ZM11.9167 4.58317V8.24984H17.4167V4.58317H11.9167ZM11.9167 10.9998V18.3332H17.4167V10.9998H11.9167ZM3.66667 14.6665V18.3332H9.16667V14.6665H3.66667Z"
+                                    fill="#8A8A8A" />
+                            </svg>
+                            <div class="link">
+                                <a>{{cat['linkName']}}</a>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    }
+                
+
+                <!-- Api Setting -->
+                <!-- <div (click)="navigateTo('api-setting');hideSubMenu('apiSetting');closeBar($event)" (keyup)="empty()" tabindex="-10" class="sideMenu-item" [ngClass]="route.url === '/view/api-setting' ? 'active' : ''">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M11 3.6665H18.3333V9.1665H11V3.6665ZM11 19.2498V10.0832H18.3333V19.2498H11ZM2.75 19.2498V13.7498H10.0833V19.2498H2.75ZM2.75 12.8332V3.6665H10.0833V12.8332H2.75ZM3.66667 4.58317V11.9165H9.16667V4.58317H3.66667ZM11.9167 4.58317V8.24984H17.4167V4.58317H11.9167ZM11.9167 10.9998V18.3332H17.4167V10.9998H11.9167ZM3.66667 14.6665V18.3332H9.16667V14.6665H3.66667Z"
+                            fill="#8A8A8A" />
+                    </svg>
+                    <a routerLink="/view/api-setting">Aggregator Configuration</a>
+                </div> -->
+
+                <!-- location Module -->
+                <div (click)="navigateTo('Location');hideSubMenu('location')" (keyup)="empty()" tabindex="-10" class="sideMenu-item" [ngClass]="['/view/location','/view/add-location'].includes(route.url) ? 'active' : ''">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M11 3.6665H18.3333V9.1665H11V3.6665ZM11 19.2498V10.0832H18.3333V19.2498H11ZM2.75 19.2498V13.7498H10.0833V19.2498H2.75ZM2.75 12.8332V3.6665H10.0833V12.8332H2.75ZM3.66667 4.58317V11.9165H9.16667V4.58317H3.66667ZM11.9167 4.58317V8.24984H17.4167V4.58317H11.9167ZM11.9167 10.9998V18.3332H17.4167V10.9998H11.9167ZM3.66667 14.6665V18.3332H9.16667V14.6665H3.66667Z"
+                            fill="#8A8A8A" />
+                    </svg>
+                    <a routerLink="/view/location">Location</a>
+                </div>
+
+                <!-- Change Password -->
+                <!-- <div (click)="navigateTo('Change-Password');hideSubMenu('changePassword');closeBar($event)" (keyup)="empty()" tabindex="-10" class="sideMenu-item" [ngClass]="route.url === '/view/change-password' ? 'active' : ''">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M11 3.6665H18.3333V9.1665H11V3.6665ZM11 19.2498V10.0832H18.3333V19.2498H11ZM2.75 19.2498V13.7498H10.0833V19.2498H2.75ZM2.75 12.8332V3.6665H10.0833V12.8332H2.75ZM3.66667 4.58317V11.9165H9.16667V4.58317H3.66667ZM11.9167 4.58317V8.24984H17.4167V4.58317H11.9167ZM11.9167 10.9998V18.3332H17.4167V10.9998H11.9167ZM3.66667 14.6665V18.3332H9.16667V14.6665H3.66667Z"
+                            fill="#8A8A8A" />
+                    </svg>
+                    <a routerLink="/view/change-password">Change Password</a>
+                </div> -->
+
+                <div (click)="navigateTo('logout');closeBar($event)" (keyup)="empty()" tabindex="-11" data-bs-dismiss="offcanvas"
+                aria-label="Close" class="sideMenu-item" [ngClass]="route.url === '/' ? 'active' : ''">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1780_4308)">
+                            <path
+                                d="M8.56546 21.9972H5.64087H2.18564C1.58405 21.9972 1.03743 21.7515 0.641612 21.3556C0.24576 20.9598 0 20.4132 0 19.8116V2.18613C0 1.58454 0.24576 1.03791 0.641612 0.6421C1.03746 0.246285 1.58405 0.000488281 2.18564 0.000488281H5.64087H8.56546H12.0207C12.6223 0.000488281 13.1689 0.246249 13.5647 0.6421C13.9605 1.03791 14.2063 1.58454 14.2063 2.18613V4.94872C14.2063 5.21794 13.9868 5.4375 13.7175 5.4375C13.4483 5.4375 13.2288 5.21794 13.2288 4.94872V2.18613C13.2288 1.85445 13.0927 1.55242 12.8735 1.3333C12.6544 1.11413 12.3524 0.978045 12.0207 0.978045H8.56546H5.64087H2.18564C1.85396 0.978045 1.55194 1.11413 1.33281 1.3333C1.11364 1.55246 0.977556 1.85445 0.977556 2.18613V19.8116C0.977556 20.1433 1.11364 20.4453 1.33281 20.6644C1.55197 20.8836 1.85396 21.0197 2.18564 21.0197H5.64087H8.56546H12.0207C12.3524 21.0197 12.6544 20.8836 12.8735 20.6644C13.0927 20.4453 13.2288 20.1433 13.2288 19.8116V17.049C13.2288 16.7798 13.4483 16.5602 13.7175 16.5602C13.9868 16.5602 14.2063 16.7798 14.2063 17.049V19.8116C14.2063 20.4132 13.9606 20.9598 13.5647 21.3556C13.1689 21.7514 12.6223 21.9972 12.0207 21.9972H8.56546Z"
+                                fill="#8A8A8A" />
+                            <path
+                                d="M6.49561 11.5015C6.22571 11.5015 6.00684 11.2826 6.00684 11.0127C6.00684 10.7428 6.22571 10.5239 6.49561 10.5239H21.5111C21.781 10.5239 21.9999 10.7428 21.9999 11.0127C21.9999 11.2826 21.781 11.5015 21.5111 11.5015H6.49561Z"
+                                fill="#8A8A8A" />
+                            <path
+                                d="M16.1831 6.37482C15.9923 6.18402 15.9923 5.87442 16.1831 5.68363C16.3739 5.49283 16.6835 5.49283 16.8743 5.68363L21.8569 10.6662C22.0477 10.857 22.0477 11.1666 21.8569 11.3574L16.8805 16.334C16.6897 16.5248 16.3801 16.5248 16.1893 16.334C15.9985 16.1432 15.9985 15.8336 16.1893 15.6428L20.8201 11.0118L16.1831 6.37482Z"
+                                fill="#8A8A8A" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_1780_4308">
+                                <rect width="22" height="22" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <a >LogOut</a>
+                </div>
+            </div>
+            <!-- <div class="resize-handle-right" mwlResizeHandle [resizeEdges]="{ right: true }"> -->
+                
+                                <img src="../assets/images/svg/Vector.svg" alt="Logo" class="logo-sidebar">
+                                <div class="copyright">© 2024 A2B Middleware Front End. <br> All rights reserved</div>
+            </div>
+            <span tabindex="-11" (keyup)="empty()" (click)="toggleRightDrawer($event)"
+                [ngClass]="showDrawer ? 'bi bi-chevron-double-left collapse-icon' : 'bi bi-chevron-double-right collapse-icon'"
+                ></span>
+        </div>
+    <!-- </div> -->
+}
+
+    <!-- Main Content -->
+    <div class="main-content" [ngClass]="{'content': !commonService.isLogIn}">
+        <div>
+            <!-- Your main content goes here -->
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

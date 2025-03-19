@@ -1,0 +1,273 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  // min-width: 1000px; // comment this because it will create issue in calender 
+}
+.table {
+  border: 1px solid #e9f2ff;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.mat-mdc-table thead {
+  background-color: #e3eeff !important;
+  border: 0;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+tbody {
+  border: 0;
+}
+
+tr {
+  border: 0;
+}
+th,
+td {
+  padding: 12px;
+  white-space: nowrap;
+  text-align: left;
+  border-bottom: 0px;
+  font-size: 1.125rem;
+  font-weight: 500;
+  &:last-child{
+    // max-width: 10rem;
+    &.max{
+      max-width: fit-content;
+    .status-order-content{
+      max-width: fit-content;
+    
+    }
+    }
+    .status-order-content{
+   
+      max-width: 10rem;
+      gap: 0.3rem;
+    }
+  }
+  button{
+    font-size: 0.9rem !important;
+  }
+}
+
+th {
+  font-size: 14px;
+  color: #000;
+  background-color: #e3eeff;
+  font-weight: 600 !important;
+}
+
+td {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.status {
+  font-weight: 500;
+}
+
+.status.pending {
+  color: #f39c12;
+}
+
+.status.syncing {
+  color: #3498db;
+}
+
+.status.synced {
+  color: #2ecc71;
+}
+
+.status.failed {
+  color: #e74c3c;
+}
+
+.status.updated {
+  color: #8e44ad;
+}
+
+button {
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  &.with-icon {
+    display: flex;
+    gap: 5px;
+  }
+}
+
+.view-btn {
+  background-color: #0b5ed7;
+  color: white;
+}
+
+.sync-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.icon-btn {
+    color: #fff;
+    // padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    .mat-icon{
+      height: 18px;
+      width: 18px;
+      font-size: 18px;
+    }
+  }
+
+button:active {
+  transform: scale(0.98);
+}
+
+table tr:nth-of-type(even) {
+  background-color: #f1f7ff;
+}
+
+.pagination-pages span.active {
+  color: #0b5ed7;
+}
+.pagination-pages span {
+  color: #000;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.total-records-count {
+  border: 1px solid #e9f2ff;
+  background-color: #fbfdff;
+  border-radius: 7px;
+  padding: 15px 12px;
+}
+
+@media (max-width: 1400px) {
+  td {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  th {    
+    padding: 12px;
+
+  }
+
+  td {
+    font-size: 1rem;
+  }
+  button {
+    padding: 8px 20px;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+}
+
+.table-scroll {
+  overflow: auto;
+  max-height: calc(100vh - 250px);
+}
+
+.location-table-scroll{
+  overflow: auto;
+  max-height: calc(100vh - 290px);
+}
+
+.items-table-scroll{
+  overflow: auto;
+  max-height: calc(100vh - 253px);
+}
+
+.table-scroll-dashboard {
+  overflow: auto;
+  max-height: calc(100vh - 279px); 
+}
+
+@media (max-width: 975px) {
+  th,
+  td {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  th {
+    font-size: 14px;
+  }
+
+  td {
+    font-size: 14px;
+  }
+  button {
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .table-scroll-dashboard {
+    width: 100%;
+  }
+}
+
+.table>:not(caption)>*>*{
+  background-color: transparent; 
+}
+.table-footer{
+  padding: 0.6rem;
+  @include display-justify(flex, center, 0.6rem ,space-between);
+  background-color: #e3eeff;
+  border-top: 1px solid var(--mat-table-row-item-outline-color, rgba(0, 0, 0, 0.12))
+
+}
+.footer-menu{
+  @include display-fag(flex, center,0.5rem,nowrap);
+  .form-select{
+    min-width: 4rem;
+    background-color: white;
+  }
+}
+
+.footer-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+.ngx-pagination{
+  margin-bottom: 0 !important;
+  a:hover{
+    background-color: white !important;
+    border-radius: 4px;
+  }
+}
+.main-content{
+  overflow: auto;
+  max-height: calc(100vh - 76px);
+  &.content{
+  max-height: unset
+  }
+}
+.mdc-text-field{
+  padding: 0 !important;
+}
+.table .ngx-pagination .current{
+  background-color: $theme;
+  border-radius: 5px;
+}
+pagination-controls{
+  padding: 0 !important;
+}
+.badge{
+  --bs-badge-font-weight: 600;
+}
+.table-footer select {
+  padding: 3px 8px;
+  border-radius: 8px;
+  border: 1px solid #8080804a;
+}

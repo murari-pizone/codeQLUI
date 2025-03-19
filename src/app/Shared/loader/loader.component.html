@@ -1,0 +1,13 @@
+@if(isLoading){
+<!-- <div class="overlay">
+    <div class="spinner-wrapper">
+      <div class="spinner"></div>
+      <div class="spinner-text">{{loadingText}}<span>...</span> </div>
+    </div>
+  </div> -->
+
+  <div class="spinner-wrapper">
+    <div [ngClass]="from === 'Orders' ? 'spinner-for-order' : 'spinner'" [style.border-top]="loadingCircleColor ? loadingCircleColor : '4px solid #ffffff'"></div>
+    <div class="spinner-text"  [style.color]="loadingTextColor ? loadingTextColor : 'white'">Loading<span>...</span> </div>
+  </div>
+}

@@ -1,0 +1,28 @@
+@import '../../../../../../scss/variables';
+
+.main-section {
+    display: flex;
+    gap: 10px;
+}
+
+.cards .card {
+    transition: 0.2s ease-in-out;
+    border-left: 10px solid rgba($color: rgb(0, 55, 140), $alpha: 0.2);
+    .card-title{
+        font-size: 18px;
+        font-weight: 600;
+    }
+    &:hover {
+        cursor: pointer;
+        border: 1px solid $theme ;
+        .card-title{
+            color: $theme;
+        }
+    }
+}
+
+.card-body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

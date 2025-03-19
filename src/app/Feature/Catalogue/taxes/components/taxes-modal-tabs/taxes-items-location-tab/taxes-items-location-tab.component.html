@@ -1,0 +1,59 @@
+<div class="offcanvas-header border rounded">
+    <div class="associatedHeader">
+        <div>
+            <h2>Selected Items & Locations</h2>
+            <p> Item groups and Location groups added to this Tax</p>
+        </div>
+        <div class="actions">
+            <button class="btn btn-primary" (click)="addNewPair()"> Add New Pair </button>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="table">
+        <div class="table-scroll">
+            <table mat-table
+                [dataSource]="rows| paginate: { itemsPerPage: page.itemPerPage, currentPage: page.pageNumber}"
+                class="mat-elevation-z8">
+
+                <ng-container matColumnDef="Sr no.">
+                    <th mat-header-cell *matHeaderCellDef class="item-column"></th>
+                    <td mat-cell *matCellDef="let element; let i = index" class="item-column">
+                        <span>
+                            <i tabindex="-1" (keyup)="empty()" (click)="removeLocGroup(element.id)"
+                                class="bi bi-trash"></i>
+                        </span>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Item Group">
+                    <th mat-header-cell *matHeaderCellDef class="restaurant-name-column-header" style="gap:10px"
+                        mat-sort-header="Item Group">ITEM GROUP
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="restaurant-name-column"
+                        [title]="element['itemGroup']">
+                        <div style="display: flex;gap:5px">
+                            <p tabindex="-11" (keyup)="empty()" (click)="openOffcanvas('#EditItem',element)"
+                                class="item-group" style="color:#00378C">{{element['itemGroup']}}</p>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Location Group">
+                    <th mat-header-cell *matHeaderCellDef class="location-column" mat-sort-header="Location Group">
+                        LOCATION GROUP
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="location-column" [title]="element['locationGroup']">
+                        {{element['locationGroup']}}
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columns"></tr>
+                <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<app-nested-item-location [showSideBar]="showSideBar" [currentRow]="currentRow"></app-nested-item-location>

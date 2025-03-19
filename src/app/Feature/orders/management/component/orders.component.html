@@ -1,0 +1,298 @@
+<div class="status-menu">
+
+  <div class="status-bar hold" [ngStyle]="{'height':status === 'ORDER_RECEIVED'? '3rem':'4rem'}" (keyup)="empty()" tabindex="-2" (click)="pendingStatus()">
+    <span [ngStyle]="{'height':status === 'ORDER_RECEIVED'? '3rem':'4rem'}" >Pending : {{OrderDetails.totalPending}}</span>
+  </div>
+  <div class="status-bar cancel" [ngStyle]="{'height':status === 'CANCELLED'? '3rem':'4rem'}" (keyup)="empty()" tabindex="-3" (click)="canceledStatus()">
+    <span [ngStyle]="{'height':status === 'CANCELLED'? '3rem':'4rem'}" >Cancelled  : {{OrderDetails.totalCancelled}}</span>
+  </div>
+  <div class="status-bar success" [ngStyle]="{'height':status === 'DELIVERED'? '3rem':'4rem'}" (click)="completedStatus()" (keyup)="empty()" tabindex="-4">
+    <span [ngStyle]="{'height':status === 'DELIVERED'? '3rem':'4rem'}" >Completed : {{OrderDetails.totalDelivered}} / {{OrderDetails.totalRecordCount}}</span>
+  </div>
+  <div class="status-bar hold" [ngStyle]="{'height':['All',null].includes(status)  ? '3rem':'4rem'}" (keyup)="empty()" tabindex="-4" (click)="allStatus()" >
+    <span [ngStyle]="{'height':['',null,undefined].includes(status)? '3rem':'4rem'}"><p style="padding-left: 65px;">{{orderText}}</p></span>
+  </div>
+
+  <!-- svg -->
+  <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg"
+    version="1.1">
+    <defs>
+      <filter id="round">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+        <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+      </filter>
+    </defs>
+  </svg>
+</div>
+
+<div class="parentDiv d-flex justify-content-between row-gap-2 gap-1">
+  <div class="datatable w-100">
+      <div class="container-fluid">
+        <div class="">
+          <div class="status-bar-for-table mt-0"> 
+            <app-filter (filter)="filter($event)" [component]="'Orders'" [currentDate]="currentDate" (DateChange)="DateChange($event)" (refreshOrders)="refreshOrders()" [isLoading]="loading"></app-filter>
+          </div>
+          @if(loadingSkeleton){
+            <div class="container-fluid">
+              <div class="">
+                <div class="loading-skeleton">
+                  <form>
+                    <div class="skeleton-container">
+                      @for(number of numberOfSkeletonForDataTable ; track number){
+                      <div class="d-flex skeleton-view">
+                        @for (skelton of [].constructor(4); track skelton) {
+                        <div class="form-group" style="min-width:150px">
+                          <input type="email" class="form-control" id="exampleFormControlInput1">
+                          <input type="email" class="form-control" id="exampleFormControlInput1">
+                        </div>
+                        }
+                      </div>
+                      }
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          }@else{
+         <div class="d-flex">
+          <div class="table">
+            <div class="inline-error-msg">
+              @if(isErrorOccur){
+                <app-inline-error-msg (crossClick)="closeInlineError()"  [errorMsg]="errorMsg"></app-inline-error-msg>
+              }
+            </div>
+            <div class="table-scroll-dashboard " >
+              <table mat-table [dataSource]="rows | paginate: { itemsPerPage: page.pageSize, currentPage: page.currentPage , totalItems : page.totalItems}"  matSort (matSortChange)="sortData($event)"  class="mat-elevation-z8">
+
+                <ng-container matColumnDef="SR No.">
+                  <th mat-header-cell class="sr-number" *matHeaderCellDef mat-sort-header="SR No."> Sr no. </th>
+                  <td mat-cell *matCellDef="let element; let i = index" [title]="i + 1">
+                    {{i + 1}}
+                  </td>
+                </ng-container> 
+                
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell class="order-Id" *matHeaderCellDef mat-sort-header="id"> ORDER ID </th>
+                  <td mat-cell class="order-Id" *matCellDef="let element">
+                    <div class="mainSection">
+                      <div class="order-id">
+                        <img src="../../../../../assets/images/svg/swiggy.svg" alt="">
+                      <span>{{element.Aggregator_Order_Id}} </span>
+                      </div>
+                    </div>
+                     
+                  </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="Date">
+                  <th mat-header-cell class="date-column" *matHeaderCellDef > <i class="bi bi-calendar-week" style="padding-right: 10px"></i> DATE TIME </th>
+                  <td mat-cell  class="date-column" *matCellDef="let element"> 
+                    <div class="">
+                        <span> {{element.Created_Timestamp | dateFormat : 'Date'}} </span>
+                        <p class="sub-Section">{{element.Created_Timestamp  | dateFormat : 'Time'}} </p>
+                    </div>
+                  </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="Customer Name">
+                  <th mat-header-cell class="customer-name" *matHeaderCellDef> CUSTOMER </th>
+                  <td mat-cell class="customer-name" *matCellDef="let element">
+                    <div class="mainSection">
+                      <span >+91{{element.Customer_Phone_Number}} </span>
+                    </div>
+                  </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="Location">
+                  <th mat-header-cell class="location" *matHeaderCellDef mat-sort-header="location" > <i class="bi bi-geo-alt" style="margin-right:6px" ></i> LOCATION</th>
+                  <td mat-cell class="location" *matCellDef="let element"> <i class="bi bi-geo-alt"></i>
+                    @if(element.Restaurant_Name){
+                      {{element.Restaurant_Name}} 
+                    } 
+                  </td>
+                      
+                </ng-container>
+  
+                <ng-container matColumnDef="Amount">
+                  <th mat-header-cell class="amount" *matHeaderCellDef > <i class="bi bi-currency-rupee"></i> AMOUNT </th>
+                  <td mat-cell class="amount" *matCellDef="let element"> <i class="bi bi-currency-rupee"></i>{{element.Restaurant_Gross_Bill}} </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="Order Status">
+                  <th mat-header-cell  *matHeaderCellDef > ORDER STATUS </th>
+                  <td mat-cell  *matCellDef="let element">
+                    <div class="status-order-content">
+                      <span class="Status-Order order-badge" [ngClass]="element['Status'] | statusColor : 'orders'">{{commonLogic.replaceUnderScore(element['Status'])}}</span> 
+                    </div>
+                  </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="Actions">
+                  <th mat-header-cell *matHeaderCellDef class="actions-col"> ACTIONS </th>
+                  <td mat-cell class="actions-col" *matCellDef="let element">
+                    <div class="status-order-content">
+                      <button class="push-button" [disabled]="true" ><i class="bi bi-caret-up-fill" title="Push"></i></button>
+                      <!-- edit-button -->
+                      <!-- <button class="push-button" [disabled]="true"><i class="bi bi-pencil-square" title="Edit"></i></button> -->
+                      <button (click)="openOrderTrackModal(element)" class="track-button"><i class="bi bi-stopwatch" title="Track"></i></button>
+                    </div>
+                  </td>
+                </ng-container>
+  
+                <tr mat-header-row *matHeaderRowDef="columns" style="cursor: pointer;"></tr>
+                <tr mat-row *matRowDef="let row; columns: columns;" (dblclick)="onRowDoubleClick(row)" style="cursor: pointer;"></tr>
+              </table>
+            </div>
+            <div class="table-footer">
+              <div class="totalCount">
+                @if(rows && rows.length > 0){
+                 <span class="footer-text"> Total Records : {{page.totalItems}}</span>
+                }@else{
+                 <span class="footer-text"> Total Records : 0</span>
+                }
+              </div>
+              <div class="has-text-centered pagination">
+                <pagination-controls (pageChange)="changePage($event)" previousLabel="" nextLabel=""></pagination-controls>
+              </div>
+              <div class="footer-menu">
+                <span class="footer-text"> Show Records Per Page : </span>
+                <select [(ngModel)]="dropDownSelectedValue" (change)="RecordPerPage()">
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="25">25</option>
+                  <option value="35">35</option>
+                  <option value="100">100</option>
+
+                  <option value="All">All</option>
+                </select>
+              </div>
+            </div>
+          </div>
+         <!-- <div >
+           <app-calender-bar #calenderBarComponent [datesArray]="DatesInformation"></app-calender-bar>
+         </div> -->
+        </div>
+      }
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+
+
+
+<!--Modal Section -->
+<div #ordersModal class="modal fade" id="orders-Modal"  data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        @if(currentRow && isModelOpen){
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-title" id="staticBackdropLabel">
+                <h1 >Order Details</h1>
+                @if(currentRow){
+                  <h3>Order #{{orderItemDetails[0].Order_Id}}</h3>
+                }
+              </div>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+  
+              <section class="d-flex flex-column gap-3">
+                <div class="user-info d-flex align-items-center justify-content-between">
+                  <div class="main-content">
+                    <p class="order-time">{{currentRow.Customer_Phone_Number}}</p>
+                    <p class="order-time">{{orderItemDetails[0].Created_Timestamp}}</p>
+                  </div>
+                </div>
+  
+                <div class="order-container">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-box-seam"></i>
+                    <p class="block-heading">Order-items</p>
+                  </div>
+                  @for (item of orderItemDetails; track $index) {
+                  <div class="d-flex align-items-center justify-content-between">
+                      <p>{{item.Name}}</p>
+                      <p>{{item.Quantity}} KG - {{item.Price}} RS</p>
+                    </div>
+                  }
+  
+                </div>
+                <div class="info-cards row row-gap-2">
+                @if(!isPushButtonClicked){
+                  <div class="col-6">
+                    <div class="info-card">
+                    <i class="bi bi-geo-alt" style="color:red"></i>
+                    <div>
+                      <p class="info-card-title">Delivery Address</p>
+                      <p>123 Main St, City, Country
+  
+                      </p>
+                    </div>
+                  </div>
+                  </div>
+                }
+                  <div class="col-6">
+                    <div class="info-card">
+                    <i class="bi bi-telephone" style="color:blue"></i>
+                    <div>
+                      <p class="info-card-title">{{currentRow.Customer_Name.toLowerCase()}}</p>
+                      <p>+91{{currentRow.Customer_Phone_Number}}</p>
+                    </div>
+                  </div>
+                  </div>
+  
+                </div>
+                @if(!isPushButtonClicked){
+                  @if(!showMoreDetailsVar){
+                    <div class="toggle-btn" (click)="showMoreDetailsVar = true">
+                      <ng-container>
+                        <a (click)="showMoreDetailsVar = true">Show Details</a>
+                        <i class="bi bi-clock"></i>
+                      </ng-container>
+                    </div>
+                    }@else {
+                      <div class="toggle-btn">
+                        <ng-container (click)="showMoreDetailsVar = false">
+                          <a (click)="showMoreDetailsVar = false">hide Details</a>
+                          <i class="bi bi-clock"></i>
+                        </ng-container>
+                      </div>
+                    }
+                    @if(showMoreDetailsVar){
+                      <div class="order-container">
+                        <div class="d-flex align-items-center gap-2">
+                          <p class="block-heading">Additional Information</p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                          <p>Estimated Delivery Time : </p>
+                          <p>2 hours</p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                          <p>Total Amount : </p>
+                          <p>170 Rupee</p>
+                        </div>
+                      </div>
+                    }
+                }
+    
+              </section>
+            </div>
+            <div class="modal-footer">
+              @if(isPushButtonClicked){
+                <button type="button" class="btn btn-primary success" data-bs-dismiss="modal" aria-label="Close">Push</button>
+              }
+            </div>
+          </div>
+        }
+      </div>
+</div>
+<!-- <app-order-track-delivery [elementData]="elementData" ></app-order-track-delivery> -->
+
+<!--Loader-->
+<!-- <app-loader [isLoading]="loading"></app-loader> -->
+

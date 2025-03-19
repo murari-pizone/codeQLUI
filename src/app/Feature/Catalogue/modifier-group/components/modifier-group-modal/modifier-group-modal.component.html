@@ -1,0 +1,44 @@
+
+<div #ModifierGroupModal class="offcanvas offcanvas-end"  data-bs-backdrop="static" tabindex="-1" id="ModifierGroupModal" aria-labelledby="staticBackdropLabel2" [style.width.px]="drawerWidth"  data-backdrop="static" data-keyboard="false">
+    <div class="resizer" (mousedown)="onMouseDown($event)" (touchstart)="onMouseDown($event)" ><i class="bi bi-list"></i></div>
+      @if(showSideBar){
+      <!-- Header -->
+      <div class="offcanvas-header d-flex justify-content-between">
+        <div class="header-Text">
+          <div class="offcanvas-title fs-5" id="offcanvasRightLabel">Quantity</div>
+          <div class="header-text-helper">Edit This Modifier Group</div>
+        </div>
+        <div class="header-cross pb-3">
+          <button type="button" class="filter-btn  archive-btn mx-1">Archive</button>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"  (click)="closeSideBarEmit()"></button>
+        </div>
+      </div>
+  
+  
+      <!-- Tabs -->
+      <div class="stepper">
+        <div class="step-tabs">
+          @for(tab of tabs | showItemModalTab: currentTabIndex : visibleTabs; track tab){
+            <div  (keyup)="empty()" (click)="currentStep = tab.name"  tabindex="-1"  class="step-tab" [ngClass]="{ active: currentStep === tab.name }">
+              {{ tab.label }}
+            </div>
+          }
+        </div>
+      </div>
+      
+      <!-- Body -->
+      <div class="offcanvas-body">
+        <!-- basic information tab -->
+        @if(currentStep === 'Basic Information'){
+          <app-basic-information-tab [From]="'Modifier-Group'"></app-basic-information-tab>
+        }
+        @else if(currentStep === 'Items'){
+           <app-items-tab></app-items-tab>
+        }
+        @else if(currentStep === 'Nested Modifier'){
+          <app-nested-modifier></app-nested-modifier>
+        }
+      </div>
+    }
+  </div>
+  

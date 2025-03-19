@@ -1,0 +1,20 @@
+<div class="inline-error-msg">
+    @if(isErrorOccur){
+    <app-inline-error-msg (crossClick)="closeInlineError()" [errorMsg]="errorMsg"></app-inline-error-msg>
+    }
+</div>
+
+<div class="container-fluid p-24">
+    <app-filter (filter)="filter($event)" [component]="'AnaCatalogue'"></app-filter>
+    <div class="stepper">
+        <div class="step-tabs">
+
+            @for(tab of tabs; track tab){
+            <div (keyup)="empty()" (click)="currentStep = tab.name" tabindex="-1" class="step-tab"
+                [ngClass]="{ active: currentStep === tab.name }">
+                {{ tab.label }}
+            </div>
+            }
+        </div>
+    </div>
+</div>

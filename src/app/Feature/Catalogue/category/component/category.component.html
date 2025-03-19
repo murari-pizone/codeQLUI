@@ -1,0 +1,76 @@
+<div class="container-fluid p-24">
+    <app-filter (filter)="filterInputData($event)" [component]="'Category'" (submitFilter)="submitFilter($event)"
+        (resetFilter)="resetFilter($event)"></app-filter>
+    <div class="content">
+        <div class="category sidebar">
+            <div class="subcategories-header">
+                <h2>Categories</h2>
+            </div>
+            <div class="subcategories-list">
+                @for(category of catConst.categories; track category){
+                <div (keyup)="empty()" tabindex="-1" (click)="selectCategory(category)"
+                    [class.selected]="category.isSelected" class="subcategory-item">
+                    <span>{{ category.name }}</span>
+                    <!-- <a *ngIf="category.isSelected" class="btn-icon">
+                        <i class="bi bi-pencil-fill"></i>
+                    </a> -->
+                </div>
+                }
+            </div>
+        </div>
+        <div class="cat-main-content">
+            <app-sub-category [subCatIndex]="subCatIndex" [catIndex]="catIndex"></app-sub-category>
+        </div>
+    </div>
+</div>
+
+<!-- drawer -->
+<div style="width: 40%;" #EditCategory class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-3"
+    id="EditCategory" aria-labelledby="staticBackdropLabel" [style.width.px]="drawerWidth">
+    
+    <div class="resizer" (mousedown)="onMouseDown($event)" (touchstart)="onMouseDown($event)" ><i class="bi bi-list"></i></div>
+    @if(catConst.editCategory.length){
+        <div class="offcanvas-header">
+            <div class="drawerHeader">
+                <div>
+                    <h1>{{catConst.editCategory[0].name}}</h1>
+                    <p>Edit This Category</p>
+                </div>
+                <div class="actions">
+                    <button class="filter-btn archive-btn mx-1" (click)="updateStatus(catConst.editCategory[0].status)">
+                        {{catConst.editCategory[0].status}}
+                    </button>
+                </div>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
+            (click)="resetModelValues()"></button>
+        </div>
+        <div class="offcanvas-body" style="pad: 0px;">
+        <div class="stepper">
+            <div class="step-tabs">
+                <div (click)="currentStep = 'Basic Information'" tabindex="-4" (keyup)="empty()" class="step-tab"
+                    [ngClass]="{ active: currentStep === 'Basic Information' }">
+                    Basic Information
+                </div>
+                <div (click)="currentStep = 'Associated Items'" tabindex="-5" (keyup)="empty()" class="step-tab"
+                    [ngClass]="{ active: currentStep === 'Associated Items' }">
+                    Associated Items
+                </div>
+                <div (click)="currentStep = 'Sub Category'" tabindex="-6" (keyup)="empty()" class="step-tab"
+                    [ngClass]="{ active: currentStep === 'Sub Category' }">
+                    Sub Category
+                </div>
+            </div>
+            @if(currentStep === 'Basic Information'){
+              <app-tab-base-info></app-tab-base-info>
+            }
+            @if(currentStep === 'Associated Items'){
+              <app-tab-asso-items></app-tab-asso-items>
+            }
+            @if(currentStep === 'Sub Category'){
+              <app-tab-sub-category></app-tab-sub-category>
+            }
+        </div>
+    </div>
+    }
+</div>

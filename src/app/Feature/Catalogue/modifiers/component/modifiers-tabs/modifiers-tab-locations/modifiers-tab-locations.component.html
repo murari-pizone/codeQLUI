@@ -1,0 +1,108 @@
+<div class="offcanvas-header border rounded">
+    <div class="associatedHeader">
+        <div>
+            <h2>Associated Locations</h2>
+            <p>This modifier is available at all locations the associated item is available at</p>
+        </div>
+        <div class="actions">
+            <!-- <button class="filter-btn"> Update </button>  -->
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="margin-top: 15px;">
+    <div style="width: 75%;display: flex;justify-content: space-between;gap: 15px;margin-top: 15px;">
+        <input placeholder="Name" disabled type="text" class="form-control">
+        <select name="City" disabled placeholder="City" id="city" class="select-input form-select">
+            <option value="City">City</option>
+        </select>
+    </div>
+</div>
+
+
+<div class="container-fluid" style="padding-left: 0px;margin-top: 15px;">
+    <div class="table">
+        <div class="table-scroll">
+            <table mat-table
+                [dataSource]="rows | paginate: { itemsPerPage: page.itemPerPage, currentPage: page.pageNumber}" matSort
+                (matSortChange)="sortData($event)" class="mat-elevation-z8">
+
+                <!-- Sr No. -->
+                <ng-container matColumnDef="Sr no.">
+                    <th mat-header-cell *matHeaderCellDef class="item-column">SR NO.</th>
+                    <td mat-cell *matCellDef="let element; let i = index" class="item-column">
+                        <!-- table index starting from 0 index -->
+                        {{i + 1}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Name">
+                    <th mat-header-cell *matHeaderCellDef class="restaurant-name-column-header" style="gap:10px"
+                        mat-sort-header="Name">
+                        <input type="checkbox" style="margin: 5px;" class="checkBox" [checked]="isAllSelected"> NAME
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="restaurant-name-column"
+                        [title]="element['locationName']">
+                        <input type="checkbox" class="checkBox" [checked]="isAllSelected">
+                        <div style="display: flex;gap:5px">
+                            <p class="truncate-text" style="color:#00378C">{{element['name']}}</p>
+                            <span class="availability" [ngClass]="element['inStock']?'available':'out-of-stock'">
+                                {{element['inStock'] === true ? 'Available':'Out Of Stock'}}
+                            </span>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Location">
+                    <th mat-header-cell *matHeaderCellDef class="location-column" mat-sort-header="Location"> LOCATION
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="location-column" [title]="element['location']">
+                        {{element['location']}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Stock Count">
+                    <th mat-header-cell *matHeaderCellDef class="city-column" mat-sort-header="Stock Count"> Stock Count
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="city-column" [title]="element['stock_count']">
+                        {{element['stock_count']}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Price At Location">
+                    <th mat-header-cell *matHeaderCellDef class="city-column" mat-sort-header="Price At Location"> Price
+                        At Location </th>
+                    <td mat-cell *matCellDef="let element" class="city-column" [title]="element['local_price']">
+                        {{element['local_price']}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columns"></tr>
+                <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+            </table>
+        </div>
+        <div class="table-footer">
+            <div class="totalCount">
+                @if(rows.length > 0){
+                <span class="footer-text"> Total Records :
+                    {{rows.length}}</span>
+                }@else{
+                <span class="footer-text"> Total Records : 0</span>
+                }
+            </div>
+            <div class="has-text-centered pagination">
+                <pagination-controls (pageChange)="changePage($event)" previousLabel=""
+                    nextLabel=""></pagination-controls>
+            </div>
+            <div class="footer-menu">
+                <span class="footer-text"> Show Records Per Page : </span>
+                <select [(ngModel)]="dropDownSelectedValue" (change)="RecordPerPage()">
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="All">All</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>

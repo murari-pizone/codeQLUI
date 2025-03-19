@@ -1,0 +1,77 @@
+ // Not available image in menu screen
+.Not-available{
+    height: 206px;
+    width: 208px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:64px;
+  }
+  
+  .Not-available-img{
+    font-size: 132px;
+    width: 139px;
+    height: 201px;
+    display: block;
+    color: #ccc;
+  }
+
+  .restaurant-name-column {
+    max-width: 320px;
+    min-width: 320px;
+    width: 320px ;
+  }
+
+  .location-column {
+    max-width: 250px !important;
+    width: 250px !important;
+    min-width: 100px;
+  }
+  .city-column {
+    max-width: 160px !important;
+    width: 160px !important;
+    min-width: 160px;
+  }
+  .status-column {
+    max-width: 150px !important;
+    width: 150px !important;
+    min-width: 150px;
+  }
+
+  .menu-column {
+    max-width: 150px !important;
+    width: 150px !important;
+    min-width: 90px;
+  }
+  
+  
+.itemColumn-image{
+  height: 75px;
+  width: 75px;
+  min-width: 75px;
+  max-width: 75px;
+  padding: 6px 0px;
+}
+.item-image{
+  border-radius: 7px;
+}
+.table-scroll{
+  max-height: calc(80vh - 210px);
+}
+
+.div-search-hading{
+  align-items: center;
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.heading{
+  margin:0px !important;
+  min-width:200px
+}
+.sr-number{
+  max-width: 20px !important;
+  width: 20px !important;
+  min-width: 20px;
+}

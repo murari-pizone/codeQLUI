@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+ng lint
+
+# Get the name of the branch being pushed
+while read -r local_ref local_sha remote_ref remote_sha; do
+  # Check if we are pushing to the main branch
+  if [[ "$remote_ref" == "refs/heads/main" ]]; then
+    echo "Pushing directly to the main branch is not allowed. Please create a pull request instead."
+    exit 1
+  fi
+done
+
+# Allow push if not to main branch
+exit 0

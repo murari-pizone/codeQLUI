@@ -1,0 +1,94 @@
+<!---------------- header --------------->
+<div class="mat-dialog-header">
+  <div>
+    <h2>Order Details</h2>
+    <h3>Order #{{orderItemDetails[0].Order_Id}}</h3>
+  </div>
+  <a (keyup)="empty()" type="button" tabindex="-2" class="close-button px-0" (click)="close()" aria-label="Close"><i
+      class="bi bi-x-lg"></i></a>
+</div>
+<!----------------- header --------------->
+
+<mat-dialog-content mat-dialog-content>
+  <section class="d-flex flex-column gap-3">
+    <div class="user-info d-flex align-items-center justify-content-between">
+      <div >
+        <p >{{currentRow[0].Customer_Phone_Number}}</p>
+        <p >{{orderItemDetails[0].Created_Timestamp}}</p>
+      </div>
+    </div>
+
+    <div class="order-container">
+      <div class="d-flex align-items-center gap-2">
+        <i class="bi bi-box-seam"></i>
+        <p class="block-heading">Order-items</p>
+      </div>
+      @for (item of orderItemDetails; track $index) {
+      <div class="d-flex align-items-center justify-content-between">
+        <p>{{item.Name}}</p>
+        <p>{{item.Quantity}} KG - {{item.Price}} RS</p>
+      </div>
+      }
+
+    </div>
+    <div class="info-cards row row-gap-2">
+      <div class="col-6">
+        <div class="info-card">
+          <i class="bi bi-geo-alt" style="color:red"></i>
+          <div>
+            <p class="info-card-title">Delivery Address</p>
+            <p>123 Main St, City, Country
+
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="info-card">
+          <i class="bi bi-telephone" style="color:blue"></i>
+          <div>
+            <p class="info-card-title">{{currentRow[0].Customer_Name.toLowerCase()}}</p>
+            <p>+91{{currentRow[0].Customer_Phone_Number}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    @if(!showMoreDetailsVar){
+    <div class="toggle-btn" tabindex="-11" (keyup)="empty()" (click)="showMoreDetailsVar = true">
+      <a (keyup)="empty()" tabindex="-11" (click)="showMoreDetailsVar = true">Show Details</a>
+      <i class="bi bi-clock"></i>
+    </div>
+    }@else {
+    <div class="toggle-btn" tabindex="-11" (keyup)="empty()" (click)="showMoreDetailsVar = false">
+      <a (keyup)="empty()" tabindex="-11" (click)="showMoreDetailsVar = false">hide Details</a>
+      <i class="bi bi-clock"></i>
+    </div>
+    }
+    @if(showMoreDetailsVar){
+    <div class="order-container">
+      <div class="d-flex align-items-center gap-2">
+        <p class="block-heading">Additional Information</p>
+      </div>
+      <div class="d-flex align-items-center justify-content-between">
+        <p>Estimated Delivery Time : </p>
+        <p>2 hours</p>
+      </div>
+      <div class="d-flex align-items-center justify-content-between">
+        <p>Total Amount : </p>
+        <p>170 Rupee</p>
+      </div>
+    </div>
+    }
+
+  </section>
+</mat-dialog-content>
+
+<!---------------- Footer --------------->
+<mat-dialog-actions>
+  <div></div>
+  <div class="d-flex gap-2">
+    <button type="button" class="btn btn-primary success" (click)="close()">Ok</button>
+  </div>
+</mat-dialog-actions>
+<!---------------- Footer --------------->

@@ -1,0 +1,83 @@
+@import "../../../../../../scss/_variables.scss";
+
+.header-text-helper {
+  font-weight: 500;
+  font-size: 15px;
+  padding-left: 4px;
+  color: #696363;
+}
+
+
+.step-tab.active {
+  color: $theme;
+  font-weight: bold;
+  border-bottom: 2px solid #007bff;
+}
+
+.step-tabs {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+}
+
+.step-tab {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: #555;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s;
+  // min-width: 150px; // Match with `tabMinWidth`
+  // max-width: 200px; // Match with `tabMaxWidth`
+  white-space: nowrap; // Prevent word wrapping
+  overflow: hidden;
+  text-overflow: ellipsis; // Add ellipsis if text exceeds the max width
+}
+
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // padding: 0.7rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.category-item:hover {
+  background-color: #f3f4f6;
+}
+
+.category-item.selected {
+  background-color: #00378C;
+  color: white;
+
+  .btn-icon {
+    color: white;
+  }
+}
+
+.subcategories-header {
+  padding: 0px;
+  border: 0px;
+}
+
+.itemColumn-btn {
+  background: transparent;
+  padding: 1px 5px;
+  text-align: center;
+  font-size: 11px !important;
+  border-radius: 8px;
+  margin-top: 3px;
+  border: 1px solid #ff00009e;
+  color: #ff00009e;
+}
+
+//   .itemColumn-btn:hover{
+//     background: #00378C;
+//     color: white;
+//   }
+
+.category {
+  max-height: calc(100vh - 190px);
+  border: 0px;
+}

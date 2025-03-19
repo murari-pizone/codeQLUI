@@ -1,0 +1,264 @@
+@import "../../../../scss/variables";
+
+.login-section {
+    height: 100vh;
+}
+
+.logo {
+    width: 6rem;
+    position: absolute;
+    top: 3vw;
+}
+
+
+.box-logo {
+    display: none;
+    position: relative;
+    top: unset;
+}
+
+.lhs,
+.bg-section {
+
+    background-color: #F6FAFF;
+}
+
+.lhs {
+    padding: 3vw;
+    @include display(flex, start, center, 2rem, column);
+}
+
+.rhs {
+    display: flex;
+    align-items: center;
+    padding: 0 12vw 0 26%;
+    background: url("../../../../assets/images/png/tile-yellow.png"), $theme;
+
+    background: {
+        blend-mode: overlay, normal;
+        repeat: repeat;
+        position: center;
+    }
+}
+
+.login-container {
+    transform: translate(0);
+
+    background: {
+        color: white;
+    }
+
+    padding: 3rem;
+    border-radius: 2rem;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    min-width: 35vw;
+    max-width: 40vw;
+
+    .login-box {
+        @include display(flex, start, space-between, 2rem, column);
+
+        .heading {
+            font-size: 1.6rem;
+            line-height: 1.5;
+            font-weight: 800;
+
+            @media screen and (max-width: 1200px) {
+                font-size: 1.5rem;
+
+            }
+        }
+
+        .sub-head {
+            opacity: 0.8;
+            font-weight: 600;
+        }
+
+        .border-b {
+            border-bottom: 3px solid $sec-theme;
+            padding-bottom: 0.5rem;
+        }
+    }
+}
+
+.heading {
+    line-height: 1.3;
+
+    font: {
+        size: 2.4rem;
+        weight: 700;
+    }
+
+    text: {
+        transform: uppercase;
+    }
+
+    .theme {
+        color: $sec-theme;
+
+        font: {
+            size: 3.3rem;
+            weight: 900;
+        }
+    }
+
+    +p {
+        margin-top: 1.4rem;
+        opacity: 0.8;
+    }
+}
+
+.with-header{
+    .logo {
+        width: 6rem;
+        position: absolute;
+        top: 18vh;
+        @media screen and (max-width: 767px) {
+            position: relative;
+            top: unset;
+            width: 3rem;
+        }
+    } 
+    &.login-section {
+        height: calc(100vh - 76px);
+    }
+}
+.c-password{
+    .login-container{
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+        width: 35vw;
+        min-width: 400px;
+    }
+
+}
+.forget-password {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-top: 0.5rem;
+    width: 100%;
+}
+a:hover {
+    color: $theme;
+    font-weight: 600;
+}
+@media screen and (max-height: 860px) {
+    .logo {
+        display: none;
+    }
+
+    .box-logo {
+        display: block;
+        position: unset !important;
+    }
+
+}
+
+@media screen and (max-width: 1200px) {
+    .heading {
+        font-size: 1.5rem;
+
+        .theme {
+            font-size: 2rem;
+        }
+
+        +p {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            -webkit-line-clamp: 4;
+        }
+    }
+
+    .rhs {
+        padding-right: 1.5rem;
+    }
+
+    .login-container {
+        padding: 2rem;
+
+        .btn {
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .c-password{
+        .login-container{
+            position: relative;
+            left: unset;
+            transform: unset;
+            min-width: 96%;
+        }
+    
+    }
+    .rhs {
+        padding: 3rem 2rem;
+        height: max-content;
+    }
+
+    .logo {
+        width: 3rem;
+        display: none;
+    }
+
+    .box-logo {
+        display: block;
+    }
+
+    .heading {
+        font-size: 1.2rem;
+
+        .theme {
+            font-size: 1.5rem;
+        }
+    }
+
+    .login-container {
+        padding: 1.5rem;
+        min-width: unset;
+        max-width: 98%;
+        width: 100%;
+        margin: auto;
+        transform: translate(0, -20%);
+
+        .btn {
+            width: 100%;
+        }
+    }
+}
+    .page-disabled {
+        pointer-events: none; 
+        opacity: 0.5; 
+    }
+
+    input:disabled{
+        background-color: #e9ecef;
+        cursor: not-allowed;
+        opacity: 0.7; 
+    }
+
+    button:disabled,button:disabled:hover  {
+        color:white !important;
+        background-color: #F6AA32;
+        opacity: 0.7;
+        letter-spacing: 0px !important;
+        cursor: not-allowed;
+    }
+    
+    a.disabled {
+        pointer-events: none;
+        opacity: 0.5; 
+        cursor: not-allowed; 
+        text-decoration: none; 
+    }
+      
+  
+  
+
+
+
+

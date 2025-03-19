@@ -1,0 +1,43 @@
+// loader class
+/* Spinner Wrapper Styles */
+.spinner-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* Space between spinner and text */
+}
+
+/* Spinner Styles */
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #ffffff; /* Match your theme */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+.spinner-for-order {
+  border: 2px solid #0000009c;
+  border-top: 4px solid #ffffff; /* Match your theme */
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+}
+
+/* Spinner Text Styles */
+.spinner-text {
+  font-size: 0.875rem; /* Match your button text size */
+  // color: white; /* Ensure it's visible on the button */
+  text-transform: uppercase; /* Match button text styling */
+}
+
+/* Keyframes for spinner animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,87 @@
+@import "../../../../../../scss/variables";
+
+
+.postal-id{
+  color: grey;
+  font-size: 13px;
+  padding-top: 4px;
+}
+
+.offcanvas{
+  min-width:800px;
+}
+
+.archive-btn{
+  color : red;
+  margin-right:15px !important;
+}
+
+.archive-btn:hover{
+  color : white
+}
+
+.save-btn{
+  color : #00378C;
+  margin-right:15px !important;
+  background-color: transparent;
+  border: 1px solid black;
+}
+
+.save-btn:hover{
+  color : white
+}
+
+.header-text-helper{
+  font-weight: 500;
+  font-size: 15px;
+  padding-left: 4px;
+  color: #696363;
+}
+
+
+// bar design
+.stepper {
+  width: 100%;
+  margin-top:20px
+}
+.step-tabs {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+}
+.step-tab {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: #555;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s;
+  min-width: 150px; // Match with `tabMinWidth`
+  max-width: 200px; // Match with `tabMaxWidth`
+  white-space: nowrap; // Prevent word wrapping
+  overflow: hidden;
+  text-overflow: ellipsis; // Add ellipsis if text exceeds the max width
+}
+ 
+.step-tab.active {
+  color:$theme;
+  font-weight: bold;
+  border-bottom: 2px solid #007bff;
+}
+.caret-btn{
+  background: transparent;
+  padding: 7px 10px;
+  margin: 3px 3px;
+}
+.caret-btn:hover{
+  background: #00378C;
+  color: white;
+  margin: 3px 3px;
+}
+
+.bi-list {
+  display: inline-block; /* Ensure proper rendering */
+  transform: rotate(90deg); /* Rotate the icon by 90 degrees */
+}
+
+

@@ -1,0 +1,65 @@
+// form
+form{
+    label{
+        font: {
+            weight: 600;
+            size: 1rem;
+        }
+        opacity: 0.7;
+        margin-bottom: 0.6rem;
+        text: {
+            transform: capitalize;
+        }
+    }
+}
+// input
+.form-control{
+    border-radius: 0.5rem;
+    &:focus{
+        box-shadow: none;
+        outline: 1px solid #00388C;
+        border: 1px solid #00388C;
+    }
+    &[type="email"]{
+        background-image: \F32F;
+    }
+}
+
+// heading
+// button
+.btn{
+    border-radius: 0.5rem;
+    font-weight: 500;
+    --bs-btn-padding-y : 0.3rem ;
+    --bs-btn-padding-x : 0.8rem ;
+    --bs-btn-font-size : 0.9rem;
+}
+.form-control{
+    padding: 0.3rem .75rem;
+    font-size: 14px;
+}
+.action-btn{
+    font-size: 14px;
+    min-width: 120px;
+    padding: 0.3rem 0.75rem;
+}
+.btn-theme{
+    background-color: $sec-theme;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: 0.5s;
+    padding: 0.5rem;
+    width: 100%;
+    min-width: 50%;
+    color: white;
+    &:hover{
+        background-color: $theme;
+        color: white;
+        letter-spacing: 1px;
+    }
+}
+
+.retry-all-btn {
+    background-color: #28a745;
+    color: white;
+  }

@@ -1,0 +1,499 @@
+/* header.component.css */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #343a40; /* Dark background */
+  color: #ffffff; /* White text */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  margin-right: 10px;
+  width: 250px; /* Fixed width for consistency */
+}
+
+.search-input:focus {
+  border-color: #80bdff;
+  outline: none;
+}
+
+.filter-select {
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.filter-select:focus {
+  border-color: #80bdff;
+  outline: none;
+}
+
+.search-button {
+  padding: 10px 15px;
+  background-color: #007bff; /* Blue button */
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+
+
+
+//  style for popup
+
+.modal {
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+}
+
+.modal.is-active {
+  display: block; /* Show the modal */
+}
+
+.box {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 5px;
+}
+
+.modal-content {
+  position: relative;
+  margin: 5% auto; /* Center the modal vertically and horizontally */
+  max-width: 700px; /* Set a maximum width */
+  background: white; /* White background for the modal content */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  padding: 20px; /* Padding inside the modal */
+}
+
+h1 {
+  margin-bottom: 1rem; /* Space below the title */
+  font-size: 1.5rem; /* Font size for the title */
+  font-size: 24px;
+}
+
+p {
+  margin: 0; /* Remove default margin */
+  line-height: 1.5; /* Improve line height for readability */
+}
+
+.button {
+  padding: 10px 20px; /* Padding for the button */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded button */
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white; /* Text color */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.modal-close {
+  position: absolute; /* Position the close button */
+  top: 10px; /* Top distance */
+  right: 10px; /* Right distance */
+  background: none; /* Remove background */
+  border: none; /* Remove border */
+  cursor: pointer; /* Pointer cursor */
+  font-size: 1.5rem; /* Font size for the close button */
+  color: #333; /* Color for the close button */
+}
+
+
+
+// skeleton Scss Starts
+
+.loading-skeleton p,
+.loading-skeleton li,
+.loading-skeleton label,
+.loading-skeleton .form-control,
+.loading-skeleton i {
+color: transparent;
+appearance: none;
+-webkit-appearance: none;
+background-color: #eee;
+border-color: #eee;
+}
+
+.loading-skeleton i {
+width: 20px;
+height: 20px;
+border-radius: 5px;
+}
+.loading-skeleton label::placeholder,
+.loading-skeleton .form-control::placeholder {
+color: transparent;
+}
+
+.skeleton-container {
+border: 1px solid #eee;
+border-radius: 5px;
+margin-top: 7px;
+}
+
+@keyframes loading-skeleton {
+from {
+  opacity: 0.4;
+}
+to {
+  opacity: 1;
+}
+}
+.loading-skeleton {
+pointer-events: none;
+animation: loading-skeleton 1s infinite alternate;
+}
+
+.loading-skeleton .form-group {
+border-right: 1px solid #d8d8d8;
+width: 100%;
+}
+.loading-skeleton .form-group input {
+border-radius: 0px;
+border: 0;
+}
+.loading-skeleton .form-group input:last-child {
+background-color: #fff;
+}
+
+// skeleton scss Ends
+
+
+// Table footer design start 
+
+select {
+padding: 4px 4px;
+border-radius: 8px;
+border: 1px solid #8080804a;
+} 
+.footer-text {
+font-size: 14px;
+font-weight: 500;
+}
+
+
+// status bar designing 
+.status-bar-for-table{
+display: flex;
+justify-content: space-between;
+}
+
+.dashboard-filter{
+display: flex;
+gap: 10px;
+padding: 0px 25px;
+}
+
+.filter-input{
+widtH:174px;
+}
+
+
+
+// modal css
+.order-modal-flex{
+display: flex;
+gap: 20px;
+}
+
+
+
+
+// data table designing
+.order-Id{
+max-width: 6% !important;
+width: 6% !important;
+}
+.date-column{
+max-width: 12% !important;
+width: 12% !important;
+}
+.customer-name{
+max-width: 240px !important;
+width: 240px !important;
+}
+// .aggregator{
+//   max-width: 190px !important;
+//   width: 190px !important;
+// }
+.location{
+max-width: 340px !important;
+width: 340px   !important;
+}
+.amount{
+max-width: 130px !important;
+width: 130px !important;
+}
+.actions{
+width: 9% !important;
+max-width: 9% !important;
+}
+
+
+// Status - order styling 
+.push-button{
+background-color: #00378C;
+color: white;
+padding: 5px 9px;
+font-weight: 100;
+font-size: 14px;
+}
+
+.edit-button{
+background-color: #00378C;
+color: white;
+padding: 5px 9px;
+font-weight: 100;
+font-size: 14px;
+
+}
+.track-button{
+background-color: #00378C;
+color: white;
+padding: 5px 9px;
+font-weight: 100;
+font-size: 14px;
+
+}
+
+.push-button:disabled {
+background-color: #cccccc; /* Change background color to grey */
+color: #666666; /* Change text color to a darker grey */
+cursor: not-allowed; /* Changes cursor to indicate the button is not clickable */
+opacity: 0.6; /* Optional: makes the button look faded */
+font-size: 14px;
+}
+
+.status-order-content {
+display: flex;
+justify-content: space-between;
+}
+
+.Status-Order {
+display: flex;
+font-size: 14px;
+align-items: center;
+}
+
+.Calender-button{
+color: black;
+padding: 0px 3px;
+background: #fff;
+height: 25px;
+margin-top: 3px;
+}
+
+.Calender-heading{
+display: flex;
+gap:10px;
+align-items: center;
+
+}
+
+.Calender-heading h2{
+margin-top:0px;
+}
+
+
+// New designing styling 
+.order-details {
+background-color: white;
+border-radius: 8px;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+padding: 20px;
+width: 600px;
+max-width: 100%;
+}
+.close-button {
+background: none;
+border: none;
+font-size: 24px;
+cursor: pointer;
+}
+h2 {
+margin: 0;
+font-size: 1.125rem;
+margin-top: 20px;
+margin-bottom: 10px;
+color: #333;
+}
+.info-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 15px;
+}
+.info-item {
+margin-bottom: 10px;
+}
+.label {
+font-weight: bold;
+margin-bottom: 5px;
+color: #555;
+}
+.value {
+color: #333;
+}
+.status {
+display: inline-block;
+padding: 3px 8px;
+border-radius: 3px;
+font-size: 14px;
+}
+.status-paid {
+background-color: #d4edda;
+color: #155724;
+}
+.status-pending {
+background-color: #fff3cd;
+color: #856404;
+}
+@media (max-width: 600px) {
+.order-details {
+    width: 100%;
+}
+.info-grid {
+    grid-template-columns: 1fr;
+}
+}
+
+// new Styling complete
+
+#orders-Modal {
+.user-info {
+  .user-name{
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+}
+
+.order-container {
+  border-radius: 10px;
+   background-color: #F3F4F6;
+   padding: 16px 10px;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+
+   .block-heading {
+    font-size: 1.125rem;
+    font-weight: 600;
+   }
+}
+
+.info-cards {
+
+  .info-card {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.04);
+
+    &:hover {
+      box-shadow: 3px 4px 17px 0px rgba(0, 0, 0, 0.07);
+    }
+
+    i {
+      font-size: 22px;
+    }
+
+    .info-card-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+  }
+}
+.toggle-btn {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #eeeeee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #eeeeee;
+  }
+}
+}
+
+.info-card{
+display:flex;
+align-items: center;
+}
+
+@media (min-width:576px) {
+.modal-dialog {
+  max-width: 1000px;
+}
+}
+
+
+.calender-button{
+background-color: #00378C;
+  color: white;
+  padding: 12px 12px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.order-id{
+display: flex;
+align-items: center;
+gap: 0.3rem;
+// justify-content: center;
+img{
+  max-width: 1.3rem;
+}
+}
+
+.mainSection{
+padding : 19px 0px;
+div,span{
+  max-width: 11rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+}
+
+.sub-Section{
+color: #00000057;
+font-size: 13px;
+word-break: break-all;
+}
+
+.main-content{
+overflow: auto;
+  max-height: calc(100vh - 76px);
+img{
+  max-width: 1.3rem;
+}
+}

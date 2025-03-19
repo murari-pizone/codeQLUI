@@ -1,0 +1,117 @@
+<div style="width: 100%; display: flex;justify-content: space-between;">
+    <div class="mb-3" style="padding: 5px;display: flex;justify-content: space-around;gap:8px">
+        <span>
+            <select id="city" [disabled]="true" [(ngModel)]="searchBrand" class="select-input form-select"
+                title="pCategory" name="pCategory" placeholder="Option">
+                <option value="" disabled selected>City</option>
+                <option [value]="'City A'">City A</option>
+                <option [value]="'City B'">City B</option>
+            </select>
+        </span>
+        <span>
+            <select id="city" [disabled]="true" [(ngModel)]="searchTag" class="select-input form-select"
+                title="pCategory" name="pCategory" placeholder="Option">
+                <option value="" disabled selected>Tag</option>
+                <option [value]="'Tags A'">Tags A</option>
+                <option [value]="'Tags B'">Tags B</option>
+            </select>
+        </span>
+    </div>
+    <div style="padding-top: 4px;">
+        <input maxlength="50" [disabled]="true" type="text" class="form-control" [(ngModel)]="searchName" id="name"
+            placeholder="Search">
+    </div>
+</div>
+
+<div>
+    <div class="container-fluid">
+        <div class="table">
+            <div class="table-scroll">
+                <table mat-table [dataSource]="rows | paginate: { itemsPerPage: itemPerPage, currentPage: page }"
+                    matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="Name">
+                        <th mat-header-cell *matHeaderCellDef class="restaurant-name-column-header" style="gap:10px"
+                            mat-sort-header="Name">
+                            <input type="checkbox" style="margin: 5px;" class="checkBox" [checked]="isAllSelected"> NAME
+                        </th>
+                        <td mat-cell *matCellDef="let element" class="restaurant-name-column"
+                            [title]="element['locationName']">
+                            <input type="checkbox" class="checkBox" [checked]="isAllSelected">
+                            <div>
+                                <b>{{element['locationName']}}</b>
+                                <p>{{element['locationTitle']}}</p>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Availability">
+                        <th mat-header-cell *matHeaderCellDef class="location-column" mat-sort-header="Availability">
+                            Availability </th>
+                        <td mat-cell *matCellDef="let element" class="location-column"
+                            [title]="element['availability']">
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="is-recommended" [checked]="element['availability']"
+                                    [disabled]="true" class="form-control">
+                                <span class="slider"></span>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Stock Count">
+                        <th mat-header-cell *matHeaderCellDef class="city-column" mat-sort-header="Stock Count"> Stock
+                            Count </th>
+                        <td mat-cell *matCellDef="let element" class="city-column" [title]="element['stockCount']">
+                            {{element['stockCount']}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Meraki Price">
+                        <th mat-header-cell *matHeaderCellDef class="city-column" mat-sort-header="Meraki Price"> Meraki
+                            Price </th>
+                        <td mat-cell *matCellDef="let element" class="city-column" [title]="element['merakiPrice']">
+                            {{element['merakiPrice']}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Hub Price">
+                        <th mat-header-cell *matHeaderCellDef class="city-column" mat-sort-header="Hub Price"> Hub Price
+                        </th>
+                        <td mat-cell *matCellDef="let element" class="city-column" [title]="element['hubPrice']">
+                            <div style="display: flex;justify-content: space-between;">
+                                {{element['hubPrice']}}
+                                <i class="bi bi-pencil-fill"></i>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+                </table>
+            </div>
+            <div class="table-footer">
+                <div class="totalCount">
+                    @if(rows.length > 0){
+                    <span class="footer-text"> Total Records :
+                        {{rows.length}}</span>
+                    }@else{
+                    <span class="footer-text"> Total Records : 0</span>
+                    }
+                </div>
+                <div class="has-text-centered pagination">
+                    <pagination-controls (pageChange)="page = $event" previousLabel=""
+                        nextLabel=""></pagination-controls>
+                </div>
+                <div class="footer-menu">
+                    <span class="footer-text"> Show Records Per Page : </span>
+                    <select [(ngModel)]="dropDownSelectedValue" (change)="RecordPerPage()">
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="All">All</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

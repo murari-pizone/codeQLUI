@@ -1,0 +1,277 @@
+:root {
+  --primary-theme: #00378C;
+  --dark-theme: #081538;
+  --secondary-theme: #F6AA32;
+  --white: #ffffff;
+  --mat-card-title-text-size: 1.2rem;
+}
+ 
+// scss color variables
+$theme : var(--primary-theme);
+$dark-theme : var(--dark-theme);
+$sec-theme : var(--secondary-theme);
+$ff-poppins: "Poppins", sans-serif;
+$cl-white :var(--white);
+$cl-black :#000;
+$cl-blue :#0c62fb;
+$cl-dark-blue: #002faf;
+// display mixins
+// use for display, align and gap only
+
+.fs-14 {
+  font-size: 0.875rem;
+}
+
+.fs-16 {
+  font-size: 1rem;
+}
+
+.fs-18 {
+  font-size: 1.125rem;
+}
+
+.fs-20 {
+  font-size: 1.25rem;
+  /* 20px */
+  ;
+}
+
+.fs-22 {
+  font-size: 22px;
+}
+
+.fs-24 {
+  font-size: 1.5rem;
+  /* 24px */
+}
+
+.fs-26 {
+  font-size: 26px;
+}
+
+.fs-28 {
+  font-size: 28px;
+}
+
+.fs-30 {
+  font-size: 1.875rem;
+  /* 30px */
+}
+
+.fs-36 {
+  font-size: 2.25rem;
+  /* 36px */
+}
+
+.fs-38 {
+  font-size: 38px;
+}
+
+.fs-40 {
+  font-size: 40px;
+}
+
+.fs-44 {
+  font-size: 44px;
+}
+
+.fs-48 {
+  font-size: 3rem;
+  /* 48px */
+}
+
+.fs-60 {
+  font-size: 3.75rem;
+  /* 60px */
+}
+
+.fs-74 {
+  font-size: 74px;
+}
+
+.fw-400 {
+  font-weight: 400;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.fw-800 {
+  font-weight: 800;
+}
+
+.cl-white {
+  color: $cl-white;
+}
+
+.cl-blue {
+  color: $cl-blue;
+}
+
+.cl-black {
+  color: $cl-black;
+}
+
+h2 {
+  line-height: 1.2;
+}
+
+.line-height-3 {
+  line-height: 1.8;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+@media (max-width: 1400px) {
+  .fs-74 {
+    font-size: 60px;
+  }
+
+  .fs-20,
+  .fs-18 {
+    font-size: 16px;
+  }
+
+  .fs-60 {
+    font-size: 46px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .fs-74 {
+    font-size: 50px;
+  }
+
+  .fs-40,
+  .fs-36 {
+    font-size: 22px;
+  }
+
+  .fs-60 {
+    font-size: 40px;
+  }
+
+  .fs-24 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .fs-74 {
+    font-size: 36px;
+  }
+
+  .fs-40,
+  .fs-36 {
+    font-size: 20px;
+  }
+
+  .fs-44 {
+    font-size: 32px;
+  }
+
+  .fs-60 {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 990px) {
+  .fs-40 {
+    font-size: 20px;
+  }
+
+  .fs-60 {
+    font-size: 30px;
+  }
+
+  .fs-24 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .fs-20 {
+    font-size: 16px;
+  }
+
+  .fs-22 {
+    font-size: 18px;
+  }
+
+  .fs-40,
+  .fs-36 {
+    font-size: 20px;
+  }
+
+  .fs-44 {
+    font-size: 22px;
+  }
+
+  .fs-18 {
+    font-size: 16px;
+  }
+
+  .fs-60 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 575px) {
+  .container {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 430px) {
+  .fs-18 {
+    font-size: 14px;
+  }
+
+  .fs-60 {
+    font-size: 20px;
+  }
+}
+
+@mixin display-fag($flex, $align, $gap : 1rem, $wrap : wrap) {
+  display: $flex;
+  align-items: $align;
+  gap: $gap;
+  flex-wrap: $wrap;
+}
+
+@mixin display-justify($flex, $align, $gap : 1rem, $justify ) {
+  display: $flex;
+  align-items: $align;
+  gap: $gap;
+  justify-content: $justify;
+  flex-wrap: wrap;
+}
+
+// use for display, align, justify and gap ,direction
+@mixin display($flex, $align, $justify : start, $gap : 1rem, $dir : row) {
+  display: $flex;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $gap;
+  flex-direction: $dir;
+  flex-wrap: wrap;
+}
+
+// font mixin
+@mixin font($size: 1rem, $weight :normal) {
+  font : {
+    size: $size;
+    weight: $weight;
+  }
+}

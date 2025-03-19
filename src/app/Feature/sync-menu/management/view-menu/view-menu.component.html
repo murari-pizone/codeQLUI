@@ -1,0 +1,133 @@
+<!---------------- header --------------->
+<div class="mat-dialog-header">
+  <div class="div-search-hading">
+    <h1 class="heading">{{title}}</h1>
+    <input type="text" class="form-control" placeholder="Search Menu" [(ngModel)]="menuSearchValue" (input)="onChangeInput(menuSearchValue)">
+  </div>
+  <div style="display: flex;gap:10px;">
+    <button type="button" class="btn btn-primary" (click)="openOutlet()">Add Item</button>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeDialog()"></button>
+  </div>
+</div>
+<!----------------- header --------------->
+
+<mat-dialog-content mat-dialog-content>
+  <div class="inline-error-msg">
+    @if(isErrorOccur){
+      <app-inline-error-msg (crossClick)="closeInlineError()"  [errorMsg]="errorMsg"></app-inline-error-msg>
+    }
+  </div>
+  <div class="table">
+    <div class="table-scroll">
+      <table mat-table [dataSource]="rows | paginate: { itemsPerPage: page.itemPerPage, currentPage: page.pageNumber, totalItems: page.totalCount }" matSort
+        (matSortChange)="sortData($event)" class="mat-elevation-z8">
+        <ng-container matColumnDef="SR No.">
+          <th mat-header-cell class="sr-number" *matHeaderCellDef mat-sort-header="SR No."> Sr no. </th>
+          <td mat-cell *matCellDef="let element; let i = index" [title]="i + 1">
+            {{i + 1}}
+          </td>
+        </ng-container> 
+
+        <!-- Column Name-->
+        <ng-container matColumnDef="Category Name">
+          <th mat-header-cell *matHeaderCellDef class="restaurant-name-column" mat-sort-header="Category Name">
+            Category Name </th>
+          <td mat-cell *matCellDef="let element" class="restaurant-name-column" [title]="element['CategoryName']">
+            <span style="display: flex; align-items: center;gap:25px">
+              <div class="itemColumn-image"><img src="../../../../../assets/images/png/ItemImage.jpg" alt="not-Loaded"
+                  class="item-image"></div>
+              <span>
+                {{element['CategoryName']}}
+              </span>
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Item Name -->
+        <ng-container matColumnDef="Item Name">
+          <th mat-header-cell *matHeaderCellDef class="location-column"> Item Name </th>
+          <td mat-cell *matCellDef="let element" class="location-column" [title]="element['Iname']"> {{element['Iname']
+            ? element['Iname'] : 'NA'}} </td>
+        </ng-container>
+
+        <!-- Live Status-->
+        <ng-container matColumnDef="Live Status">
+          <th mat-header-cell *matHeaderCellDef class="city-column"> Live Status </th>
+          <td mat-cell *matCellDef="let element" class="city-column" [title]="element['LiveStatus']">
+            {{element['LiveStatus'] ? element['LiveStatus'] : 'NA'}} 
+          </td>
+        </ng-container>
+
+        <!-- Price -->
+        <ng-container matColumnDef="Price">
+          <th mat-header-cell *matHeaderCellDef class="status-column"> Price </th>
+          <td mat-cell *matCellDef="let element" class="status-column">
+            <span>{{element['RateWithoutTax']}}</span>
+          </td>
+        </ng-container>
+
+        <!-- PlateForm-->
+        <ng-container matColumnDef="PlateForm">
+          <th mat-header-cell *matHeaderCellDef class="menu-column"> PlateForm </th>
+          <td mat-cell *matCellDef="let element" class="menu-column">
+            <span>{{element['ExtPlatform']}} </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef class="sync-status"> Action </th>
+          <td mat-cell *matCellDef="let element let i = index" class="sync-status">
+            <div style="display: flex;gap: 10px;">
+             
+              <button (click)="deleteMenuItem(element)" class="btn btn-primary">
+                <i class="bi bi-trash"></i>
+              </button>
+
+              <button (click)="updateMenuItem(element)" class="btn btn-primary">
+                <i class="bi bi-pencil"></i>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+      </table>
+    </div>
+    <div class="table-footer">
+      <div class="totalCount">
+        @if(rows && rows.length > 0){
+        <span class="footer-text"> Total Records : {{page.totalCount}}</span>
+        }@else{
+        <span class="footer-text"> Total Records : 0</span>
+        }
+      </div>
+      <div class="has-text-centered pagination">
+        <pagination-controls (pageChange)="pageChange($event)" previousLabel="" nextLabel=""></pagination-controls>
+      </div>
+      <div class="footer-menu">
+        <span class="footer-text"> Show Records Per Page : </span>
+        <select [(ngModel)]="pageSelectedValue" (change)="RecordPerPage()">
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+
+          <option value="All">All</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  @if(loading){
+    <app-loader [isLoading]="loading" [loadingText]="loadingText"></app-loader>
+  }
+</mat-dialog-content>
+
+<!---------------- Footer --------------->
+<!-- <mat-dialog-actions>
+  <div class="d-flex gap-2"> -->
+    <!-- <button type="button" class="btn btn-primary success" (click)="close()">Ok</button> -->
+  <!-- </div>
+</mat-dialog-actions> -->
+<!---------------- Footer --------------->

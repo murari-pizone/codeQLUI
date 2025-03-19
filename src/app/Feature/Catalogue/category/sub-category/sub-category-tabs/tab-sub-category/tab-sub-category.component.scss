@@ -1,0 +1,21 @@
+.alert-box {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border: 1px solid #f0c36d;
+    background-color: #fff8e5;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    color: #7a5502;
+    font-size: 1rem;
+  }
+
+  .alert-icon {
+    margin-right: 10px;
+    font-size: 1.5rem;
+    color: #f0c36d;
+  }
+  
+.alert-message {
+    flex: 1;
+  }

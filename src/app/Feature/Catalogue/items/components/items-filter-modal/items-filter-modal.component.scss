@@ -1,0 +1,153 @@
+@import "../../../../../../scss/variables";
+.main-section{
+    display: flex;
+    gap: 10px;
+    padding: 0px 4px;
+    padding-bottom: 10px;
+    align-items: center;
+  }
+  
+  .filter-input{
+    widtH:200px;
+  }
+
+  .common-select {
+    padding: 4px 4px;
+    border-radius: 8px;
+    border: 1px solid #8080804a;
+    background-color: #00388C;
+    color: white;
+    // min-height: 36px;
+  }
+
+  .aggregator-dropdown{
+    min-width: 130px;
+  }
+  .filter-icon{
+    padding-right: 6px;
+  }
+  .location-filter{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .actions-bar{
+    display: flex;
+    gap:10px;
+    padding-bottom:10px;
+    justify-content:right;
+  }
+  .action-btn{
+    font-weight: 100;
+    background: transparent;
+    border: 1px solid rgb(222, 226, 230);
+    border-radius: 7px;
+    padding: 0.3rem 0.75rem;
+    // min-height:36px;
+    transition: 0.5s;
+    &:hover{
+      background-color: $theme;
+      color:white;
+    }
+  }
+  .action-btn-add-location{
+    font-weight: 100;
+    border: 1px solid rgb(222, 226, 230);
+    border-radius: 7px;
+    padding: 0.3rem 0.75rem;
+    // min-height:36px;
+    background-color: #00388C;
+    color:white;
+  }
+
+  .form-container {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .select-input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .apply-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .label-select-section{
+    margin-bottom : 10px;
+  }
+
+  .all-archive{
+    color: red;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    padding-right: 20px;
+  }
+  .all-active{
+    color: #00378c;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .toggle-status{
+    color: #00378c;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    padding-right: 20px;
+  }
+
+  .toggle-status-disabled{
+    color: #505050;
+    font-size: 15px;
+    cursor: not-allowed ;
+    font-weight: 600;
+    padding-right: 20px;
+  }
+
+  .all-archive-disabled{
+    color: #505050;
+    font-size: 15px;
+    cursor: not-allowed ;
+    font-weight: 600;
+  }
+  .all-active-disabled{
+    color: #505050;
+    font-size: 15px;
+    cursor: not-allowed ;
+    font-weight: 600; 
+  }
+  .select-input:focus-visible{
+    border-color: #00378c ;
+  }
+  .right-section{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .status-dropdown{
+    width : 143px;
+  }
+  .toggle-location-status{
+    padding-right: 20px;
+  }
+  .text-section{
+    display: flex;
+    padding: 0px 11px;
+    align-items: center;
+    justify-content: space-between;
+  }

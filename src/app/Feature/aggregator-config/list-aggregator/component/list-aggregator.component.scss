@@ -1,0 +1,87 @@
+.aggregator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.aggregator-card {
+  mat-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  mat-card-content {
+    margin-top: 16px;
+  }
+
+  mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.Api-Settings-Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  h1 {
+    font-size: 32px;
+  }
+}
+
+.copy-input {
+  padding: 10px 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+}
+
+.Clipboard-button {
+  padding: 0;
+  float: right;
+}
+.api-box > p {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+mat-card {
+  padding: 13px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 3px 4px 17.9px 0px rgba(0, 0, 0, 0.08);
+}
+
+mat-card-actions {
+  padding: 16px 16px 0;
+}
+
+.editAndDeleteButton{
+  display: flex;
+  gap: 17px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.aggregatorEditButton{
+    padding: 8px 12px;
+    color: white;
+    background-color: #00378c;
+    font-weight: 200;
+}
+
+
+.form-switch .form-check-input {
+  transition: unset;
+}

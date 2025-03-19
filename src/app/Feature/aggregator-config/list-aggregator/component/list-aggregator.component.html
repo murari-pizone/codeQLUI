@@ -1,0 +1,91 @@
+<div class="inline-error-msg">
+  @if(isErrorOccur){
+    <app-inline-error-msg (crossClick)="closeInlineError()"  [errorMsg]="errorMsg"></app-inline-error-msg>
+  }
+</div>
+
+
+<div class="container-fluid mt-5 p-0">
+  <div class="Api-Settings-Header px-4">
+    <h1>API Settings</h1>
+    <button (click)="addAggregator()" class=" btn btn-primary with-icon">
+      <mat-icon>add</mat-icon>
+      Add Aggregator
+    </button>
+  </div>
+
+  <div class="aggregator-grid px-4 pb-3">
+    @if(aggregators && aggregators.length > 0){
+    @for(aggregator of aggregators ; track aggregator){
+    <mat-card class="aggregator-card">
+      <mat-card-header>
+        <mat-card-title>{{ aggregator['aggregator_name'] }}</mat-card-title>
+        <div class="d-flex gap-2">
+          <div class="d-flex gap-2">
+            <p>Confirm</p>
+          <div class="form-check form-switch">
+            <input tabindex="-1" class="form-check-input" type="checkbox" id="auto-confirmation" [checked]="aggregator?.auto_order_confirm"
+            (change)="autoConfirm(aggregator)">
+          </div>
+      </div>
+      <div class="d-flex gap-2">
+        <p>Status</p>
+        <div class="form-check form-switch">
+          <input tabindex="-2" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" [checked]="aggregator.toggleStatusButton"
+          (change)="toggleStatus(aggregator)">
+        </div>
+      </div>
+    </div>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="d-flex flex-column gap-3">
+          <div class="api-box">
+            <p class="mb-2">API Key:</p>
+            <div class="copy-input">
+              <button  [cdkCopyToClipboard]="aggregator['api_key']" 
+              (cdkCopyToClipboardCopied)="onClipboardCopy($event)" class="Clipboard-button" aria-label="Copy">
+                <i class="bi bi-copy" ></i>
+              </button>
+              <p aria-label="Copy">{{ aggregator['api_key'] }}</p>
+            </div>
+          </div>
+          <div class="api-box">
+            <p class="mb-2">Secret Key:</p>
+            <div class="copy-input">
+              <button [cdkCopyToClipboard]="aggregator['secret_key']"  data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Text is copied"
+              (cdkCopyToClipboardCopied)="onClipboardCopy($event)" class="Clipboard-button" aria-label="Copy">
+                <i class="bi bi-copy"></i>
+              </button>
+              <p aria-label="Copy">{{ aggregator['secret_key'] }}</p>
+            </div>
+          </div>
+          <div class="api-box">
+            <p class="mb-2">Endpoint URL:</p>
+            <div class="copy-input">
+              <button [cdkCopyToClipboard]="aggregator['endpoint_url']"  data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Text is copied"
+              (cdkCopyToClipboardCopied)="onClipboardCopy($event)" class="Clipboard-button" aria-label="Copy">
+                <i class="bi bi-copy"></i>
+              </button>
+              <p style="word-break: break-all;" aria-label="Copy">{{ aggregator['endpoint_url'] }}</p>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="d-flex align-items-center justify-content-between w-100">
+          <div class="editAndDeleteButton" style="justify-content: right">
+              <button class="aggregatorEditButton" (click)="editAggregator(aggregator)" >
+                <i class="bi bi-pencil"></i>
+              </button>
+          </div>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+    }
+    }
+  </div>
+</div>
+
+<div>
+  <app-loader [isLoading]="loadingSpinner"></app-loader>
+</div>

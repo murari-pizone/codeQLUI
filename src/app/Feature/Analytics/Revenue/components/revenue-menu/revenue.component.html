@@ -1,0 +1,36 @@
+<div class="inline-error-msg">
+    @if(isErrorOccur){
+    <app-inline-error-msg (crossClick)="closeInlineError()" [errorMsg]="errorMsg"></app-inline-error-msg>
+    }
+</div>
+
+<div style="margin: 15px;">
+    <div style="display: flex;justify-content: space-between;padding: 20px" class="border">
+        <div>
+            <h2>Revenue</h2>
+        </div>
+        <div style="display:flex;gap:5px">
+            <!-- <button type="button" class="btn btn-primary" style="height: 35px;">+ Add Tag Group</button>  -->
+        </div>
+    </div>
+
+
+
+    <div class="stepper">
+        <div class="step-tabs">
+          <!-- <button class="caret-btn" (click)="showPreviousTab()">
+            <i class="bi bi-caret-left"></i>
+          </button> -->
+      
+          @for(tab of tabs; track tab){
+            <div  (keyup)="empty()" (click)="currentStep = tab.name"  tabindex="-1"  class="step-tab" [ngClass]="{ active: currentStep === tab.name }">
+              {{ tab.label }}
+            </div>
+          }
+      
+          <!-- <button class="caret-btn" (click)="showNextTab()">
+            <i class="bi bi-caret-right"></i>
+          </button> -->
+        </div>
+      </div>
+</div>

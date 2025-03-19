@@ -1,0 +1,57 @@
+@import "../../../../../../../scss/variables";
+
+.offcanvas {
+  min-width: 800px;
+}
+
+.archive-btn {
+  color: red;
+  margin-right: 15px !important;
+}
+
+.archive-btn:hover {
+  color: white
+}
+
+.header-text-helper {
+  font-weight: 500;
+  font-size: 15px;
+  padding-left: 4px;
+  color: #696363;
+}
+
+// bar design
+.stepper {
+  width: 100%;
+  margin-top: 20px
+}
+
+.step-tabs {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+}
+
+.step-tab {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: #555;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s;
+  min-width: 150px;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.step-tab.active {
+  color: $theme;
+  font-weight: bold;
+  border-bottom: 2px solid #007bff;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}

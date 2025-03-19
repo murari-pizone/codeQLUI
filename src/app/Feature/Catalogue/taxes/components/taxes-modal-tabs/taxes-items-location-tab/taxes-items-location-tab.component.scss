@@ -1,0 +1,28 @@
+.associatedHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+i.bi-trash {
+    border: 1px solid #ff0000b5;
+    padding: 5px;
+    border-radius: 4px;
+    color:#ff0000b5;
+  }
+
+.item-group:hover {
+    color: #00378c;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.item-group {
+    margin-top: 8px;
+    cursor: pointer;
+}

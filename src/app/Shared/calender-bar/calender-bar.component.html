@@ -1,0 +1,11 @@
+
+<mat-form-field class="example-full-width p-0" [style.opacity]="isLoading ? '0.7' : ''"  >
+  <mat-label>Choose a date</mat-label>
+  <input matInput [matDatepicker]="picker" [value]="currentDate" (dateInput)="onDateChangeEmit($event)" [disabled]="isLoading">
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="picker">
+    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+  </mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+  

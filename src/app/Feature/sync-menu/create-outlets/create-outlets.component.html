@@ -1,0 +1,132 @@
+<div class="customHeaderSyncTrack">
+
+    <!---------------- header --------------->
+    <div class="mat-dialog-header-parent">
+        <div class="div-search-hading" style="justify-content: space-between;margin:10px">
+            <h1 class="heading">{{title}}</h1>
+            <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+          </div>
+    </div>
+    <!----------------- header --------------->
+
+    <mat-dialog-content mat-dialog-content>
+        <div class="inline-error-msg">
+            @if(errorMessages){
+            <app-inline-error-msg (crossClick)="closeInlineError()" [errorMsg]="errorMessages"></app-inline-error-msg>
+            }
+        </div>
+        <!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
+        <div [ngClass]="{'back-drop': isLoading}">
+            <div>
+                <div class="header rds">
+                    <h1 style="margin:0px">Create New Outlet</h1>
+                    <p>Fill in the details to create Outlet. </p>
+                </div>
+                <form [formGroup]="branchForm" (ngSubmit)="onSubmit()" class="form-container">
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Platform:</label>
+                            <input formControlName="ExtPlatform" placeholder="(e.g., PlatformA)"
+                                [ngClass]="{'border-error': submitted && branchForm.get('ExtPlatform')?.invalid}"
+                                (focus)="resetErrors()" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Branch Code:</label>
+                            <input formControlName="brcode" type="number" placeholder="Ex: 12344543 (Only digits)"
+                                [ngClass]="{'border-error': submitted && branchForm.get('brcode')?.invalid}"
+                                (focus)="resetErrors()" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Branch Name:</label>
+                            <input formControlName="brname" placeholder="(e.g., Main Branch)"
+                                [ngClass]="{'border-error': submitted && branchForm.get('brname')?.invalid}"
+                                (focus)="resetErrors()" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Live Flag:</label>
+                            <select formControlName="liveFlg"
+                                [ngClass]="{'border-error': submitted && branchForm.get('liveFlg')?.invalid}"
+                                (focus)="resetErrors()">
+                                <option value="ENABLED">Enable</option>
+                                <option value="DISABLED">Disable</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Reason for Disabled:</label>
+                            <input formControlName="reasonfordisabled" placeholder="Ex: N/A (if not applicable)"
+                                [ngClass]="{'border-error': submitted && branchForm.get('reasonfordisabled')?.invalid}"
+                                (focus)="resetErrors()" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Enable/Disable Time:</label>
+                            <input formControlName="enaDisTime" type="datetime-local"
+                                [ngClass]="{'border-error': submitted && branchForm.get('enaDisTime')?.invalid}"
+                                (focus)="resetErrors()" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Enable/Disable User:</label>
+                            <input formControlName="enaDisUsr" placeholder="User will be displayed here"
+                                [ngClass]="{'border-error': submitted && branchForm.get('enaDisUsr')?.invalid}"
+                                (focus)="resetErrors()" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Network Status:</label>
+                            <select formControlName="NetOnOff"
+                                [ngClass]="{'border-error': submitted && branchForm.get('NetOnOff')?.invalid}"
+                                (focus)="resetErrors()">
+                                <option value="ON">ON</option>
+                                <option value="OFF">OFF</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Network Update Reason:</label>
+                            <input formControlName="NetUpdReson" placeholder="Ex: Maintenance (provide a reason)"
+                                [ngClass]="{'border-error': submitted && branchForm.get('NetUpdReson')?.invalid}"
+                                (focus)="resetErrors()" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Inventory Maintain:</label>
+                            <select formControlName="InventoryMaintainYN"
+                                [ngClass]="{'border-error': submitted && branchForm.get('InventoryMaintainYN')?.invalid}"
+                                (focus)="resetErrors()">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div *ngIf="submitted && branchForm.invalid" class="error-message">
+                        Please fill in all required fields before submitting.
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        @if(!isLoading){
+                        <span> {{data.create ? 'Submit' : 'Update'}}</span>
+                        }@else {
+                        <app-loader [loadingCircleColor]="'3px solid #0a53be'" [isLoading]="isLoading"
+                            [loadingText]="'Saving...'"></app-loader>
+                        }
+                    </button>
+                </form>
+            </div>
+        </div>
+    </mat-dialog-content>
+
+    <!---------------- Footer --------------->
+    <mat-dialog-actions>
+        <!-- <div class="d-flex gap-2 justify-content-end w-100">
+            <button type="button" class="btn btn-primary success" (click)="close()">Ok</button>
+        </div> -->
+    </mat-dialog-actions>
+    <!---------------- Footer --------------->
+</div>

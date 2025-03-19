@@ -1,0 +1,148 @@
+@import "../../../../../../scss/variables";
+
+.loading-skeleton p,
+.loading-skeleton li,
+.loading-skeleton label,
+.loading-skeleton .form-control,
+.loading-skeleton i {
+    color: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #eee;
+    border-color: #eee;
+}
+
+.loading-skeleton i {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+}
+
+.loading-skeleton label::placeholder,
+.loading-skeleton .form-control::placeholder {
+    color: transparent;
+}
+
+.skeleton-container {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    margin-top: 7px;
+}
+
+@keyframes loading-skeleton {
+    from {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.loading-skeleton {
+    pointer-events: none;
+    animation: loading-skeleton 1s infinite alternate;
+}
+
+.loading-skeleton .form-group {
+    border-right: 1px solid #d8d8d8;
+    width: 100%;
+}
+
+.loading-skeleton .form-group input {
+    border-radius: 0px;
+    border: 0;
+}
+
+.loading-skeleton .form-group input:last-child {
+    background-color: #fff;
+}
+
+.footer-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.footer-dropdown {
+    padding: 3px 8px;
+    border-radius: 8px;
+    border: 1px solid #8080804a;
+}
+
+
+.itemColumn-image {
+    height: 60px;
+    width: 60px;
+    padding: 8px 0px;
+}
+
+.itemColumnMain {
+    display: flex;
+    gap: 5px
+}
+
+.item-image {
+    border-radius: 7px;
+}
+
+.itemColumn-text {
+    padding-top: 4px;
+    display: block;
+}
+
+.itemColumn-btn {
+    background: transparent;
+    padding: 1px 5px;
+    border: 1px solid #80808026;
+    text-align: center;
+    font-size: 11px !important;
+    border-radius: 8px;
+    margin-top: 3px;
+    color: #595454;
+}
+
+.itemColumn-btn:hover {
+    background: #00378C;
+    color: white;
+}
+
+.itemColumnMain-sub-section {
+    padding: 3px 8px
+}
+
+// .item-column{
+//   min-width: 620px ;
+//   width: 620px;
+//   max-width: 620px ;
+// }
+
+.postal-id {
+    color: grey;
+    font-size: 13px;
+    padding-top: 4px;
+}
+
+.drawerHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.modifier-title {
+    text-decoration: none;
+    /* Default state - no underline */
+    cursor: pointer;
+    /* Optional: Change cursor to pointer */
+}
+
+.modifier-title:hover {
+    text-decoration: underline;
+    /* Underline on hover */
+}

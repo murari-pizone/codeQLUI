@@ -1,0 +1,32 @@
+<div class="category">
+    <div class="subcategories-header">
+        <h2>Sub Categories & Items</h2>
+    </div>
+    <div class="subcategories-list">
+        @if(checkSubCatInd()){
+        @for(subcategory of catConst.subcategories[subCatIndex]['subCategoryItems'];track subcategory){
+        <div class="subcategory-item">
+            <div class="subcategory-name">
+                <span [ngStyle]="{'color':subcategory.status === 'InActive'? 'red':''}" (keyup)="empty()" tabindex="-2"
+                    (click)="setEditCategory(subcategory)" class="hover-blue" data-bs-target="#EditCategory"
+                    data-bs-toggle="offcanvas" aria-controls="offcanvasRight">{{ subcategory.name }}</span>
+            </div>
+            <div class="subcategory-actions">
+                <!-- <a class="btn-icon">
+                    <i class="bi bi-pencil-fill"></i>
+                </a> -->
+                <a class="btn-icon">
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+        }
+        }
+        @else {
+        <span style="padding: 10px;">
+            <h3>All Items</h3>
+            <p>0 Items(s)</p>
+        </span>
+        }
+    </div>
+</div>

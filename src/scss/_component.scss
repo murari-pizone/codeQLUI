@@ -1,0 +1,128 @@
+
+.btn{
+  
+  &.btn-primary {
+  background-color: $theme;
+  border-color: $theme;
+}
+&:disabled{
+  pointer-events: all;
+}
+}
+.btn.btn-primary.warn, .btn.btn-primary.warn:hover {
+  background-color: #e61f1f;
+  border-color: #e61f1f;
+}
+.btn.btn-primary.success, .btn.btn-primary.success:hover {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+.btn.btn-secondary {
+  background-color: #5f6369;
+}
+
+#menu-modal .modal-dialog {
+  min-width: 90%;
+  min-height: 90vh;
+}
+#menu-modal .modal-content {
+  min-width: 90%;
+  min-height: 90vh;
+}
+.modal-header h1 {
+  font-size: 22px;
+  font-weight: 600;
+  columns: #18191b;
+}
+
+.menu-item-card {
+  display: flex;
+  padding: 13px;
+  align-items: center;
+  gap: 14px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 3px 4px 17.9px 0px rgba(0, 0, 0, 0.08);
+
+  img {
+    border-radius: 9px;
+    height: 206px;
+    width: 208px;
+  }
+  .menu-item-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .item-name {
+      font-size: 22px;
+      font-weight: 600;
+      color: $theme;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: calc(100% - 40px);
+      text-overflow: ellipsis;
+    }
+    .item-category {
+      font-size: 1.125rem;
+      font-weight: 400;
+      color: #333333;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: calc(100% - 40px);
+      text-overflow: ellipsis;
+    }
+    .item-quantity {
+      font-size: 1.125rem;
+      font-weight: 400;
+      color: #333333;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: calc(100% - 40px);
+      text-overflow: ellipsis;
+    }
+    .item-price {
+      font-size: 22px;
+      font-weight: 700;
+      color: #28a745;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: calc(100% - 40px);
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+@media (max-width: 1600px) {
+  .menu-item-detail {
+    gap: 10px;
+    .item-name {
+      font-size: 20px;
+    }
+    .item-category {
+      font-size: 16px;
+    }
+    .item-quantity {
+      font-size: 16px;
+    }
+    .item-price {
+      font-size: 20px;
+    }
+  }
+}
+@media (max-width: 975px) {
+  .menu-item-detail {
+    gap: 10px;
+    .item-name {
+      font-size: 1.125rem;
+    }
+    .item-category {
+      font-size: 14px;
+    }
+    .item-quantity {
+      font-size: 14px;
+    }
+    .item-price {
+      font-size: 1.125rem;
+    }
+  }
+}

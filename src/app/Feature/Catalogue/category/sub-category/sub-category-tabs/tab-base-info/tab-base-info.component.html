@@ -1,0 +1,28 @@
+<div class="mb-3" style="padding: 5px;display: block;">
+    <label for="name" class="form-label">Name</label>
+    <input maxlength="50" [disabled]="true" type="text" class="form-control"
+        [(ngModel)]="catConst.editCategory[0].name" id="name" placeholder="Enter Name....">
+</div>
+
+<div style="display: flex;justify-content: space-between;">
+    <div class="mb-3" style="padding: 5px;display: inline-block;width: 50%;">
+        <label for="sortOrder" class="form-label">Sort Order
+            <i class="bi bi-info-circle info-icon"></i>
+        </label>
+        <input maxlength="50" type="number" [disabled]="true" class="form-control"
+            [(ngModel)]="catConst.editCategory[0].sortOrder" id="sortOrder" placeholder="Enter Name....">
+    </div>
+    <div class="mb-3" style="padding: 5px;display: inline-block;width: 50%;">
+        <label for="pCategory" class="form-label">Parent Category
+            <i class="bi bi-info-circle info-icon"></i>
+        </label>
+        <select id="city" [disabled]="true" [(ngModel)]="catConst.editCategory[0].pCategory"
+            class="select-input form-select" title="pCategory" name="pCategory" placeholder="Option"
+            (change)="setParentCategory(catConst.editCategory[0].name)">
+            <option value="" disabled selected>Select Option</option>
+            @for(option of catConst.categories ; track option){
+            <option [value]="option.name">{{ option.name }}</option>
+            }
+        </select>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div #TagsModal class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="TagsModal"
+    aria-labelledby="staticBackdropLabel2" [style.width.px]="drawerWidth" data-backdrop="static" data-keyboard="false">
+    <div class="resizer" (mousedown)="onMouseDown($event)" (touchstart)="onMouseDown($event)"><i class="bi bi-list"></i>
+    </div>
+    @if(showSideBar){
+    <!-- Header -->
+    <div class="offcanvas-header d-flex justify-content-between">
+        <div class="header-Text">
+            <div class="offcanvas-title fs-5" id="offcanvasRightLabel">Tags</div>
+            <div class="header-text-helper">Edit This Tags Group</div>
+        </div>
+        <div class="header-cross pb-3">
+            <button type="button" class="filter-btn  archive-btn mx-1">Archive</button>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
+                (click)="closeSideBarEmit()"></button>
+        </div>
+    </div>
+    }
+</div>

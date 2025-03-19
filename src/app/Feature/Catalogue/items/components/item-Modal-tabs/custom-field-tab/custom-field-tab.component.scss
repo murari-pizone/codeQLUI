@@ -1,0 +1,15 @@
+.associatedHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .disabled-icon {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }

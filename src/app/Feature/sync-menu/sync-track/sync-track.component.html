@@ -1,0 +1,171 @@
+<div class="customHeaderSyncTrack">
+
+  <!---------------- header --------------->
+  <div class="mat-dialog-header-parent">
+    <div class="mat-dialog-header-child">
+      <span style="display: flex;gap: 15px;">
+        <h2>Sync Status - {{restaurantName}}</h2>
+        <div class="filter-input">
+          <input type="text" [(ngModel)]="filterInputValue" class="form-control" [placeholder]="'Search'"
+            (input)="onInputChange(filterInputValue)">
+        </div>
+      </span>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeDialog()"></button>
+    </div>
+    @if(last_synced){
+      <div class="last-synced-text-header">Last Synced : {{last_synced | dateFormat : 'Date'}} , {{last_synced | dateFormat : 'Time'}}</div>
+    }
+  </div>
+  <!----------------- header --------------->
+
+  <mat-dialog-content mat-dialog-content>
+    <div class="table">
+      <div class="table-scroll">
+        <table mat-table
+          [dataSource]="rows | paginate: { itemsPerPage: rows.length, currentPage: page.pageNumber, totalItems: rows.length }"
+          matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
+          
+          <ng-container matColumnDef="SR No.">
+            <th mat-header-cell *matHeaderCellDef class="restaurant-name-column" mat-sort-header="SR No."> Sr no. </th>
+            <td mat-cell *matCellDef="let element; let i = index" [title]="element['srNo']">
+              {{element['srNo']}}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="External Entity Id">
+            <th mat-header-cell *matHeaderCellDef class="location-column"> External Entity Id </th>
+            <td mat-cell *matCellDef="let element" class="location-column" [title]="element['entity_type']">
+              @if(element['entity_type'] && element['external_entity_id']){
+              {{element['entity_type']}} | {{ element['external_entity_id']}}
+              }
+              @else { NA }
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Status">
+            <th mat-header-cell *matHeaderCellDef class="Status"> Status </th>
+            <td mat-cell *matCellDef="let element" class="Status" [title]="element['status']">
+              {{element['status']}} </td>
+          </ng-container>
+
+          <!-- ERROR -->
+          <ng-container matColumnDef="Details">
+            <th mat-header-cell class="error-column" *matHeaderCellDef>
+              @if(!masterShowFlag){
+              <span tabindex="-1" (keyup)="empty()" style="color:#00378c" (click)="masterShow()"><i
+                  class="bi bi-plus-circle-fill" style="padding-right:7px"></i>Details</span>
+              }@else {
+              <span tabindex="-2" (keyup)="empty()" style="color:#00378c" (click)="masterHide()"><i
+                  class="bi bi-dash-circle-fill" style="padding-right:7px"></i>Details</span>
+              }
+            </th>
+            <td mat-cell class="error-column" *matCellDef="let element; let ind = index">
+              <div class="py-2">
+                @if(!element.isShowComplexColumn){
+                <span tabindex="-3" (keyup)="empty()"><a tabindex="-5" (keyup)="empty()" style="color:#00378c"
+                    (click)="showError(element)"><i class="bi bi-plus-circle-fill" style="padding-right:4px"></i>View
+                    Details</a></span>
+                }@else {
+                <span style="display: flex;gap:10px">
+                  <span tabindex="-4" (keyup)="empty()"><a tabindex="-6" (keyup)="empty()" style="color:#00378c"
+                      (click)="hideError(element)"><i class="bi bi-dash-circle-fill" style="padding-right:4px"></i>Hide
+                      Details</a>
+                      <button style="padding: 0.1rem 0.5rem;" [cdkCopyToClipboard]="element.stringJson"
+                        (cdkCopyToClipboardCopied)="onClipboardCopy($event)">
+                        <i class="bi bi-copy"></i>
+                      </button>
+                    </span>
+                </span>
+                }
+                <!-- Complex column -->
+                @if(element.isShowComplexColumn){
+                <!-- @for(error of element['ErrorJson'] ; track error){ -->
+                <div class="ErrorJson-main py-2 border-bottom px-2 fw-400 error-collapse">
+                  <!-- @if(element['ErrorJson']){ -->
+
+                  <!--Error Field-->
+                  @if(element['request_id']){
+                  <div class="d-flex gap-1 pb-1">
+                    <span [title]="element['request_id']" class="fw-bolder">Requested Id : </span>
+                    <div [title]="element['request_id']" class="text-secondary fs-6 truncate">
+                      {{element['request_id']}}</div>
+                  </div>
+                  }
+
+                  <!--Rejected Value-->
+                  @if(element['external_message']){
+                  <div class="d-flex gap-1 pb-1">
+                    <span [title]="element['external_message']" class="fw-bolder">External Message : </span>
+                    <div [title]="element['external_message']" class="text-secondary fs-6 truncate">
+                      {{element['external_message']}}
+                    </div>
+                  </div>
+                  }
+
+                  <!--Rejected Value-->
+                  @if(element['entity_type']){
+                  <div class="d-flex gap-1 pb-1">
+                    <span [title]="element['entity_type']" class="fw-bolder">Entity Type : </span>
+                    <div [title]="element['entity_type']" class="text-secondary fs-6 truncate">
+                      {{element['entity_type']}}</div>
+                  </div>
+                  }
+                  @if(element['status']){
+                  <div class="d-flex gap-1 pb-1">
+                    <span [title]="element['status']" class="fw-bolder">Status : </span>
+                    <div [title]="element['status']" class="text-secondary fs-6 truncate">{{element['status']}}
+                    </div>
+                  </div>
+                  }
+                  @if(element['time']){
+                  <div class="d-flex gap-1 pb-1">
+                    <span [title]="element['time']" class="fw-bolder">Time : </span>
+                    <div [title]="element['time']" class="text-secondary fs-6 truncate">{{element['time']}}</div>
+                  </div>
+                  }
+
+                </div>
+                <!-- } -->
+                }
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columns"></tr>
+          <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+        </table>
+      </div>
+      <div class="table-footer">
+        <div class="totalCount">
+          @if(rows && rows.length > 0){
+          <span class="footer-text"> Total Records : {{rows.length}}</span>
+          }@else{
+
+          <span class="footer-text"> Total Records : 0</span>
+          }
+        </div>
+        <div class="has-text-centered pagination">
+          <pagination-controls (pageChange)="pageChange($event)" previousLabel="" nextLabel=""></pagination-controls>
+        </div>
+        <div class="footer-menu">
+          <span class="footer-text"> Show Records Per Page : </span>
+          <select class="disabled" disabled="true" [(ngModel)]="pageSelectedValue" (change)="RecordPerPage()">
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="All">All</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <!---------------- Footer --------------->
+  <mat-dialog-actions>
+    <div class="d-flex gap-2 justify-content-end w-100">
+      <button type="button" class="btn btn-primary success" (click)="close()">Ok</button>
+    </div>
+  </mat-dialog-actions>
+  <!---------------- Footer --------------->
+</div>

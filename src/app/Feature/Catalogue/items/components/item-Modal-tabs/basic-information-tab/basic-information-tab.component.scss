@@ -1,0 +1,138 @@
+.form-container-basic-information {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: white;
+    padding: 20px;
+    width: 100%;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .field {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .field .spn {
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .field input,
+  .field select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .field:disabled{
+    background-color: #e9ecef;
+    opacity: 1;
+  }
+  
+  .field.toggle {
+    display: flex;
+    flex: 1;
+  }
+  
+  .toggle-switch {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    margin-top:7px;
+  }
+  
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: #4CAF50;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(20px);
+  }
+  
+  .description .showMore-btn {
+    background: none;
+    border: none;
+    color: #007BFF;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: underline;
+    text-align: left;
+    padding: 0px 0px !important;
+  }
+  
+  @media (max-width: 480px) {
+    .form-row {
+      flex-direction: column;
+    }
+  }
+
+  .add-on-text{
+    font-weight: 800;
+  }
+  .text-section{
+    padding-left:20px;
+  }
+  .fix-width{
+    width : 30px;
+  }
+
+  .red-border{
+    border : 1px solid red !important;
+  }
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.nested-basic-title{
+  font-weight: 500;font-size: 13px;padding-left: 4px;color: #696363;
+}
+
+.nested-basic-textarea{
+  border-radius: 4px;
+  border:1px solid #ccc;
+  line-height: 4;
+}
+
+.nested-basic-input{
+  border-radius: 4px;
+  border:1px solid #ccc;
+  line-height: 2;
+}

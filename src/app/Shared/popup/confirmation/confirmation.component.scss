@@ -1,0 +1,52 @@
+
+
+.mdc-dialog__container {
+    border-radius: 8px;
+    min-width: 20vw;
+  }
+  
+  p {
+    font-size: 16px;
+    color: #555;
+  }
+
+  .icon-container {
+    margin-bottom: 16px;
+  }
+  .icon-container i {
+    font-size: 48px;
+  }
+
+  [mat-dialog-actions] {
+    justify-content: center;
+    margin-top: 24px;
+  }
+  .text-success {
+    color: #28a745;
+  }
+  .text-danger {
+    color: #dc3545;
+  }
+  
+  .mat-mdc-dialog-content.mdc-dialog__content {
+    display: flex;
+    justify-content:left;
+    align-items: center;
+  }
+
+  // Styling dynamic context in popup for syncMenu
+
+  .check-box-And-list-item{
+    display: flex;
+    gap:10px;
+    padding-top: 16px;
+  }
+
+  .item{
+    color: black;
+  }
+
+  .close-button{
+    background: transparent;
+    font-size: 20px
+  }

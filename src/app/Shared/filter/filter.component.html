@@ -1,0 +1,311 @@
+<div class="dashboard-filter">
+    <div class="main-section">
+      <!-- go to back -->
+      <!-- uncomment it when we confirmed -->
+      <!-- @if(component === 'Restaurant' || component === 'SyncMenuError'){
+        <button (click)="getBack()" class="back-btn" ><i class="bi bi-caret-left-fill"></i></button>
+      } -->
+
+     <!-- Regions Filter -->
+     @if(component !== 'Category' && !['Operations', 'AnaCatalogue'].includes(component)){
+      <select [disabled]="isLoading" [(ngModel)]="selectedValueRegion" (change)="selection()" name="filter-dropdown" class="aggregator-dropdown" id="DFD-1">
+        @for(SelectedValueRegion of listSelectedValueRegion ; track SelectedValueRegion){
+          <option [value]="SelectedValueRegion">{{SelectedValueRegion}}</option>
+        }
+      </select> 
+
+       <!-- Aggregators  filter-->
+       <select [disabled]="isLoading" [(ngModel)]="selectedValue" (change)="selection()" name="filter-dropdown" class="aggregator-dropdown" id="DFD-2">
+         <option defaultSelected="All Aggregators">All Aggregators</option>
+         @for(aggregator of aggregatorsList ; track aggregator){
+           <option [value]="aggregator.aggregator_name">{{aggregator.aggregator_name}}</option>
+         }
+       </select>
+     }
+
+     <!-- Category filter -->
+     @if(component === 'Category'){
+      <select [disabled]="isLoading" [(ngModel)]="selectedCategory" (change)="selection()" name="filter-dropdown" class="aggregator-dropdown" id="DFD-3">
+          @for(category of categoryList ; track category){
+            <option [value]="category">{{category}}</option>
+          }
+      </select>
+    }
+
+      <!--common search-->
+      @if((component !== 'SyncMenuError' || component === 'SyncMenuError') && !['Operations', 'AnaCatalogue'].includes(component)){
+        <div class="filter-input">
+          <input [disabled]="isLoading" type="text" [(ngModel)]="filterInputValue" (ngModelChange)="onChangeInput(filterInputValue)" class="form-control" [placeholder]="component === 'SyncMenuError' ? 'Search Shop Code' : 'Search'">
+        </div>
+      }
+
+      <!-- @if(component === 'SyncMenuError'){
+        <div class="shop-code-ms">
+          <ng-multiselect-dropdown
+              name="shop-code"
+              [placeholder]="'Select Shop Code'"
+              [data]="shopCodeArray"    (onSelect)="selectShopCode(selectedShopCode)"       
+              [disabled]="false" (onDeSelect)="selectShopCode(selectedShopCode)"
+              [settings]="dropDownSettingForSyncError"
+              [(ngModel)]="selectedShopCode"
+              >
+          </ng-multiselect-dropdown>
+        </div>
+      } -->
+
+      <!--Filter Button-->
+      @if(component === 'Restaurant'){
+        <button (click)="getFilterData()" class="filter-btn" data-bs-target="#SyncMenuFilter" data-bs-toggle="offcanvas" aria-controls="offcanvasRight"><i class="bi bi-funnel filter-icon" ></i>Filter</button>
+      }
+      @else if(component === 'Items'){
+        <button class="filter-btn" data-bs-target="#itemOffCampus" data-bs-toggle="offcanvas" aria-controls="offcanvasRight"><i class="bi bi-funnel filter-icon" ></i>Filter</button>
+      }
+
+      @if(['Operations', 'AnaCatalogue'].includes(component) ){
+      <select [disabled]="isLoading" [(ngModel)]="selectedLocationOperate" (change)="selection()" name="filter-dropdown"
+        class="aggregator-dropdown" id="DFD-4">
+        <option defaultSelected="All Location Selected">All Location Selected</option>
+        @for(SelectedLoc of operateLocation ; track SelectedLoc){
+        <option [value]="SelectedLoc">{{SelectedLoc}}</option>
+        }
+      </select>
+      
+      <!-- Aggregators  filter-->
+      <select [disabled]="isLoading" [(ngModel)]="selectedPlatform" (change)="selection()" name="filter-dropdown"
+        class="aggregator-dropdown" id="DFD-5">
+        <option defaultSelected="All Platform Selected">All Platform Selected</option>
+        @for(selectPlat of operatePlat ; track selectPlat){
+        <option [value]="selectPlat">{{selectPlat}}</option>
+        }
+      </select>
+      }
+    </div>
+ 
+  <!-- Right Section-->
+  <div class="right-section">
+    @if(component === 'Restaurant'){
+
+      <button type="button" (click)="createOutlet()">Create Outlet</button>
+
+      <!-- <span tabindex="-1" (click)="confirmationPopUpEmit('Verifying')" [ngClass]="selectedRows.length > 0 ? 'verify-enable' : 'publish-disable'" (keyup)="empty()"><i class="bi bi-arrow-clockwise" style="padding-right: 6px;"></i>Verify</span> -->
+      <!-- <span tabindex="-2" (click)="commonPermissionPopEmit(constant.title , constant.publicContext , 'Publishing')" [ngClass]="selectedRows.length > 0 ? 'publish-enable' : 'publish-disable'" (keyup)="empty()"><i class="bi bi-arrow-up-circle-fill" style="padding-right: 6px;"></i>Publish</span> -->
+      <button type="button"  [ngClass]="selectedRows.length <= 0? 'disabled':''" class="btn btn-primary success" [disabled]="selectedRows.length <= 0" (click)="commonPermissionPopEmit(constant.title , constant.syncAll , 'Sync All')">
+        Sync All
+      </button>
+      <!-- <span tabindex="-3" (click)="commonPermissionPopEmit(constant.title , constant.PullERPContext , 'Fetching Data')" [ngClass]="selectedRows.length > 0 ? 'PFromERP-enable' : 'PFromERP-disable'" (keyup)="empty()"><i class="bi bi-arrow-down-square-fill" style="padding-right: 6px;"></i>Pull from ERP</span> -->
+    }@else if(component === 'Orders'){
+      <div class="calender-refresh-btn">
+        <button class="refresh-btn" (click)="refreshOrdersEmit()" [disabled]="isLoading">
+          @if(isLoading){
+            <app-loader [from]="'Orders'" [isLoading]="isLoading" [loadingText]="'loading'" [loadingCircleColor]="'3px solid black'"  [loadingTextColor]="'black'"></app-loader>
+          }@else {
+            Refresh<i class="bi bi-arrow-repeat" style="padding-left:5px"></i>
+          }
+        </button>
+        <app-calender-bar [currentDate]="currentDate" (DateChange)="DateChangeEmit($event)" [isLoading]="isLoading" ></app-calender-bar>
+      </div>
+    }@else if(component === 'Items'){
+      <button (click)="addItem()" class="filter-btn"><i class="bi bi-plus filter-icon" ></i>Add Item</button>
+    }
+
+    @if(['Operations', 'AnaCatalogue'].includes(component)){
+    <select [disabled]="isLoading" [(ngModel)]="selectedDateRange" (change)="selection()" name="filter-dropdown"
+      class="aggregator-dropdown" id="DFD-5">
+      @for(range of dateRanges ; track range){
+      <option [value]="range">{{range}}</option>
+      }
+    </select>
+    }
+  </div>
+
+
+   <!--Filter OffCampus-->
+   <div #SyncMenuFilter class="offcanvas offcanvas-end"  data-bs-backdrop="static" tabindex="-1" id="SyncMenuFilter" aria-labelledby="staticBackdropLabel" >
+    <div class="offcanvas-header">
+      <div class="offcanvas-title fs-5" id="offcanvasRightLabel"><i class="bi bi-funnel filter-icon" ></i>Filter</div>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" (click)="resetModelValues()"></button>
+    </div>
+    @if(isLoading){
+      <div class="loading-container">
+        <div class="loading-bar"></div>
+      </div>
+    }
+  <div class="offcanvas-body">
+    <form class="">
+
+      <!-- Uncomment it once we confirmed -->
+      <!-- <div class="label-select-section">
+        <label for="city"><span>Filter-by:</span></label><span class="clear-selection" tabindex="-1" (keyup)="empty()" (click)="clearAllSelections()">Clear all selection</span>
+        <select id="city" [(ngModel)]="selectedFilterBy" class="select-input form-select" title="Filter-by" name="Filter-by" placeholder="Filter-by" [ngClass]="{'errorsShow': filterError !== ''}" (change)="setDefaultValues()">
+          @for(filter of filterBy ; track filter){
+            <option [value]="filter">{{ filter }}</option>
+          }
+        </select> 
+      </div> -->
+      <!-- @if(selectedFilterBy === 'City'){
+          <div class="label-select-section">
+            <label for="city">City:</label>
+            <div class="col-md-12">
+              <ng-multiselect-dropdown
+                name="City"
+                [placeholder]="'Select Cities'"
+                [data]="syncMenuDataLists.outlet_city"           
+                [disabled]="false"
+                [settings]="dropdownSettings"
+                [(ngModel)]="selectedCities"
+                (onSelect)="onSelect($event,'City')" (onDeSelect)="onDeSelect($event,'City')"
+                (onSelectAll)="onSelectAll($event, 'City')"
+                (onDeSelectAll)="onSelectAll($event, 'City', 'deselect')">
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+          
+      }
+
+      @if(selectedFilterBy === 'Restaurant Name'){
+        <div class="label-select-section">
+          <label for="city">Restaurant Name:</label>
+          <div class="col-md-12">
+            <ng-multiselect-dropdown
+              name="Restaurant"
+              [placeholder]="'Select Restaurants'"
+              [data]="syncMenuDataLists.outlet_restaurant"
+              [disabled]="false"
+              [settings]="dropdownSettings"
+              [(ngModel)]="selectedRestaurant"
+              (onSelect)="onSelect($event,'Restaurant Name')" (onDeSelect)="onDeSelect($event,'Restaurant Name')"
+              (onSelectAll)="onSelectAll($event , 'Restaurant Name')"
+              (onDeSelectAll)="onSelectAll($event , 'Restaurant Name' , 'deselect')">
+            </ng-multiselect-dropdown>
+          </div>
+        </div>
+      }
+
+    @if(selectedFilterBy === 'Location'){
+        <div class="label-select-section">
+        <label for="city">Location:</label>
+        <div class="col-md-12">
+          <ng-multiselect-dropdown
+            name="Locations"
+            [placeholder]="'Select Locations'"
+            [data]="syncMenuDataLists.outlet_location"
+            [disabled]="false" 
+            [settings]="dropdownSettings" 
+            [(ngModel)]="selectedLocation"
+            (onSelect)="onSelect($event,'Location')" (onDeSelect)="onDeSelect($event,'Location')"
+            (onSelectAll)="onSelectAll($event , 'Location')"
+            (onDeSelectAll)="onSelectAll($event , 'Location' , 'deselect')">
+          </ng-multiselect-dropdown>
+        </div>
+        </div>
+      }
+
+      @if(selectedFilterBy === 'Region'){
+        <div class="label-select-section">
+        <label for="city">Region:</label>
+        <div class="col-md-12">
+          <ng-multiselect-dropdown
+            name="Regions"
+            [placeholder]="'Select Region'"
+            [data]="syncMenuDataLists.outlet_region"
+            [disabled]="false"
+            [settings]="dropdownSettings"
+            [(ngModel)]="selectedRegions"
+            (onSelect)="onSelect($event,'Region')" (onDeSelect)="onDeSelect($event,'Region')"
+            (onSelectAll)="onSelectAll($event , 'Region')"
+            (onDeSelectAll)="onSelectAll($event , 'Region' , 'deselect')">
+          </ng-multiselect-dropdown>
+        </div>
+        </div>
+      } -->
+
+      @if(filterDropData && !isLoading){
+
+        <!--Option -->
+        <div class="label-select-section">
+          <label for="Option"><span>Synchronization Option : </span></label><span class="clear-selection" tabindex="0" (keyup)="empty()" (click)="clearAllSelections()">Clear all selection</span>
+          <select id="Option" [(ngModel)]="option" class="select-input form-select" title="Option" name="Option" placeholder="Synchronization Option" [ngClass]="{'errorsShow': filterError !== ''  && option === ''}">
+            <option [value]="" selected>Menu Sync</option>
+          </select> 
+        </div>
+
+         <!-- Online Partner -->
+         <div class="label-select-section">
+          <label for="Online Partner"><span>Online Partner : </span></label>
+          <div class="filter-ms">
+            <ng-multiselect-dropdown
+                name="Online Partner"
+                [placeholder]="'Online Partner'"
+                [data]="filter_dropDown_online_partner_options"     
+                [disabled]="false"
+                [settings]="dropDownSettingForSyncError"
+                [(ngModel)]="online_Partner"
+                >
+            </ng-multiselect-dropdown>
+          </div>
+        </div> 
+  
+        <!--Menu Category -->
+        <div class="label-select-section">
+          <label for="city"><span>Menu Category </span></label>
+          <select id="city" [(ngModel)]="menu_Caption" class="select-input form-select" title="Menu Category" name="Menu Category" placeholder="Menu Category" [ngClass]="{'errorsShow': filterError !== ''  && menu_Caption === ''}" (ngModelChange)="onSelectRegionOrBranches()">
+            <option value="" disabled selected>Select Menu Category</option>
+            @for(menuCaption of filter_dropDown_category_options ; track menuCaption){
+              <option [value]="menuCaption">{{ menuCaption }}</option>
+            }
+          </select> 
+        </div>
+  
+        <!--Region -->
+        @if(menu_Caption === 'Regions' && filteredRegionsArray){
+          <div class="label-select-section">
+            <label for="city"><span>Region : </span></label>
+            <div class="filter-ms">
+              <ng-multiselect-dropdown
+                  name="Region"
+                  [placeholder]="'Select Region'"
+                  [data]="filteredRegionsArray"     
+                  [disabled]="false"
+                  [settings]="dropDownSettingForSyncError"
+                  [(ngModel)]="region"
+                  >
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+        }@else if ( menu_Caption === 'Branches' && filteredOutletsArray) {
+          <!-- branches -->
+          <div class="label-select-section">
+            <label for="city"><span> Branches : </span></label>
+            <div class="filter-ms">
+              <ng-multiselect-dropdown
+                  name="Branches"
+                  [placeholder]="'Select Branches'"
+                  [data]="filteredOutletsArray"     
+                  [disabled]="false"
+                  [settings]="dropDownSettingForSyncError"
+                  [(ngModel)]="branches"
+                  >
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+        }
+      }
+
+      @if(filterError !== ''){
+        <div class="error">
+          {{filterError}}
+        </div>
+      }
+
+      <div>
+        @if(!isLoading){
+          <button type="submit" class="btn-primary btn" (click)="onSubmit()">Apply</button>
+        }
+      </div>
+    </form>
+  </div>
+
+   </div>
+   
+</div>
+

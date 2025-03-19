@@ -1,0 +1,76 @@
+<!-- Edit Item section -->
+
+<div #EditModifier class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="EditModifier"
+  aria-labelledby="staticBackdropLabel" [style.width.px]="drawerWidth">
+  <div class="resizer" (mousedown)="onMouseDown($event)" (touchstart)="onMouseDown($event)"><i class="bi bi-list"></i>
+  </div>
+  @if(showSideBar){
+  <!-- Header -->
+  <div class="offcanvas-header d-flex justify-content-between">
+    <div class="header-Text">
+      <div class="offcanvas-title fs-5" id="offcanvasRightLabel">(200 Gms) - Milk Butter Rusk</div>
+      <div class="header-text-helper">Edit This Item</div>
+    </div>
+    <div class="header-cross pb-3">
+      <button type="button" class="filter-btn  archive-btn mx-1">Archive</button>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
+        (click)="closeSideBarEmit()"></button>
+    </div>
+  </div>
+
+
+  <!-- Tabs -->
+  <div class="stepper">
+    <div class="step-tabs">
+      <button class="caret-btn" (click)="showPreviousTab()">
+        <i class="bi bi-caret-left"></i>
+      </button>
+
+      @for(tab of tabs | showItemModalTab: currentTabIndex : visibleTabs; track tab){
+      <div (keyup)="empty()" (click)="currentStep = tab.name" tabindex="-1" class="step-tab"
+        [ngClass]="{ active: currentStep === tab.name }">
+        {{ tab.label }}
+      </div>
+      }
+
+      <button class="caret-btn" (click)="showNextTab()">
+        <i class="bi bi-caret-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="offcanvas-body">
+    <!-- basic information tab -->
+    @if(currentStep === 'Basic Information'){
+    <app-modifiers-tab-basic-info></app-modifiers-tab-basic-info>
+    }
+    @else if(currentStep === 'Images'){
+    <app-modifiers-tab-images></app-modifiers-tab-images>
+    }
+    @else if(currentStep === 'Locations'){
+    <app-modifiers-tab-locations></app-modifiers-tab-locations>
+    }
+    @else if(currentStep === 'Parent Modifier Groups'){
+    <app-modifiers-tab-parent-groups></app-modifiers-tab-parent-groups>
+    }
+      <!--
+        @else if(currentStep === 'PlatForms'){
+        <app-item-tab-platform></app-item-tab-platform>
+        }
+        @else if (currentStep === 'Taxes & Charges') {
+        <app-taxes-charges-tab></app-taxes-charges-tab>
+        }
+        @else if (currentStep === 'Recommended Items') {
+          <app-recommended-items-tab></app-recommended-items-tab>
+        }
+        @else if (currentStep === 'Custom Fields') {
+          <app-custom-field-tab></app-custom-field-tab>
+        }
+        @else if (currentStep === 'Modifier Groups') {
+          <app-modifier-group-tab></app-modifier-group-tab>
+        } -->
+
+  </div>
+  }
+</div>

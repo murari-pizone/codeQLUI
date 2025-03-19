@@ -1,0 +1,452 @@
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+.dropdown select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sort-btn,
+.retry-all-btn {
+  white-space: nowrap;
+
+}
+
+.retry-all-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.card-container {
+  display: flex;
+  gap: 20px;
+}
+
+.error-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+.menu-item {
+  font-weight: bold;
+}
+
+.error-code {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.api-error {
+  background-color: #007bff;
+  color: white;
+}
+
+.format-error {
+  background-color: #ffc107;
+  color: white;
+}
+
+.network-error {
+  background-color: #dc3545;
+  color: white;
+}
+
+.timestamp {
+  color: #666;
+  font-size: 12px;
+}
+
+
+.spinner-border {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-width: 0.25rem;
+}
+
+.retry-sync-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+// mat dialog used 
+.aggregator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.Api-Settings-Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h1 {
+    font-size: 32px;
+  }
+}
+
+.copy-input {
+  padding: 10px 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+}
+
+.Clipboard-button {
+  padding: 0;
+  float: right;
+}
+
+.api-box>p {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+
+/* Hide the spinner arrows in Chrome, Safari, Edge, and other WebKit-based browsers */
+
+
+/* Hide the spinner arrows in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.error-column {
+  max-width: 400px !important;
+  width: 400px !important;
+  text-overflow: ellipsis;
+  min-width: 400px !important; 
+  min-width: 400px !important; 
+  cursor: pointer;
+}
+
+.id-Column {
+  max-width: 60px !important;
+  width: 60px !important;
+  min-width: 60px !important; 
+}
+
+.action-col {
+  max-width: 100px !important;
+  width: 100px !important;
+  min-width: 120px !important; 
+}
+
+.code-column {
+  max-width: 240px !important;
+  width: 240px !important;
+  min-width: 240px  !important;  
+}
+
+.request-id-column {
+  max-width: 210px !important;
+  width: 210px !important;
+  min-width: 210px  !important;  
+}
+
+.created-at-column {
+  max-width: 150px !important;
+  width: 150px !important;
+  min-width: 150px  !important;  
+}
+
+.updated-at-column {
+  max-width: 150px !important;
+  width: 150px !important;
+  min-width: 150px  !important;  
+}
+
+
+// Status - order styling 
+.push-button {
+  background-color: #00378C;
+  color: white;
+  padding: 5px 9px;
+  font-weight: 100;
+  font-size: 14px;
+}
+
+.edit-button {
+  background-color: #00378C;
+  color: white;
+  padding: 5px 9px;
+  font-weight: 100;
+  font-size: 14px;
+
+}
+
+.track-button {
+  background-color: #00378C;
+  color: white;
+  padding: 5px 9px;
+  font-weight: 100;
+  font-size: 14px;
+
+}
+
+.push-button:disabled {
+  background-color: #cccccc;
+  /* Change background color to grey */
+  color: #666666;
+  /* Change text color to a darker grey */
+  cursor: not-allowed;
+  /* Changes cursor to indicate the button is not clickable */
+  opacity: 0.6;
+  /* Optional: makes the button look faded */
+  font-size: 14px;
+}
+
+.status-order-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.3rem;
+}
+
+.Status-Order {
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+}
+
+.Calender-button {
+  color: black;
+  padding: 0px 3px;
+  background: #fff;
+  height: 25px;
+  margin-top: 3px;
+}
+
+.Calender-heading {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 17px;
+  align-items: center;
+}
+
+.Calender-heading h2 {
+  margin-top: 0px;
+}
+
+
+// New designing styling 
+.order-details {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 600px;
+  max-width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.info-item {
+  margin-bottom: 10px;
+}
+
+.label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.value {
+  color: #333;
+}
+
+.status {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.status-paid {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+@media (max-width: 600px) {
+  .order-details {
+    width: 100%;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+// error complex column styling 
+.error_field-main{
+  display: flex;
+  gap : 5px
+}
+
+.mainSection{
+  padding-top : 10px;
+  div,span{
+    max-width: 11rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+.sub-Section{
+  color: #00000057;
+  margin-bottom: 5px !important;
+  font-size: 13px;
+  word-break: break-all;
+}
+
+// new Styling complete
+
+
+
+
+// form design 
+.ms-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 88vh;
+  background-color: #f0f8ff;
+}
+
+.ms-card {
+  background-color: rgb(0 55 140 / 4%);
+  border-radius: 8px;
+  padding: 2rem;
+  width: 556px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ms-icon-container {
+  background-color: #00378c;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1rem;
+}
+
+.ms-title {
+  color: #00378c;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.ms-form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ms-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #4a5568;
+  min-width: 139px;
+}
+
+.ms-select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  background-color: white;
+}
+.ms-select-error {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid red;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.ms-button {
+  background-color: #00378c;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.ms-button:hover {
+  background-color: #00378cbf;
+}
+.ms-select:focus {
+  outline: none;
+  border-color: #00378c;
+}

@@ -1,0 +1,91 @@
+<div class="mat-dialog-header">
+  <h2>Edit Aggregator</h2>
+  <button mat-dialog-close type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="inline-error-msg">
+  @if(errorMessages){
+    <app-inline-error-msg (crossClick)="closeInlineError()"  [errorMsg]="errorMessages"></app-inline-error-msg>
+  }
+</div>
+<mat-dialog-content>
+  <form #aggregatorForm="ngForm">
+    <mat-form-field appearance="fill" class="form-control">
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        name="aggregator_name"
+        [(ngModel)]="data.aggregator_name"
+        required
+        #nameInput="ngModel"
+      />
+      @if(nameInput.invalid && nameInput.touched){
+        <mat-error>
+        Name is required.
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-control">
+      <mat-label>API Key</mat-label>
+      <input
+        matInput
+        name="api_key"
+        [(ngModel)]="data.api_key"
+        required
+        #apiKeyInput="ngModel"
+      />
+      @if(apiKeyInput.invalid && apiKeyInput.touched){
+      <mat-error >
+        API Key is required.
+      </mat-error>
+    }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-control">
+      <mat-label>Secret Key</mat-label>
+      <input
+        matInput
+        name="secret_key"
+        [(ngModel)]="data.secret_key"
+        required
+        #secretKeyInput="ngModel"
+      />
+      @if(secretKeyInput.invalid &&  secretKeyInput.touched){
+        <mat-error>
+        Secret Key is required.
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-control">
+      <mat-label>Endpoint URL</mat-label>
+      <input
+        matInput
+        name="endpoint_url"
+        [(ngModel)]="data.endpoint_url"
+        required
+        #endpointUrlInput="ngModel"
+      />
+      @if(endpointUrlInput.invalid && endpointUrlInput.touched){
+        <mat-error>
+        Endpoint URL is required.
+        </mat-error>
+      }
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div>
+      @if(validationError && validationError.length > 0){
+          @for(error of validationError ; track error){
+          <mat-error>{{error}}</mat-error>
+          }
+      }
+  </div>
+  <div class="d-flex gap-2">
+  <button type="button" class="btn btn-outline-secondary" mat-button mat-dialog-close>Cancel</button>
+  <button type="button" class="btn btn-primary" mat-button  (click)="submitForm()"
+  [disabled]="aggregatorForm.invalid">Save</button>
+</div>
+</mat-dialog-actions>

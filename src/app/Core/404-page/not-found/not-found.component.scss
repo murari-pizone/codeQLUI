@@ -1,0 +1,94 @@
+.not-found-page {
+    text-align: center;
+    height: 100vh;
+    background-color: #222;
+    color: #fff;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    padding: 20px; // Add padding for smaller screens
+    
+    h1 {
+      font-size: 6rem; // Base font size for large screens
+      margin: 50px 0 20px;
+      color: #ff5555;
+      text-shadow: 2px 2px 10px #000;
+  
+      @media (max-width: 768px) {
+        font-size: 4rem; // Smaller font size for tablets
+      }
+  
+      @media (max-width: 480px) {
+        font-size: 3rem; // Even smaller font size for mobile
+      }
+    }
+  
+    p {
+      font-size: 1.5rem; // Base font size for large screens
+      margin-bottom: 40px;
+  
+      @media (max-width: 768px) {
+        font-size: 1.2rem; // Adjusted size for tablets
+      }
+  
+      @media (max-width: 480px) {
+        font-size: 1rem; // Adjusted size for mobile
+      }
+    }
+  
+    .astronaut {
+      position: relative;
+      width: 200px; // Base size for large screens
+      margin: 0 auto;
+      animation: float 4s ease-in-out infinite;
+  
+      img {
+        width: 100%; // Ensure image is responsive
+      }
+  
+      @media (max-width: 768px) {
+        width: 150px; // Smaller astronaut for tablets
+      }
+  
+      @media (max-width: 480px) {
+        width: 100px; // Even smaller astronaut for mobile
+      }
+    }
+  
+    .go-home-btn {
+      display: inline-block;
+      padding: 15px 30px;
+      color: #fff;
+      background-color: #ff5555;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 1.2rem; // Base size for buttons
+      transition: background-color 0.3s;
+  
+      @media (max-width: 768px) {
+        font-size: 1rem; // Smaller button size for tablets
+        padding: 10px 20px; // Adjust padding for smaller screens
+      }
+  
+      @media (max-width: 480px) {
+        font-size: 0.9rem; // Smaller button size for mobile
+        padding: 8px 16px; // Adjust padding for smaller screens
+      }
+  
+      &:hover {
+        background-color: #ff8888;
+      }
+    }
+  
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  }
+  

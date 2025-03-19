@@ -1,0 +1,11 @@
+.error-msg{
+    display:flex;
+    background-color: #dc3545;
+    justify-content: center;
+    align-items: center;
+    p{
+        flex-grow:1;
+        text-align: center;
+        color : white
+    }
+}

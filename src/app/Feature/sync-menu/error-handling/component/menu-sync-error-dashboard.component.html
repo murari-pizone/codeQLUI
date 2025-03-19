@@ -1,0 +1,225 @@
+
+<div class="inline-error-msg">
+  @if(isErrorOccur){
+    <app-inline-error-msg (crossClick)="closeInlineError()"  [errorMsg]="errorMessage"></app-inline-error-msg>
+  }
+</div>
+
+
+<!-- @if(showDataTable){ -->
+<div class="parentDiv d-flex justify-content-between row-gap-2 gap-1">
+  <div class="container-fluid p-24">
+        <span class="d-flex justify-content-between"> 
+          <app-filter (filter)="filter($event)" [component]="menuErrorConst.component" [shopCodeArray]="shopCodeArray" (backEmit)="back()" ></app-filter>
+        </span>
+        <div class="table">
+          <div class="table-scroll-dashboard ">
+            <table mat-table
+              [dataSource]="rows | paginate: { itemsPerPage: page.pageSize, currentPage: page.currentPage , totalItems : page.totalItems}"
+              matSort class="mat-elevation-z8">
+
+              <!-- Id -->
+              
+              <ng-container matColumnDef="ID">
+                <th mat-header-cell class="id-Column" *matHeaderCellDef mat-sort-header="id"> Sr No. </th>
+                <td mat-cell class="id-Column" *matCellDef="let element"> {{element['id']}} </td>
+              </ng-container>
+
+
+              <!--Created At-->
+              <ng-container matColumnDef="CREATED AT">
+                <th mat-header-cell class="created-at-column" *matHeaderCellDef mat-sort-header="CREATED AT"> CREATED AT </th>
+                <td mat-cell class="created-at-column" *matCellDef="let element; let ind = index">
+                  <div class="mainSection">
+                    @if(element.Edited_Timestamp){
+                      <span>{{element.Edited_Timestamp | dateFormat : 'Date'}}</span>
+                    }
+                    <p class="sub-Section">{{element.Edited_Timestamp | dateFormat : 'Time'}} </p>
+                  </div>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="RESTAURANT NAME">
+                <th mat-header-cell class="code-column" *matHeaderCellDef mat-sort-header> RESTAURANT NAME </th>
+                <td mat-cell class="code-column" *matCellDef="let element; let ind = index">{{element['Restaurant_Name']}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="REQUEST ID">
+                <th mat-header-cell class="request-id-column" *matHeaderCellDef mat-sort-header="REQUEST ID"> REQUEST ID
+                </th>
+                <td mat-cell class="request-id-column" *matCellDef="let element; let ind = index">
+                  <div [title]="element['Request_Id']" style="font-size: 14px;text-overflow: ellipsis;overflow: hidden;">
+                    {{element['Request_Id']}} 
+                  </div>
+                </td>
+              </ng-container>
+
+              <!-- ERROR -->
+              <ng-container matColumnDef="ERROR">
+                <th mat-header-cell class="error-column" *matHeaderCellDef>
+                  @if(!masterShowFlag){
+                    <span tabindex="-1" (keyup)="empty()" style="color:#00378c" (click)="masterShow()"><i class="bi bi-plus-circle-fill" style="padding-right:7px"></i>ERROR</span>
+                  }@else {
+                    <span tabindex="-2" (keyup)="empty()" style="color:#00378c" (click)="masterHide()"><i class="bi bi-dash-circle-fill" style="padding-right:7px"></i>ERROR</span>
+                  }
+                </th>
+                <td mat-cell class="error-column" *matCellDef="let element; let ind = index">
+                  <div class="py-2">
+                    @if(!element.isShowComplexColumn){
+                      <span tabindex="-3" (keyup)="empty()"><a tabindex="-5" (keyup)="empty()" style="color:#00378c" (click)="showError(element)"><i class="bi bi-plus-circle-fill" style="padding-right:4px"></i>View Error</a></span>
+                    }@else {
+                      <span style="display: flex;gap:10px">
+                        <span tabindex="-4" (keyup)="empty()"><a tabindex="-6" (keyup)="empty()" style="color:#00378c"
+                            (click)="hideError(element)"><i class="bi bi-dash-circle-fill" style="padding-right:4px"></i>Hide Error</a></span>
+                        <button style="padding: 0.5rem 1rem;" [cdkCopyToClipboard]="element['StringifyError']"
+                          (cdkCopyToClipboardCopied)="onClipboardCopy($event)">
+                          <i class="bi bi-copy"></i>
+                        </button>
+                      </span>
+                    }
+                    <!-- Complex column -->
+                    @if(element.isShowComplexColumn){
+                      @for(error of element['ErrorJson'] ; track error){
+                        <div class="ErrorJson-main py-2 border-bottom px-2 fw-400 error-collapse">
+                          @if(element['ErrorJson']){
+
+                            <!--Error Field-->
+                            <div class="d-flex gap-1 pb-1">
+                              <span class="fw-bolder">Error Field : </span>
+                              <div [title]="error['error_field']" class="text-secondary fs-6 text-truncate">{{error['error_field']}}</div>
+                            </div>
+
+                            <!--Rejected Value-->
+                            <div class="d-flex gap-1 pb-1">
+                              <span class="fw-bolder">Rejected Value : </span> 
+                              <div  [title]="error['rejected_value']" class="text-secondary fs-6 text-truncate">{{error['rejected_value']}}</div>
+                            </div>
+
+                             <!--Message-->
+                            <div class="d-flex gap-1 pb-1">
+                              <span class="fw-bolder">Message : </span>
+                              <div [title]="error['message']" class="text-secondary fs-6 text-truncate">{{error['message']}}</div>
+                            </div>
+                            
+                          }
+                        </div>
+                      }
+                    }
+                  </div>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Actions">
+                <th mat-header-cell class="action-col" *matHeaderCellDef mat-sort-header="Actions"> ACTIONS </th>
+                <td mat-cell class="action-col" *matCellDef="let element;let ind = index">
+                  <div class="status-order-content">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                      <button class="btn btn-primary icon-btn" (click)="ViewItemConfirm()">
+                        <!-- <mat-icon [class.spin]="![undefined,'NotSync'].includes(element['status'])">
+                          sync
+                        </mat-icon> -->
+                        View
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="columns"></tr>
+              <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+            </table>
+          </div>
+          <div class="table-footer">
+            <div class="totalCount">
+              @if(rows && rows.length > 0){
+              <span class="footer-text"> Total Records : {{page.totalItems}} </span>
+              }@else{
+              <span class="footer-text"> Total Records : 0</span>
+              }
+            </div>
+            <div class="has-text-centered pagination">
+              <pagination-controls  (pageChange)="changePage($event)" previousLabel=""
+                nextLabel=""></pagination-controls>
+            </div>
+            <div class="footer-menu">
+              <span class="footer-text text-nowrap"> Show Records Per Page : </span>
+              <select [(ngModel)]="paginationDropDownSelectedValue" class="form-select" (change)="RecordPerPage()">
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+
+                <option value="All">All</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+<!-- } -->
+
+
+
+<!-- basic foam-->
+<!-- @if(!showDataTable){
+  <div class="ms-container">
+    <div class="ms-card">
+      <div class="ms-icon-container">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6H20M4 12H20M4 18H11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h1 class="ms-title">Menu Sync Errors</h1>
+      <form (ngSubmit)="onSubmit()" class="ms-form">
+        <div class="ms-form-group">
+          <label for="option" class="ms-label">Option</label> 
+          <select (change)="valueSelected()" id="option" [(ngModel)]="option" name="option" [ngClass]="isFormError && option === '' ? 'ms-select-error' : 'ms-select'">
+            <option value="" disabled selected>Select Option</option>
+            @for(option of optionsList ; track option){
+              <option [value]="option">{{option}}</option>
+            }
+          </select>
+        </div>
+        <div class="ms-form-group">
+          <label for="menuCaption" class="ms-label">Menu Caption</label>
+          <select (change)="valueSelected()" id="menuCaption" [(ngModel)]="menuCaption" name="menuCaption" [ngClass]="isFormError && menuCaption === ''  ? 'ms-select-error' : 'ms-select'">
+            <option value="" disabled selected>Select Menu Caption</option>
+            @for(caption of menuCaptionList ; track caption){
+              <option [value]="caption">{{caption}}</option>
+            }
+          </select>
+        </div>
+        <div class="ms-form-group">
+          <label for="region" class="ms-label">Region</label>
+          <select (change)="valueSelected()" id="region" [(ngModel)]="region" name="region" [ngClass]="isFormError && region === '' ? 'ms-select-error' : 'ms-select'">
+            <option value="" disabled selected>Select Region</option>
+            @for(region of regionList ; track region){
+              <option [value]="region">{{region}}</option>
+            }
+          </select>
+        </div>
+        <div class="ms-form-group">
+          <label for="onlinePartner" class="ms-label">Online Partner</label>
+          <select (change)="valueSelected()" id="onlinePartner" [(ngModel)]="onlinePartner" name="onlinePartner" [ngClass]="isFormError && onlinePartner === '' ? 'ms-select-error' : 'ms-select'">
+            <option value="" disabled selected>Select Online Partner</option>
+            @for(onlinePartner of onlinePartnerList ; track onlinePartner){
+              <option [value]="onlinePartner">{{onlinePartner}}</option>
+            }
+          </select>
+        </div>
+        @if(isFormError){
+           <div class="error">
+             {{formError}}
+           </div>
+         }
+        <button type="submit" class="ms-button">Next</button>
+      </form>
+    </div>
+  </div>
+} -->
+
+<!-- basic foam Ended-->
+<app-loader [isLoading]="loadingSpinner" [loadingText]="loadingText"></app-loader>

@@ -1,0 +1,33 @@
+.associatedHeader{  
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  
+  }
+
+  .actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .itemColumn-btn{
+    background: transparent;
+    padding: 1px 5px;
+    border: 1px solid #80808026;
+    text-align: center;
+    font-size: 11px !important;
+    border-radius: 8px;
+    margin-top: 3px;
+    color: #595454;
+  }
+   
+  .itemColumn-btn:hover{
+    background: #00378C;
+    color: white;
+  }
+  
+  .table-scroll {
+    overflow: auto;
+    max-height: calc(100vh - 435px);
+  }

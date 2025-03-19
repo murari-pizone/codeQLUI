@@ -1,0 +1,144 @@
+
+<div class="location-filter ">
+    <div class="main-section dashboard-filter">
+      <!--Aggregator filter-->
+      <select [(ngModel)]="selectedValue" (change)="selection()" name="filter-dropdown" id="DFD" class="aggregator-dropdown common-select" title="Select Aggregator"> 
+        <option defaultSelected="All">All</option>
+          @for(aggregator of aggregatorsList ; track aggregator){
+            <option [value]="aggregator.aggregator_name">{{aggregator.aggregator_name}}</option>
+          }
+      </select>
+
+      <!-- Record state filter-->
+      <select [(ngModel)]="selectedRecordState" (change)="recordStateDropDown()" name="filter-dropdown" id="DFD" title="Record State" class="common-select status-dropdown">
+        @for(recordState of recordStateOptions ; track recordState){
+            <option [value]="recordState">{{recordState}}</option>
+        }
+    </select>
+
+      <!-- Search filter  -->
+      <div class="filter-input">
+        <input type="text" [(ngModel)]="filterInputValue" (ngModelChange)="onChangeInput(filterInputValue)" class="form-control" placeholder="Search" title="filter Records">
+      </div>
+    
+      <!-- Basic filter button -->
+      <button class="filter-btn" data-bs-target="#locationFilter" data-bs-toggle="offcanvas" aria-controls="offcanvasRight"><i class="bi bi-funnel filter-icon" ></i>Filter</button>
+    </div>
+
+     <!--Right Section -->
+     @if(component !== 'Items'){
+       <div class="right-section">
+         <div class="text-section">
+           <span tabindex="-3" class="all-active" [ngClass]="selectedRows.length > 1  && enableAllActive ? 'all-active' : 'all-active-disabled'" style="padding-right : 20px" (keyup)="empty()">Request To Go Live</span>
+           <span class="toggle-location-status">
+             <button style="padding: 0px 3px;" mat-button [matMenuTriggerFor]="menu" class="min-w-0 toggle-status-button">
+               <span style="font-weight: 500;color: #505050;margin-right: 5px;">Toggle Status</span> <i class="bi bi-caret-down-fill" style="color:#00378c;"></i>
+             </button>
+             <mat-menu #menu="matMenu">
+               <button mat-menu-item>Set Online</button>
+                <button mat-menu-item>Set Offline</button>
+             </mat-menu>
+           </span>
+           
+           <!-- Buttons  -->
+   
+           <span tabindex="-2" class="all-archive"  [ngClass]="selectedRows.length > 1 && enableAllArchive ? 'all-archive' : 'all-archive-disabled'" (keyup)="empty()">Update item</span>
+           <span tabindex="-3" class="all-active" [ngClass]="selectedRows.length > 1  && enableAllActive ? 'all-active' : 'all-active-disabled'" style="padding-right : 20px" (keyup)="empty()">Update Modifier</span>
+   
+           <span tabindex="-2" class="all-archive"  [ngClass]="selectedRows.length > 1 && enableAllArchive ? 'all-archive' : 'all-archive-disabled'" (keyup)="empty()" (click)="statusChangeEmit()"><i class="bi bi-archive" style="padding-right: 6px;"></i>Archive</span>
+           <span tabindex="-3" class="all-active" [ngClass]="selectedRows.length > 1  && enableAllActive ? 'all-active' : 'all-active-disabled'" (keyup)="empty()" (click)="statusChangeEmit()"><i class="bi bi-check-circle-fill" style="padding-right: 6px;"></i>Active</span>
+         </div>
+       </div>
+     }
+</div>
+
+
+
+
+<!-- Filter offcanvas -->
+
+<div #locationFilter class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="locationFilter" aria-labelledby="staticBackdropLabel">
+  <div class="offcanvas-header">
+    <div class="offcanvas-title fs-5" id="offcanvasRightLabel"><i class="bi bi-funnel filter-icon" ></i>Filter</div>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" (click)="resetModelValues()"></button>
+    <span class="ms-2">
+      Clear
+    </span>
+  </div>
+  <div class="offcanvas-body">
+    <form class="">
+      <!-- City -->
+      <div class="label-select-section">
+        <label for="city">City:</label>
+        <select id="city" [(ngModel)]="selectedCity" class="select-input" name="city" [ngClass]="{'errorsShow': filterError !== ''}" (change)="clearPreviousError()">
+          @for(city of cities ; track city){
+            <option [value]="city">{{ city }}</option>
+          }
+        </select> 
+      </div>
+
+      <div class="label-select-section">
+        <!-- Tags -->
+        <label for="city">Tag:</label>
+        <select id="city" [(ngModel)]="selectedTag" class="select-input" name="tag" [ngClass]="{'errorsShow': filterError !== ''}" (change)="clearPreviousError()">
+          @for(tag of tags ; track tag){
+            <option [value]="tag">{{ tag }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="label-select-section">
+        <!-- Items -->
+        <label for="city">item:</label>
+        <select id="city" [(ngModel)]="selectedItem" class="select-input" name="item" [ngClass]="{'errorsShow': filterError !== ''}" (change)="clearPreviousError()">
+          @for(item of items ; track item){
+            <option [value]="item">{{ item }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="label-select-section">
+        <!-- Store Status -->
+        <label for="city">Store Status:</label>
+        <select id="city" [(ngModel)]="selectedItem" class="select-input" name="item" [ngClass]="{'errorsShow': filterError !== ''}" (change)="clearPreviousError()">
+          @for(item of items ; track item){
+            <option [value]="item">{{ item }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="label-select-section">
+        <!-- Publish Status -->
+        <label for="city">Publish Status:</label>
+        <select id="city" [(ngModel)]="selectedItem" class="select-input" name="item" [ngClass]="{'errorsShow': filterError !== ''}" (change)="clearPreviousError()">
+          @for(item of items ; track item){
+            <option [value]="item">{{ item }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="label-select-section">
+        <!-- Verification Status -->
+        <label for="city">Verification Status:</label>
+        <select id="city" [(ngModel)]="selectedItem" class="select-input" name="item" [ngClass]="{'errorsShow': filterError !== ''}" (change)="clearPreviousError()">
+          @for(item of items ; track item){
+            <option [value]="item">{{ item }}</option>
+          }
+        </select>
+      </div>
+
+      @if(filterError !== ''){
+        <div class="error">
+          {{filterError}}
+        </div>
+      }
+      <div>
+        <button type="submit" class="btn-primary btn" (click)="onSubmit()">Apply</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+

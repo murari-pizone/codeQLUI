@@ -1,0 +1,45 @@
+    .subcategories {
+        // border: 1px solid #ccc;
+        // border-radius: 8px;
+        overflow: hidden;
+    }
+.subcategory-item:last-child {
+        border-bottom: none;
+    }
+
+    .subcategory-name {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .hover-blue {
+        // transition: color 0.3s ease;
+
+        // &:hover {
+        //     color: #3b82f6;
+        //     text-decoration: underline;
+        //     cursor: pointer;
+        // }
+    }
+
+    .subcategory-actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    .btn-icon {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .btn-icon:hover {
+        color: #3b82f6;
+    }
+    .btn-icon{
+        i{
+          color: #00378C;
+        }
+      }

@@ -1,0 +1,105 @@
+<!---------------- header --------------->
+<div class="mat-dialog-header">
+    <div>
+        <div class="modal-header">
+            <div class="modal-title">
+                <h1 class="mb-0">Order Tracking</h1>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeDialog()"></button>
+</div>
+<!----------------- header --------------->
+
+
+
+<mat-dialog-content mat-dialog-content>
+    <div class="row">
+        <div class="col-lg-4">
+            @if(orderData.length){
+
+            @for(order of orderData;track order){
+            <div tabindex="-11" (keyup)="empty()" class="card mb-2">
+                <div class="card-header fs-6 d-flex justify-content-between align-items-center"
+                    [ngClass]="getStatusColor(orderData[0]['Status'])">
+                    <span class="mb-0">Order #{{ orderData[0]['Aggregator_Order_Id'] }}</span>
+                    <span>{{ order['Status'] }}</span>
+                </div>
+                <div class="card-body">
+                    <div class="border-bottom pb-2 mb-2">
+                        <p><i class="bi bi-person"></i> {{ order['Customer_Name'] }}</p>
+                        <p><i class="bi bi-clock"></i> {{ order['Created_Timestamp'] | dateFormat :
+                            'Date' }} {{ order['Created_Timestamp'] | dateFormat : 'Time' }}</p>
+
+                        <p *ngIf="order['Restaurant_Name']"><i class="bi bi-geo"></i> {{
+                            order['Restaurant_Name'] }}
+                        </p>
+                    </div>
+                    <div class="fs-6">Order #{{ filteredOrders[0]['id'] }} Details</div>
+                    <p><strong> <i class="bi bi-truck"></i>Driver:</strong> {{
+                        filteredOrders[0]['driverName'] }}</p>
+                    <p><strong><i class="bi bi-telephone"></i>Contact:</strong> {{
+                        filteredOrders[0]['driverContact'] }}</p>
+                </div>
+            </div>
+            }
+        }
+        </div>
+
+        <div class="col-lg-8 fs-6">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="border-bottom pb-2 mb-2">
+                        <div class="fs-6">Delivery Timeline</div>
+                        <div class="mainWrapper">
+                            <div class="statusBar">
+                                <span class="pBar" [style.width]="calculateProgressBarWidth()"></span>
+
+                                <div class="node" *ngFor="let event of filteredOrders[0]['timeline']"
+                                    [ngClass]="{ 'done': event.timestamp }">
+                                    <div class="main" [ngClass]="{ 'done': event.timestamp }"></div>
+                                    <div class="text">
+                                        <div class="status-info"
+                                            [ngClass]="{ 'done': event.timestamp }">
+                                            <i [ngClass]="getStatusIcon(event.status)"></i>
+                                            <span> {{ event.status }}</span>
+                                        </div>
+                                        <div class="info" [ngClass]="{ 'done': event.timestamp }">
+
+                                            {{ event.timestamp | dateFormat : 'Date'}}
+                                            <br>
+                                            {{ event.timestamp | dateFormat : 'Time'}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div>
+                        <div class="fs-6 mb-2">Current Location</div>
+                        <div class="map-placeholder">
+
+                            <app-small-map [startLat]="40.7128" [startLng]="-74.0060"
+                                [endLat]="40.73061" [endLng]="-73.935242"></app-small-map>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</mat-dialog-content>
+
+
+
+<!---------------- Footer --------------->
+<mat-dialog-actions>
+    <div></div>
+    <div class="d-flex gap-2">
+        <button type="button" class="btn btn-primary success" (click)="close()">Ok</button>
+    </div>
+</mat-dialog-actions>
+<!---------------- Footer --------------->

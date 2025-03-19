@@ -1,0 +1,17 @@
+<div class="main-container-image d-flex gap-3">
+
+    <div class="upload-container-image">
+        <div class="drag-drop-zone-image" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
+            (drop)="onDrop($event)">
+            <div class="DropImageIcon"><i class="bi bi-plus-circle-dotted" style="font-size: 90px; color: #00378C;"></i>
+            </div>
+            <div class="d-flex gap-1">
+                <span style="font-size: 12px;">Drag and Drop an image or click to</span><b (keyup)="empty()"
+                    tabindex="-4" (click)="fileInput.click()" style="color:#00378C">Browse</b>
+            </div>
+            <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" hidden />
+        </div>
+        <button class="upload-btn disabled">Upload</button>
+    </div>
+
+</div>

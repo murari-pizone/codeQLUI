@@ -1,0 +1,297 @@
+
+// skeleton Scss Starts
+
+.loading-skeleton p,
+.loading-skeleton li,
+.loading-skeleton label,
+.loading-skeleton .form-control,
+.loading-skeleton i {
+  color: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #eee;
+  border-color: #eee;
+}
+
+.loading-skeleton i {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+}
+.loading-skeleton label::placeholder,
+.loading-skeleton .form-control::placeholder {
+  color: transparent;
+}
+
+.skeleton-container {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  margin-top: 7px;
+}
+
+@keyframes loading-skeleton {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.loading-skeleton {
+  pointer-events: none;
+  animation: loading-skeleton 1s infinite alternate;
+}
+
+.loading-skeleton .form-group {
+  border-right: 1px solid #d8d8d8;
+  width: 100%;
+}
+.loading-skeleton .form-group input {
+  border-radius: 0px;
+  border: 0;
+}
+.loading-skeleton .form-group input:last-child {
+  background-color: #fff;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+.filter-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.dropdown select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sort-btn,
+.retry-all-btn {
+  cursor: pointer;
+}
+.retry-all-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.error-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+.menu-item {
+  font-weight: bold;
+}
+
+.error-code {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.api-error {
+  background-color: #007bff;
+  color: white;
+}
+
+.format-error {
+  background-color: #ffc107;
+  color: white;
+}
+
+.network-error {
+  background-color: #dc3545;
+  color: white;
+}
+
+.timestamp {
+  color: #666;
+  font-size: 12px;
+}
+
+
+
+.spinner-border {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-width: 0.25rem;
+}
+
+.retry-sync-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+// mat dialog used 
+.aggregator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.Api-Settings-Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h1 {
+    font-size: 32px;
+  }
+}
+
+.copy-input {
+  padding: 10px 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+}
+
+.Clipboard-button {
+  padding: 0;
+  float: right;
+}
+
+.api-box>p {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.sync-btn {
+  color: #fff;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+mat-card {
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 3px 4px 17.9px 0px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Hide the spinner arrows in Chrome, Safari, Edge, and other WebKit-based browsers */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide the spinner arrows in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
+// skeleton css
+/* Main container holding the cards */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-evenly;
+}
+
+/* Individual card */
+.card {
+  width: 300px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header h3 {
+  margin: 0;
+}
+
+.shop-category {
+  background-color: #e0e4e7;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+/* Card Body */
+.card-body {
+  margin-top: 10px;
+}
+
+.card-body p {
+  margin: 5px 0;
+}
+
+/* Card Footer */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Buttons */
+.btn-retry {
+  background-color: #ffbf00;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-support {
+  background-color: #00c2cb;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.footer-select{
+  padding: 3px 8px;
+  border-radius: 8px;
+  border: 1px solid #8080804a;
+}

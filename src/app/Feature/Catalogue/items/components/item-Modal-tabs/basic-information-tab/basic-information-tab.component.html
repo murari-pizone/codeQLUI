@@ -1,0 +1,167 @@
+    
+    <!-- For modifier module-->
+    @if(From === 'Modifier-Group'){
+      <div class="text-section">
+        <h2 class="pb-3">Select modifier group type</h2>
+        <div class="d-flex gap-2">
+              <h5 class="add-on-text">Add-On : </h5>
+              <span>More than one modifiers can be selected with the item (Eg. pizza Toppings)</span>
+        </div>
+        <div class="d-flex gap-2">
+          <h5 class="add-on-text">Variant: </h5>
+          <span>Only One modifier can be selected with the item (Eg. Size of pizza)</span>
+        </div>
+      </div>
+    }
+
+
+    @if(From === 'Taxes Nested Basic'){
+    <div>
+      <div>
+        <div class="nested-basic-title">Name
+          <span style="color: red;">*</span>
+        </div>
+        <div style="margin-top: 5px;">
+          <input class="form-control nested-basic-input" type="text" [(ngModel)]="value">
+        </div>
+      </div>
+    
+      <div style="margin-top: 10px;">
+        <div class="nested-basic-title">Description
+        </div>
+        <div style="margin-top: 5px;">
+          <textarea class="form-control nested-basic-textarea" type="text" [(ngModel)]="value"></textarea>
+        </div>
+      </div>
+    </div>
+    }
+    @else {
+    @if(From !== 'Taxes' && currentRow){
+      <div class="form-container-basic-information">
+  
+  
+      <div class="form-row">
+        <div class="field">
+          <!-- Title -->
+          <span class="spn" for="title">Title *</span>
+          <input [(ngModel)]="currentRow['Items_title']" type="text" id="title" placeholder="Item Tittle" [disabled]="!isCreateItem" class="form-control"
+          [ngClass]="errorMessage && errorMessage.length > 0 && errorMessage.indexOf('Title is required') !== -1 ? 'red-border' : ''" (focus)="clearErrorMessage()">
+        </div>
+  
+        <div class="field">
+          <!-- Modifier group type -->
+          <span class="spn" for="title">Modifier Group Type*</span>
+          <select id="category" [disabled]="!isCreateItem" class="form-control" [(ngModel)]="currentRow['modifier_group_type']" [ngClass]="errorMessage && errorMessage.length > 0 && errorMessage.indexOf('Modifier group is required') !== -1 ? 'red-border' : ''" (focus)="clearErrorMessage()">
+            <option defaultSelected disabled value="">select</option>
+            @for(variant of listOfVariants ; track variant){
+              <option [value]="variant">{{variant}}</option>
+            }
+          </select>
+        </div>
+      </div>
+        
+      <!-- Category -->
+      @if(From !== 'Modifier-Group'){
+        <div class="form-row">
+          <div class="field">
+            <span class="spn" for="category">Category</span>
+            <select id="category" [disabled]="!isCreateItem" class="form-control" [(ngModel)]="currentRow['Category']" [ngClass]="errorMessage && errorMessage.length > 0 && errorMessage.indexOf('Category  is required') !== -1 ? 'red-border' : ''" (focus)="clearErrorMessage()">
+              <option defaultSelected disabled value="">select</option>
+              @for(category of categoryList ; track category){
+                <option [value]="category">{{category}}</option>
+              }
+            </select>
+          </div>
+          
+          <!-- Food Type -->
+          <div class="field">
+            <span class="spn" for="food-type">Food Type *</span>
+            <select id="food-type" [disabled]="!isCreateItem" class="form-control" [(ngModel)]="currentRow['food_type']" [ngClass]="errorMessage && errorMessage.length > 0 && errorMessage.indexOf('food_type is required') !== -1 ? 'red-border' : ''" (focus)="clearErrorMessage()">
+              <option defaultSelected disabled value="">select</option>
+              @for(type of foodTypeList ; track type){
+                <option [value]="type">{{type}}</option>
+              }
+            </select>
+          </div>
+        </div>
+      }
+        
+      <!-- sort order -->
+      <div class="form-row">
+        <div class="field">
+          <span class="spn" for="sort-order">Sort Order</span>
+          <input type="text" id="sort-order" value="0" [disabled]="!isCreateItem" class="form-control" [(ngModel)]="currentRow['sort_order']" [ngClass]="errorMessage && errorMessage.length > 0 && errorMessage.indexOf('sort_order is required') !== -1 ? 'red-border' : ''" (focus)="clearErrorMessage()">
+        </div>
+    
+        <!-- IS recommended -->
+        <div class="field toggle">
+          <span class="spn" for="is-recommended">Is Recommended</span>
+          <div class="toggle-switch">
+            <input type="checkbox" id="is-recommended"  [disabled]="!isCreateItem" class="form-control" [checked]="currentRow['isRecommended']" >
+            <span tabindex="-90" class="slider" (keydown)="empty()" (click)="onCheckIsRecommended(currentRow['isRecommended'])"></span>
+          </div>
+        </div>
+      </div>
+        
+      <!-- Default Sales price -->
+      @if(From !== 'Modifier-Group'){
+        <div class="form-row">
+          <div class="field">
+            <span class="spn" for="default-sales-price">Default Sales Price *</span>
+            <input type="text" id="default-sales-price" placeholder="₹ 70" [disabled]="!isCreateItem" class="form-control" [(ngModel)]="currentRow['default_sales_price']" (focus)="clearErrorMessage()">
+          </div>
+      
+          <div class="field">
+            <span class="spn" for="markup-price">Markup Price (Optional)</span>
+            <input type="text" id="markup-price" placeholder="₹ 0" [disabled]="!isCreateItem" class="form-control" [(ngModel)]="currentRow['markup_price']" (focus)="clearErrorMessage()">
+          </div>
+        </div>
+      }
+  
+      <div class="form-row">
+        <div class="field toggle">
+          <span class="spn" for="is-recommended">Mark as Add-On</span>
+          <div class="toggle-switch">
+            <input type="checkbox" id="is-recommended" checked [disabled]="!isCreateItem" class="form-control" [(ngModel)]="currentRow['marked_as_add_on']">
+            <span tabindex="-80" class="slider" [ngClass]="!isCreateItem ? 'disabled' : ''" (keydown)="empty()" (click)="onCheckMarkedAddOn(currentRow['marked_as_add_on'])"></span>
+          </div>
+        </div>
+      </div>
+  
+      </div>
+    }
+
+
+    @else if(From === 'Taxes'){
+       <!-- For texes module -->
+    <div class="form-container-basic-information">
+      <!-- Name -->
+      <div class="form-row">
+        <div class="field">
+          <span class="spn" for="title">Name *</span>
+          <input type="text" id="title" placeholder="GST" [disabled]="true" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-row">
+
+        <!--Applicable On-->
+        <div class="field">
+          <span class="spn" for="title">Applicable On *</span>
+          <input type="text" id="title" placeholder="Item Price" [disabled]="true" class="form-control">
+        </div>
+        
+        <!-- Tax Percentage-->
+        <div class="field">
+          <span class="spn" for="title">Tax Percentage *</span>
+          <div class="d-flex gap-1">
+            <input type="text" id="Percentage" placeholder="%" [disabled]="true" class="form-control fix-width">
+            <input type="number" id="title" placeholder="5" [disabled]="true" class="form-control">
+          </div>
+        </div>
+
+      </div>
+    </div>
+    }
+  }
+ 

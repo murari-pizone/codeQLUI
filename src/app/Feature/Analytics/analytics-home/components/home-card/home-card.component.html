@@ -1,0 +1,122 @@
+<div class="container-fluid p-24">
+    <div class="card" style="position: unset;">
+        <div class="card-header dashboard-filter">
+            <div class="heading text-light h4 mb-0">
+                Analytics Home
+            </div>
+            <div class="main-section">
+                <button class="btn  btn-light d-flex gap-2"> <i class="bi bi-info-circle-fill"></i> Help</button>
+                <input type="search" class="search-bar form-control" placeholder="Search">
+            </div>
+        </div>
+
+        <div class="card-body bg-light cards">
+            <div class="mt-3" style="margin:25px">
+                <div class="heading h6 fw-bold mb-3">
+                    Revenue
+                </div>
+
+                <div class="row row-cols-1 row-cols-md-3 g-3">
+                    @for(revenue of homeCards.revenueCardData;track revenue;let rInd = $index){
+                    <div class="col">
+                        <div class="card" style="height: 8rem;">
+                            <div class="card-body">
+                                <div style="width: 10%;">
+                                    <i class="bi" [ngClass]="revenue.icon ? revenue.icon :' '"
+                                        style="font-size: 30px;color:#00378C"></i>
+                                </div>
+                                <div style="width: 75%;">
+                                    <div class="card-title"> {{revenue.title}}</div>
+                                    <p class="card-text">{{revenue.text}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+
+                <div class="mt-3">
+                    <div class="heading h6 fw-bold mb-3">
+                        Orders
+                    </div>
+
+                    <div class="row row-cols-1 row-cols-md-3 g-3">
+                        @for(revenue of homeCards.orderCardData;track revenue;let rInd = $index){
+                        <div class="col">
+                            <div class="card" style="height: 8rem;">
+                                <div class="card-body">
+                                    <div style="width: 10%;">
+                                        <i class="bi" [ngClass]="revenue.icon ? revenue.icon :' '"
+                                            style="font-size: 30px;color:#00378C"></i>
+                                    </div>
+                                    <div style="width: 75%;">
+                                        <div class="card-title"> {{revenue.title}}</div>
+                                        <p class="card-text">{{revenue.text}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+
+                    <div class="mt-3">
+                        <div class="heading h6 fw-bold mb-3">
+                            Operations
+                        </div>
+
+                        <div class="row row-cols-1 row-cols-md-3 g-3">
+                            @for(revenue of homeCards.operationCardData;track revenue;let rInd = $index){
+                            <div class="col">
+                                <div class="card" style="height: 8rem;">
+                                    <div class="card-body">
+                                        <div style="width: 10%;">
+                                            <i class="bi" [ngClass]="revenue.icon ? revenue.icon :' '"
+                                                style="font-size: 30px;color:#00378C"></i>
+                                        </div>
+                                        <div style="width: 75%;">
+                                            <div class="card-title"> {{revenue.title}}</div>
+                                            <p class="card-text">{{revenue.text}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+
+                    </div>
+
+                    <div class="mt-3">
+                        <div class="heading h6 fw-bold mb-3">
+                            Catalogue
+                        </div>
+
+                        <div class="row row-cols-1 row-cols-md-3 g-3">
+                            @for(revenue of homeCards.catalogueCardData;track revenue;let rInd = $index){
+                            <div class="col">
+                                <div class="card" style="height: 8rem;">
+                                    <div class="card-body">
+                                        <div style="width: 10%;">
+                                            <i class="bi" [ngClass]="revenue.icon ? revenue.icon :' '"
+                                                style="font-size: 30px;color:#00378C"></i>
+                                        </div>
+                                        <div style="width: 75%;">
+                                            <div class="card-title"> {{revenue.title}}</div>
+                                            <p class="card-text">{{revenue.text}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

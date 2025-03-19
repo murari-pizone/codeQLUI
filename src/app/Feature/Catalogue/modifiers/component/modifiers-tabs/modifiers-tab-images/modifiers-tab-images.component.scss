@@ -1,0 +1,48 @@
+.upload-container-image {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.drag-drop-zone-image {
+    border: 2px dashed #00378C;
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 25px;
+    background-color: #00378c17;
+}
+
+.drag-drop-zone-image.dragover {
+    background-color: #f0f8ff;
+    border-color: #007bff;
+}
+
+.DropImageIcon {
+    margin: 15px 0px 33px 0px;
+}
+
+.upload-btn {
+    width: 100%;
+    background-color: #00378C;
+    color: white;
+}
+
+.upload-btn:hover {
+    background-color: #00388ca9;
+}
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}
+
+.main-container-image {
+    margin-top: 25px;
+}

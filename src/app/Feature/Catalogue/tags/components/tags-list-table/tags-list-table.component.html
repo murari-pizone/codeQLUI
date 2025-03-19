@@ -1,0 +1,72 @@
+<div class="container-fluid p-24">
+    <app-filter (filter)="filter($event)" [component]="'Items'"></app-filter>
+    <div class="table">
+        <div class="items-table-scroll">
+            <table mat-table
+                [dataSource]="rows | paginate: { itemsPerPage: page.itemPerPage, currentPage: page.pageNumber }"
+                class="mat-elevation-z8">
+
+                <ng-container matColumnDef="SR No.">
+                    <th mat-header-cell class="sr-number" *matHeaderCellDef mat-sort-header="SR No."> Sr no.
+                    </th>
+                    <td mat-cell *matCellDef="let element; let i = index" [title]="i + 1">
+                        {{i + 1}}
+                    </td>
+                </ng-container>
+
+                <!-- TAGS-->
+                <ng-container matColumnDef="Tags">
+                    <th mat-header-cell *matHeaderCellDef>TAGS</th>
+                    <td mat-cell *matCellDef="let element; let i = index" [title]="element.tagsName">
+                        <span class="section-text" data-bs-target="#TagsModal" data-bs-toggle="offcanvas"
+                            aria-controls="offcanvasRight" tabindex="-1" (click)="openEditSideBar(element)"
+                            (keydown.enter)="openEditSideBar(element)">
+                            {{element.tagsName}}
+                        </span>
+                    </td>
+                </ng-container>
+
+                <!-- ASSOCIATED ITEMS -->
+                <ng-container matColumnDef="Associated Items">
+                    <th mat-header-cell *matHeaderCellDef>ASSOCIATED ITEMS</th>
+                    <td mat-cell *matCellDef="let element; let i = index" [title]="element.assoItems">
+                        {{element.assoItems}}</td>
+                </ng-container>
+
+                <!-- ASSOCIATED MODIFIERS -->
+                <ng-container matColumnDef="Associated Modifiers">
+                    <th mat-header-cell *matHeaderCellDef>ASSOCIATED MODIFIERS</th>
+                    <td mat-cell *matCellDef="let element; let i = index" [title]="element.assoModi">
+                        {{element.assoModi}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columns"></tr>
+                <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+            </table>
+        </div>
+
+        <div class="table-footer">
+            <div class="totalCount">
+                @if(rows && rows.length > 0){
+                <span class="footer-text"> Total Records : {{rows.length}}</span>
+                }@else{
+                <span class="footer-text"> Total Records : 0</span>
+                }
+            </div>
+            <div class="has-text-centered pagination">
+                <pagination-controls (pageChange)="changePage($event)" previousLabel=""
+                    nextLabel=""></pagination-controls>
+            </div>
+            <div class="footer-menu">
+                <span class="footer-text"> Show Records Per Page : </span>
+                <select class="footer-dropdown" [(ngModel)]="dropDownSelectedValue" (change)="RecordPerPage()">
+                    @for(option of pageItem;track option){
+                    <option [value]="option">{{option}}</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-tags-modal [showSideBar]="showSideBar"></app-tags-modal>

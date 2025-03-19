@@ -1,0 +1,102 @@
+.loading-skeleton p,
+.loading-skeleton li,
+.loading-skeleton label,
+.loading-skeleton .form-control,
+.loading-skeleton i {
+  color: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #eee;
+  border-color: #eee;
+}
+
+.loading-skeleton i {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+}
+.loading-skeleton label::placeholder,
+.loading-skeleton .form-control::placeholder {
+  color: transparent;
+}
+
+.skeleton-container {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  margin-top: 7px;
+}
+
+@keyframes loading-skeleton {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.loading-skeleton {
+  pointer-events: none;
+  animation: loading-skeleton 1s infinite alternate;
+}
+
+.loading-skeleton .form-group {
+  border-right: 1px solid #d8d8d8;
+  width: 100%;
+}
+.loading-skeleton .form-group input {
+  border-radius: 0px;
+  border: 0;
+}
+.loading-skeleton .form-group input:last-child {
+  background-color: #fff;
+}
+.footer-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+.footer-dropdown{
+  padding: 3px 8px;
+  border-radius: 8px;
+  border: 1px solid #8080804a;
+}
+
+// adjust column width in data table 
+.check-box-column{
+  width: 20px;
+  max-width: 20px;
+}
+.checkBox{
+  height : 15px;
+  width : 15px;
+}
+
+.Active{
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.Archived{
+  background-color: #e0e0e0; /* Light gray background */
+  color: #505050; /* Dark gray text */
+}
+
+.location {
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+}
+.location-status {
+  padding-top : 15px;
+}
+
+.name-column{
+  min-width: 220px !important;
+  max-width: 220px !important;
+  width: 220px !important;
+}
+
+.city-column{
+  min-width: 173.77px !important;
+  max-width: 173.77px !important;
+  width: 173.77px !important;
+}

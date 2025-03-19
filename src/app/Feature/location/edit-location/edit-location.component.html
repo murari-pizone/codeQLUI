@@ -1,0 +1,100 @@
+<!-- stepper.component.html -->
+<div class="stepper">
+    <div class="step-tabs">
+        @for(step of steps; track step){
+            <div tabindex="-1" (keyup)="empty()"
+              class="step-tab"
+              [ngClass]="{ active: currentStep === step.index }"
+              >
+              {{ step.label }}
+            </div>
+        }
+    </div>
+  
+    <div class="step-content">
+      <!-- Step 1: Location Details Form -->
+      @if(currentStep === 1){
+      <h3>Select number of locations 
+      </h3>
+      <div class="row">
+        <div class="col icon-container" [ngStyle]="{'background-color' :locationData.locationCount === 1  ?'lightsteelblue':''} "
+         (click)="selectArea('single')" (keyup)="empty()" tabindex="-1">
+          <i class="bi bi-buildings icon-large"></i>
+          <p>Single</p>
+        </div>
+        <div class="col icon-container"
+         [ngStyle]="{'background-color' :locationData.locationCount > 1 ?'lightsteelblue':''} "
+         (click)="selectArea('multi')" (keyup)="empty()" tabindex="-2">
+          <i class="bi bi-buildings icon-large"></i>
+          <i class="bi bi-buildings icon-large"></i>
+          <p>More than One</p>
+        </div>
+      </div>
+      <div class="button-group">
+        <button (click)="Cancel()">Cancel</button>
+        <button [ngStyle]="{'background-color' :(locationData.locationCount < 1)  ?'lightblue':''} "
+          [disabled]="locationData.locationCount < 1" (click)="nextStep(2)">Next</button>
+      </div>
+
+      }
+  
+      <!-- Step 2: Location Verify Form -->
+       @if(currentStep === 2){
+           <div>
+             <h3>Location Name</h3>
+             <input [attr.title]="getErrorForControl('Location Name')" [ngClass]="(errorList.includes(locConst.Error.ER01) && !locationData.name) ? 'errorsShow':''"
+               type="text" name="locationName" (input)="removeError('Location Name')" [(ngModel)]="locationData.name" maxlength="500" class="form-control">
+
+             <h3>Address</h3>
+             <textarea [attr.title]="getErrorForControl('Address')" [ngClass]="(errorList.includes(locConst.Error.ER02) && !locationData.address) ? 'errorsShow':''"
+              type="text" name="locationName" (input)="removeError('Address')" [(ngModel)]="locationData.address" maxlength="500" class="form-control"></textarea>
+
+             <h3>City</h3>
+              
+          <select [attr.title]="getErrorForControl('City Name')" [ngClass]="(errorList.includes(locConst.Error.ER03) && !locationData.city) ? 'errorsShow':''" class="form-select w-48"
+            [(ngModel)]="locationData.city" (change)="removeError('City Name')">
+            <option value="">Select City</option>
+            <option *ngFor="let city of indianCities" [value]="city">{{ city }}</option>
+          </select>
+          <span>
+            <h3>Phone </h3>
+             <input [attr.title]="getErrorForControl('Phone')" [ngClass]="(errorList.includes(locConst.Error.ER04) || (errorList.includes(locConst.Error.ER07))) ? 'errorsShow':''" 
+             type="number" name="locationName" maxlength="10" (input)="removeError('Phone')" [(ngModel)]="locationData.phoneNo" class="form-control">
+             <h3>Email</h3>
+             <input  [attr.title]="getErrorForControl('Email')" [ngClass]="(errorList.includes(locConst.Error.ER05) || errorList.includes(locConst.Error.ER06)) ? 'errorsShow':''" 
+             type="email" name="locationName" maxlength="500" [(ngModel)]="locationData.email" class="form-control" (input)="removeError('Email')">
+          </span>
+
+          <div class="button-group">
+
+            <button (click)="previousStep(1)">Back</button>
+            <button (click)="nextStep(3)">Next</button>
+          </div>
+           </div>
+       }
+  
+      <!-- Step 3: Confirmation -->
+    @if(currentStep === 3){
+    
+    <div class="confirmation-container">
+        <h3>Confirmation</h3>
+        <p>Please confirm your details below:</p>
+    
+        <!-- Checkbox for confirmation -->
+        <div class="checkbox-container">
+            <input type="checkbox" id="confirmCheckbox" [(ngModel)]="isConfirmed" />
+            <label for="confirmCheckbox">I confirm that the details are correct.</label>
+        </div>
+    
+        <!-- Action Buttons -->
+        <div class="button-group">
+            <button (click)="previousStep(2)">Back</button>
+            <button class="submit-button" [disabled]="!isConfirmed" (click)="SubmitLocation()">
+                Submit
+            </button>
+        </div>
+    </div>
+    }
+    </div>
+  </div>
+  

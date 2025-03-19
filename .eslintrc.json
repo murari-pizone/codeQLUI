@@ -1,0 +1,44 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json", "tsconfig.spec.json"],
+         "tsconfigRootDir": "./"
+      },
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": ["error", {"type": "attribute","prefix": "app","style": "camelCase"}],
+        "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "app", "style": "kebab-case"}],
+        "@typescript-eslint/explicit-function-return-type": "error",  // Enforces return types on functions
+        "@typescript-eslint/no-unused-vars": "error",  // No unused variables allowed
+        "@typescript-eslint/no-explicit-any": "warn",  // Warn against use of `any` type
+        "@typescript-eslint/consistent-type-definitions": ["error", "interface"],  // Enforce using interface over type
+        "@typescript-eslint/no-floating-promises": "error",  // Ensure promises are handled properly
+        "@typescript-eslint/no-misused-promises": "error",  // Disallow using promises in places they shouldn't be
+        "@typescript-eslint/no-unnecessary-type-assertion": "error",  // Avoid unnecessary type assertions
+        "@typescript-eslint/await-thenable": "error"  // Ensures correct usage of await with promises
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility"
+      ],
+      "rules": {
+        "@angular-eslint/template/no-negated-async": "error" 
+      }
+    }
+  ]
+}

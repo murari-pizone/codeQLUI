@@ -1,0 +1,47 @@
+.associatedHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.table-scroll {
+    overflow: auto;
+    max-height: calc(100vh - 435px);
+  }
+  .restaurant-name-column {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .available{
+    background: transparent;
+    padding: 1px 5px;
+    text-align: center;
+    font-size: 11px !important;
+    border-radius: 8px;
+    margin-top: 3px;
+    color: green;
+    border: 1px solid green;
+  }
+  .out-of-stock{
+    background: transparent;
+    padding: 1px 5px;
+    text-align: center;
+    font-size: 11px !important;
+    border-radius: 8px;
+    margin-top: 3px;
+    color: red;
+    border: 1px solid red;
+  }
+  .truncate-text {
+    width: 15ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }

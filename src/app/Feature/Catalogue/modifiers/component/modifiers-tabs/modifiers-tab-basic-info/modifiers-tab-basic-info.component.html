@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div style="display: flex;justify-content: space-between;">
+        <div style="width: 48%;">
+            <p style="color: grey;font-size: 13px;padding-top: 4px;">Title <span style="color: red;">*</span></p>
+            <input disabled type="text" style="line-height: 2;" class="form-control">
+        </div>
+
+        <div style="width: 48%;">
+            <p style="color: grey;font-size: 13px;padding-top: 4px;">Food Type <span style="color: red;">*</span></p>
+            <select disabled name="" id="" class="select-input form-select disabled"></select>
+        </div>
+    </div>
+
+    <div style="display: flex;justify-content: space-between;margin-top: 5px;">
+        <div style="width: 48%;">
+            <div style="display: flex;justify-content: space-between;">
+                <p style="color: grey;font-size: 13px;padding-top: 4px;">Default Sales Price <span
+                        style="color: red;">*</span>
+                    <i style="margin: 5px;color: #00378C;" class="bi bi-info-circle"></i>
+                </p>
+                <p style="color: #00378C;padding-top: 4px;">Cascade</p>
+            </div>
+            <div style="display: flex;">
+                <span
+                    style="width: 8%;display: flex;justify-content: center;align-items: center;background-color: #c5c6cc;"><i
+                        class="bi bi-currency-rupee"></i></span>
+                <input disabled type="text" style="line-height: 2;" class="form-control">
+            </div>
+        </div>
+
+        <div style="width: 48%;">
+            <p style="color: grey;font-size: 13px;padding-top: 4px;">Sort Order <span style="color: red;">*</span>
+                <i style="margin: 5px;color: #00378C;" class="bi bi-info-circle"></i>
+            </p>
+            <input disabled type="text" style="line-height: 2;" class="form-control">
+        </div>
+    </div>
+
+    <div>
+        <p style="color: grey;font-size: 13px;padding-top: 10px;">Description</p>
+        <span style="display: flex;gap:5px">
+            <p style="font-weight: 600;color: #00378C;">Show More</p>
+            <p style="font-weight: 600;color: #00378C;" tabindex="-11" (keyup)="empty()"
+                (click)="isChevronUp = !isChevronUp"
+                [ngClass]="{'bi-chevron-up': isChevronUp, 'bi-chevron-down': !isChevronUp}" class="bi">
+            </p>
+        </span>
+        @if(isChevronUp){
+        <div style="min-height: 100px;" class="card">
+            <div class="card-body">
+                This screen is basic information of modifiers in catalogue
+            </div>
+        </div>
+        }
+    </div>
+</div>

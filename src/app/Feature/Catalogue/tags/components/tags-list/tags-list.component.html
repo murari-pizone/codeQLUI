@@ -1,0 +1,80 @@
+<div class="inline-error-msg">
+    @if(isErrorOccur){
+    <app-inline-error-msg (crossClick)="closeInlineError()" [errorMsg]="errorMsg"></app-inline-error-msg>
+    }
+</div>
+
+<div style="margin:15px">
+
+    <div style="display: flex;justify-content: space-between;padding: 20px" class="border">
+        <div>
+            <h2>Tags</h2>
+            <div class="header-text-helper">Manage tags and their tag groups</div>
+        </div>
+        <div style="display:flex;gap:5px">
+            <button type="button" class="btn btn-primary" style="height: 35px;">+ Add Tag Group</button>
+            <button type="button" class="btn btn-primary" style="height: 35px;">+ Add Tag</button>
+        </div>
+    </div>
+
+    <div style="display: flex;">
+        <div style="width:26%;" class="border">
+            <div class="category">
+                <div class="subcategories-header">
+                    <div style="display: flex;justify-content: center;">
+                        <h2 style="margin-top: 8px;">
+                            Tags Group
+                        </h2>
+                    </div>
+                    <div class="stepper">
+                        <div class="step-tabs">
+                            <div (keyup)="empty()" (click)="currentStep = 'Active'" tabindex="-1" class="step-tab"
+                                [ngClass]="{ active: currentStep === 'Active' }"> Active </div>
+                            <div (keyup)="empty()" (click)="currentStep = 'Archive'" tabindex="-1" class="step-tab"
+                                [ngClass]="{ active: currentStep === 'Archive' }"> Archive </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="subcategories-list">
+                    @if(currentStep === 'Active'){
+                    @for(agg of aggregatorList['active']; track agg){
+                    <div (keyup)="empty()" tabindex="-1" class="subcategory-item">
+                        <div style="display: flex;gap:8px;">
+                            <span>{{agg}}
+                            </span>
+                            <div>
+                                <button class="itemColumn-btn">System Managed</button>
+                            </div>
+                        </div>
+                        <a class="btn-icon">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+                    </div>
+                    }
+                    }@else {
+                    @for(agg of aggregatorList['archive']; track agg){
+                    <div (keyup)="empty()" tabindex="-1" class="subcategory-item">
+                        <div style="display: flex;gap:8px;">
+                            <span>{{agg}}
+                            </span>
+                            <div>
+                                <button class="itemColumn-btn">System Managed</button>
+                            </div>
+                        </div>
+                        <a class="btn-icon">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+                    </div>
+                    }
+                    }
+                </div>
+            </div>
+
+        </div>
+
+        <div style="width: 75%;">
+            <app-tags-list-table></app-tags-list-table>
+        </div>
+    </div>
+
+</div>

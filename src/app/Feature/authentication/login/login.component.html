@@ -1,0 +1,88 @@
+<div class="login-section">
+    <div class="bg-section container-fluid h-100">
+        <div class="row h-100">
+            <div class="col-sm-12 col-md-3 lhs order-2 order-md-1">
+                <img src="../../../../assets/images/svg/Logotheme.svg" alt="" class="logo">
+                <div class="login-container">
+
+                    <!-- <div class="m-5">
+                        <button (click)="stopObserver()">Stop</button>
+                        <button (click)="startObserver()">Start</button>
+                    </div> -->
+
+                    <form (ngSubmit)="onSubmit()">
+                        <div class="login-box">
+            
+                            <div class="border-b">
+                                <div class="heading">LOGIN 
+                                    <!-- @for(item of counter;track item){
+                                    <span>
+                                        {{item}}-
+                                    </span>
+                                } -->
+                                    
+                                </div>
+                                <span class="sub-head">Login into your account</span>
+                            </div>
+                            <div class="form w-100">
+                                <div class="mb-3">
+                                    <!-- email -->
+                                    <label for="email">Email</label>
+                                    <input [disabled]="isLoading" #email placeholder="Email" required id="email" [(ngModel)]="userData.email" name="email" (input)="usernameError='' ; errorMessage=''"
+                                        type="text" [ngClass]="(usernameError || errorMessage) ? 'errorsShow':''" (keydown.enter)="focusNext()"
+                                        class="form-control" (blur)="checkEmailIsValid()">
+                                    @if(usernameError){
+                                    <div class="error">{{usernameError}}</div>
+                                    }
+                                </div>
+                                <div class="w-100">
+                                    <!-- password -->
+                                    <label for="password">password</label>
+                                    <div class="password-input">
+                                        <input [disabled]="isLoading" #secondInput  #input2 (keydown.enter)="onSecondInputEnter()"  placeholder="Password" required id="password" [(ngModel)]="userData.password"
+                                            name="password" [ngClass]="(passwordError || errorMessage) ? 'errorsShow':''" (input)="passwordError='' ; errorMessage=''"
+                                            [type]="controlType" class="form-control">
+                                        <i tabindex="-1" (keyup)="empty()" [ngClass]="showIcon ? 'bi bi-eye-fill eye-icon' : 'bi bi-eye-slash-fill eye-icon'"  (click)="showPass()" id="hidePass"></i>
+                                    </div>
+                                    @if(passwordError){
+                                    <div class="error">{{passwordError}}</div>
+                                    }
+                                </div>
+                                <span class="forget-password" >
+                                    <a tabindex="-2" (keyup)="empty()" (click)="goToForgot()" >Forgot Password</a>
+                                </span>
+            
+                            </div>
+                            @if(errorMessage && !usernameError && !passwordError){
+                            <div class="error">
+                                {{ errorMessage }}
+                            </div>
+                            }
+                            <span class="w-100">
+                                <button href="#" class="btn btn-theme" [disabled]="isLoading">
+                                    @if(isLoading){
+                                        <app-loader [loadingCircleColor]="'3px solid #F6AA32'" [isLoading]="isLoading"  [loadingText]="loadingText" ></app-loader>
+                                    }@else {
+                                        Login
+                                    }
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm- col-md-9 rhs order-1 order-md-2">
+                <div class="text-white">
+                    <div class="heading">
+                        <img src="../../../../assets/images/svg/Logotheme.svg" alt="" class="logo box-logo mb-3">
+
+                        <div>{{welcomeText.welcomeTo}}</div>
+                        <div class="theme">{{welcomeText.theme}}</div>
+                    </div>
+                    <p>{{welcomeText.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</div>
