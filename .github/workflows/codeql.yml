@@ -40,15 +40,9 @@ jobs:
       with:
         languages: javascript-typescript
         queries: security-extended,security-and-quality
-        build-mode: none  # ✅ Correct build mode
+        build-mode: none  # ✅ Fix: JavaScript does not support manual build mode
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:javascript-typescript"
-
-    - name: Upload CodeQL database
-      uses: actions/upload-artifact@v3
-      with:
-        name: codeql-database
-        path: /home/runner/work/_temp/codeql_databases
