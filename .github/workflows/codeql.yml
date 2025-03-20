@@ -39,10 +39,14 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: javascript-typescript
-        queries: security-extended,security-and-quality
-        build-mode: none  # ✅ Fix: JavaScript does not support manual build mode
+        queries: +security-extended, +security-and-quality, +experimental
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:javascript-typescript"
+
+    - name: Run ESLint Security Check
+      run: |
+        npm install eslint-plugin-security eslint-plugin-angular --save-dev
+        npx eslint "src/**/*.ts" --plugin security --plugin angular --ext .ts
